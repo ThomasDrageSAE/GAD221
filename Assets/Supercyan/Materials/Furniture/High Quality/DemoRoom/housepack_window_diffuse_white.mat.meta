@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c62f400203b238d45b06bc2ce5bc7750
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/Materials/Furniture/High Quality/DemoRoom/housepack_window_diffuse_white.mat
+  uploadId: 691319

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 057775e1ea53c8b4eadcb7f01d7e0a90
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Office Furniture/OverrideControllers/office_pack_printer_large_1.overrideController
+  uploadId: 691319
