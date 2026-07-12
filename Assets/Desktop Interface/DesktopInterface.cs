@@ -76,10 +76,10 @@ public class DesktopInterface : MonoBehaviour
         Debug.Log("Desktop Interface - SystemLoad");
         bgSystemLoad.gameObject.SetActive(true);
         animOSLogo.gameObject.SetActive(true);
-        animOSLogo.Play("OS Logo");
+        animOSLogo.Play("OSLogo");
         animSystemLoad.gameObject.SetActive(true);
-        animSystemLoad.Play("System Load");
-        StartCoroutine(RunOnAnimFinish(animSystemLoad, "System Load", SystemLoaded, 0.5f));
+        animSystemLoad.Play("LoadingBarFill");
+        StartCoroutine(RunOnAnimFinish(animSystemLoad, "LoadingBarFill", SystemLoaded, 0.5f));
     }
 
     public void SystemLoaded()
