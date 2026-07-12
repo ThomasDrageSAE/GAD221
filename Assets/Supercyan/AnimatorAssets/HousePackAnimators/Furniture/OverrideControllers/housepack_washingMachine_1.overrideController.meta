@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ded866f44cfc6f641b7dd890ea0970d6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Furniture/OverrideControllers/housepack_washingMachine_1.overrideController
+  uploadId: 691319

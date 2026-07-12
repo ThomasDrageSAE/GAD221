@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc49a414726711d44897277dbef7d4b7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/Materials/Furniture/Mobile/DemoRoom/housepack_wall_diffuse_low.mat
+  uploadId: 691319

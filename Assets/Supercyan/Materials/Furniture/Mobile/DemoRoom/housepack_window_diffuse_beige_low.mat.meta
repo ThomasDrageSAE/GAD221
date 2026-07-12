@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a7b3936327f764e449523740faf4c604
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/Materials/Furniture/Mobile/DemoRoom/housepack_window_diffuse_beige_low.mat
+  uploadId: 691319

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e12030d5bc922a5489bc2ae19ce1434a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Furniture/OverrideControllers/housepack_table_televisionStand_1.overrideController
+  uploadId: 691319
