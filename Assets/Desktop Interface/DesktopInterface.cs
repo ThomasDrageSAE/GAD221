@@ -18,13 +18,11 @@ public class DesktopInterface : MonoBehaviour
     void Start()
     {
         animScreenOn.gameObject.SetActive(true);
+        animSystemLoad.gameObject.SetActive(true);
+        animOSLogo.gameObject.SetActive(true);
+        //animScreenOff.gameObject.SetActive(true);
         
         StartCoroutine(InterfaceOpen());
-    }
-    
-    void Update()
-    {
-        
     }
 
     public IEnumerator InterfaceOpen()
