@@ -20,6 +20,7 @@ public class DesktopInterface : MonoBehaviour
         animScreenOn.gameObject.SetActive(true);
         animSystemLoad.gameObject.SetActive(true);
         animOSLogo.gameObject.SetActive(true);
+        bgSystemLoad.gameObject.SetActive(true);
         //animScreenOff.gameObject.SetActive(true);
         
         StartCoroutine(InterfaceOpen());

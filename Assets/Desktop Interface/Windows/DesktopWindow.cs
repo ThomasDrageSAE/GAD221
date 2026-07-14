@@ -65,10 +65,9 @@ public class DesktopWindow : MonoBehaviour
     {
         RectTransform rectTransform = (RectTransform)gameObject.transform;
         
-        int taskBarHeight = 27;
-        int windowBorderWidth = 2;
+        int taskBarHeight = 25;
         
-        Vector2 windowSize = rectTransform.rect.size + new Vector2(windowBorderWidth * 2, windowBorderWidth * 2);
+        Vector2 windowSize = rectTransform.rect.size;
         Vector2 pivotPoint = rectTransform.pivot;
         
         
