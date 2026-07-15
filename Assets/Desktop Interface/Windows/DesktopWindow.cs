@@ -75,8 +75,9 @@ public class DesktopWindow : MonoBehaviour
         float minY = windowSize.y * pivotPoint.y + taskBarHeight; float maxY = Screen.height - windowSize.y * (1f - pivotPoint.y);
         
         Vector2 newPos = eventData.position - dragOffset;
-        newPos.x = Mathf.Clamp(newPos.x, minX, maxX);
-        newPos.y = Mathf.Clamp(newPos.y, minY, maxY);
+        
+        newPos.x = Mathf.Round(Mathf.Clamp(newPos.x, minX, maxX));
+        newPos.y = Mathf.Round(Mathf.Clamp(newPos.y, minY, maxY));
         
         gameObject.transform.position = newPos;
     }
