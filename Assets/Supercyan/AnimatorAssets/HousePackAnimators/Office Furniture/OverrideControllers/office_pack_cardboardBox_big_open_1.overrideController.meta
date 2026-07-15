@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5b76b914f1b1c974aaa062c7ccf03216
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Office Furniture/OverrideControllers/office_pack_cardboardBox_big_open_1.overrideController
+  uploadId: 691319

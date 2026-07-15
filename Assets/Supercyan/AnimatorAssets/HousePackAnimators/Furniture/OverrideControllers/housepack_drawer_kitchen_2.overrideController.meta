@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 285f89214a9d39b4f88d3d8b7b7a7aca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Furniture/OverrideControllers/housepack_drawer_kitchen_2.overrideController
+  uploadId: 691319

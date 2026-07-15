@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dfdd0b4e8aa422044b32e049ef52048f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Office Furniture/OverrideControllers/office_pack_closet_large_1.overrideController
+  uploadId: 691319
