@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] Image outlineHighlight;
+    [SerializeField] protected Image outlineHighlight;
     
     [SerializeField] bool hoverable = true;
     [SerializeField] bool clickable  = true;
