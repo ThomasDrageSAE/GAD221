@@ -52,8 +52,8 @@ public class TextInputField : UIComponent
         Debug.Log("TextInputField - Activated");
         inputField.ActivateInputField();
         activated = true;
-        outlineHighlight.sprite = activatedHighlightSprite;
-        outlineHighlight.enabled = true;
+        highlight.sprite = activatedHighlightSprite;
+        highlight.enabled = true;
     }
 
     public void Deactivate()
@@ -61,8 +61,8 @@ public class TextInputField : UIComponent
         Debug.Log("TextInputField - Deactivated");
         inputField.DeactivateInputField();
         activated = false;
-        outlineHighlight.sprite = defaultHighlightSprite;
-        outlineHighlight.enabled = false;
+        highlight.sprite = defaultHighlightSprite;
+        highlight.enabled = false;
         if (!storeInput)
         {
             inputField.text = "";

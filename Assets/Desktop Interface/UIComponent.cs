@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] protected Image outlineHighlight;
+    [SerializeField] protected Image highlight;
     
     [SerializeField] bool hoverable = true;
     [SerializeField] bool clickable  = true;
@@ -18,9 +19,9 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     
     void Awake()
     {
-        if (outlineHighlight != null)
+        if (highlight != null)
         {
-            outlineHighlight.enabled = false;
+            highlight.enabled = false;
         }
     }
     
@@ -30,7 +31,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         {
             onHoverStart?.Invoke();
             hovered = true;
-            outlineHighlight.enabled = true;
+            highlight.enabled = true;
         }
     }
 
@@ -40,7 +41,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         {
             onHoverStop?.Invoke();
             hovered = false;
-            outlineHighlight.enabled = false;
+            highlight.enabled = false;
         }
     }
 
