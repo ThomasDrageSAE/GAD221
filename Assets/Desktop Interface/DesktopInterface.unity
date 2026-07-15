@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 767144235}
   - component: {fileID: 767144236}
   m_Layer: 0
-  m_Name: Shortcut (2)
+  m_Name: Shortcut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 881431270}
   - component: {fileID: 881431271}
   m_Layer: 0
-  m_Name: Shortcut (1)
+  m_Name: Shortcut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3802,6 +3802,7 @@ MonoBehaviour:
   animOSLogo: {fileID: 1035312101}
   bgSystemLoad: {fileID: 218762538}
   animScreenOff: {fileID: 0}
+  windowPrefab: {fileID: 8878853217547683330, guid: fffe1805933a65845a23087b8cd1c171, type: 3}
 --- !u!114 &1997077670
 MonoBehaviour:
   m_ObjectHideFlags: 0
