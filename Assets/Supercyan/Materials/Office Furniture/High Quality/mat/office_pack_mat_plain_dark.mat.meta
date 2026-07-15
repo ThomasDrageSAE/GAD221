@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc8deac89b7ec7e4ca076211615fdd8a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/Materials/Office Furniture/High Quality/mat/office_pack_mat_plain_dark.mat
+  uploadId: 691319

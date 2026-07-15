@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9b60a3b1db640114c8cecbaf3480492e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 22100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201919
+  packageName: 'Combo Pack: Furniture'
+  packageVersion: 2.0.0
+  assetPath: Assets/Supercyan/AnimatorAssets/HousePackAnimators/Office Furniture/OverrideControllers/office_pack_drawer_small_1.overrideController
+  uploadId: 691319
