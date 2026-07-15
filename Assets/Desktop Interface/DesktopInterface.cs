@@ -14,6 +14,8 @@ public class DesktopInterface : MonoBehaviour
     [SerializeField] private Image bgSystemLoad;
     
     [SerializeField] private Animator animScreenOff;
+
+    [SerializeField] private DesktopWindow windowPrefab; 
     
     void Start()
     {
@@ -96,6 +98,7 @@ public class DesktopInterface : MonoBehaviour
 
     public void CreateWindow()
     {
-        
+        Debug.Log("Desktop Interface - CreateWindow");
+        DesktopWindow window = Instantiate(windowPrefab, transform);
     }
 }
