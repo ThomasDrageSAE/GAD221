@@ -30,9 +30,9 @@ public class ToggleSlider : UIComponent
         return toggleValue;
     }
     
-    override protected void Click()
+    override protected void LeftClick()
     {
-        base.Click();
+        base.LeftClick();
         Toggle();
     }
 }

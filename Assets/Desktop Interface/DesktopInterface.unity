@@ -425,14 +425,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SearchField
   highlight: {fileID: 640719852}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClicked:
     m_PersistentCalls:
       m_Calls: []
   inputField: {fileID: 2030137501}
@@ -1064,14 +1068,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 1102897007}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1997077669}
@@ -1086,6 +1091,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &446713217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1226,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eadf090ed801ca74ca9c7c590b29b064, type: 3}
+  m_Sprite: {fileID: -375955890, guid: 166fdc7a58a5f8f45a6a4272bc25ac50, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1872,14 +1880,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 906133965}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1997077669}
@@ -1894,6 +1903,127 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &806985281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806985282}
+  - component: {fileID: 806985285}
+  - component: {fileID: 806985284}
+  - component: {fileID: 806985283}
+  m_Layer: 0
+  m_Name: Seven Segment Display
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &806985282
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806985281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1997077667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_SizeDelta: {x: 12, y: 17}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &806985283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806985281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c180a877c55c84419abe67ec63c135a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SevenSegmentDisplay
+  highlight: {fileID: 0}
+  hoverable: 0
+  leftClickable: 0
+  rightClickable: 0
+  onHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverStop:
+    m_PersistentCalls:
+      m_Calls: []
+  onLeftClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  image: {fileID: 806985284}
+  sprites:
+  - {fileID: -712581426, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: -1699753873, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: 376544944, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: 363420988, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: -1070972532, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: -673092421, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: -1860870029, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: 117312521, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: 423777260, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: -1564442780, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: -758172215, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  - {fileID: 289617335, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+--- !u!114 &806985284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806985281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 289617335, guid: 522a14cef9c58844281dfa5c516895fb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &806985285
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806985281}
+  m_CullTransparentMesh: 1
 --- !u!1 &842627371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,14 +2114,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableIcon
   highlight: {fileID: 0}
   hoverable: 0
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClicked:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &881431269
@@ -2047,14 +2181,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 1415137703}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1997077669}
@@ -2069,6 +2204,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &906133963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,14 +2658,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 273317078}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1997077669}
@@ -2542,6 +2681,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1317281715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,14 +3105,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 446713219}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1997077669}
@@ -2985,6 +3128,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1666839340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3038,14 +3184,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 748079597}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1997077669}
@@ -3060,6 +3207,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1689646396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,14 +3301,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 527410548}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 200024075}
@@ -3173,6 +3324,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1746004093
 GameObject:
   m_ObjectHideFlags: 0
@@ -3551,14 +3705,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToggleSlider
   highlight: {fileID: 116380937}
   hoverable: 1
-  clickable: 1
+  leftClickable: 1
+  rightClickable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
   onHoverStop:
     m_PersistentCalls:
       m_Calls: []
-  onClicked:
+  onLeftClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClicked:
     m_PersistentCalls:
       m_Calls: []
   animator: {fileID: 1808287492}
@@ -3755,6 +3913,7 @@ RectTransform:
   - {fileID: 218762537}
   - {fileID: 1790752623}
   - {fileID: 529533934}
+  - {fileID: 806985282}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -9,11 +9,13 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     [SerializeField] protected Image highlight;
     
     [SerializeField] bool hoverable = true;
-    [SerializeField] bool clickable  = true;
+    [FormerlySerializedAs("clickable")] [SerializeField] bool leftClickable  = true;
+    [SerializeField] bool rightClickable = true;
     
     public UnityEvent onHoverStart;
     public UnityEvent onHoverStop;
-    public UnityEvent onClicked;
+    [FormerlySerializedAs("onClicked")] public UnityEvent onLeftClicked;
+    public UnityEvent onRightClicked;
 
     private bool hovered;
     
@@ -45,11 +47,19 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         }
     }
 
-    virtual protected void Click()
+    virtual protected void LeftClick()
     {
-        if (clickable)
+        if (leftClickable)
         {
-            onClicked?.Invoke();
+            onLeftClicked?.Invoke();
+        }
+    }
+    
+    virtual protected void RightClick()
+    {
+        if (leftClickable)
+        {
+            onRightClicked?.Invoke();
         }
     }
 
@@ -70,6 +80,14 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Click();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            LeftClick();
+        }
+        
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            RightClick();
+        }
     }
 }

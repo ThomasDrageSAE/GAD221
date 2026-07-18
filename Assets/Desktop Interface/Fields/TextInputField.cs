@@ -21,7 +21,7 @@ public class TextInputField : UIComponent
 
     void Awake()
     {
-        onClicked.AddListener(Activate); ;
+        onLeftClicked.AddListener(Activate); ;
         inputField.onSelect.AddListener(Select);
         inputField.onDeselect.AddListener(Deselect);
         onHoverStop.AddListener(Deactivate);
@@ -30,7 +30,7 @@ public class TextInputField : UIComponent
 
     private void OnDestroy()
     {
-        onClicked.RemoveListener(Activate);
+        onLeftClicked.RemoveListener(Activate);
         inputField.onSelect.RemoveListener(Select);
         inputField.onDeselect.RemoveListener(Deselect);
         inputField.onSubmit.RemoveListener(Submit);
