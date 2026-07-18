@@ -18,7 +18,7 @@ public class SevenSegmentDisplayArray : MonoBehaviour
 
     public void Initialize()
     {
-        Debug.Log("SevenSegmentDisplayArray - Initialize");
+        //Debug.Log("SevenSegmentDisplayArray - Initialize");
         
         displayCount = displays.Count;
 
@@ -41,7 +41,7 @@ public class SevenSegmentDisplayArray : MonoBehaviour
 
     public void SetValue(int value)
     {
-        Debug.Log("SevenSegmentDisplayArray - SetValue: " + value);
+        //Debug.Log("SevenSegmentDisplayArray - SetValue: " + value);
         
         arrayValue = value;
         SetChildValues();
@@ -49,7 +49,7 @@ public class SevenSegmentDisplayArray : MonoBehaviour
 
     private void SetChildValues()
     {
-        Debug.Log("SevenSegmentDisplayArray - SetChildValues: ");
+        //Debug.Log("SevenSegmentDisplayArray - SetChildValues: ");
         
         string valueString = arrayValue.ToString();
         

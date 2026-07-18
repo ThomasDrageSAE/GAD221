@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minesweeper_Assets_Blank
+      name: Minesweeper_Assets_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5f50d638698041448725f5a1c596ad6
-      internalID: 444931455
+      spriteID: ac23f24d9c79e644187dfcbcc305f4f8
+      internalID: 1078862218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_One
+      name: Minesweeper_Assets_1
       rect:
         serializedVersion: 2
         x: 16
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08e5663c0861c8440b5357f231d6d8bf
-      internalID: 1578575587
+      spriteID: 5cb27f43c3cd2804ba7ca2badcd51f01
+      internalID: 943706055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Two
+      name: Minesweeper_Assets_2
       rect:
         serializedVersion: 2
         x: 32
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28ca053055fcbc64799e79fa116b0833
-      internalID: 2095214997
+      spriteID: 902da66f42b825743ae5b9f2acfb6158
+      internalID: -20159636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Three
+      name: Minesweeper_Assets_3
       rect:
         serializedVersion: 2
         x: 48
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6423a48d9b77ca741946cd2327292eb0
-      internalID: -2078068128
+      spriteID: 2ec43da8c72d5ec4f811e0318c410b69
+      internalID: -382533755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Four
+      name: Minesweeper_Assets_4
       rect:
         serializedVersion: 2
         x: 0
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e6a3b5e1d31ac243ab25e54bd5ddace
-      internalID: 1544965789
+      spriteID: 62af25f4a361ce64197d750d873e4825
+      internalID: -2045726807
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Five
+      name: Minesweeper_Assets_5
       rect:
         serializedVersion: 2
         x: 16
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 485b6a8b2257693418c733830cef3045
-      internalID: -1857383725
+      spriteID: e8c970367f4006446b73f5dcad6605ef
+      internalID: -1043917851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Six
+      name: Minesweeper_Assets_6
       rect:
         serializedVersion: 2
         x: 32
@@ -244,14 +244,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f242b245a39470041a52db0f48d663e6
-      internalID: -1555560880
+      spriteID: 98cb61668ee2919479348fb28bdd10b1
+      internalID: -1326920018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Seven
+      name: Minesweeper_Assets_7
       rect:
         serializedVersion: 2
         x: 48
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18f34d67662d2474eb4ec3bc60abc9cb
-      internalID: -1709377125
+      spriteID: 25ae32773b350ea44bf8d1a1825b41fb
+      internalID: -935872363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Eight
+      name: Minesweeper_Assets_8
       rect:
         serializedVersion: 2
         x: 0
@@ -288,14 +288,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8487198e6a8c91a4d924c27c6a82a6ca
-      internalID: 1800698889
+      spriteID: 25fd3894d3ba61d4ab8f46553a951a89
+      internalID: 979850238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Mine
+      name: Minesweeper_Assets_9
       rect:
         serializedVersion: 2
         x: 16
@@ -310,14 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f640b68e8aa16c4aaa292bd604b9066
-      internalID: 1155456839
+      spriteID: 4005578689e97f541ba3c5e3dd028668
+      internalID: 1773346036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_Tile
+      name: Minesweeper_Assets_10
       rect:
         serializedVersion: 2
         x: 32
@@ -332,14 +332,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 158138482e85f3a4da6ebcca5525a2e9
-      internalID: 630166163
+      spriteID: 9684940c1e816d64684d1fbb103f4db4
+      internalID: 1079900603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Minesweeper_Assets_TileMarked
+      name: Minesweeper_Assets_11
       rect:
         serializedVersion: 2
         x: 48
@@ -354,8 +354,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02b0393657eee9a4d85116704d051604
-      internalID: -640755976
+      spriteID: cc463c225c96570469de9d4ff68ea8be
+      internalID: 1591054936
       vertices: []
       indices: 
       edges: []
@@ -374,20 +374,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":3.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Minesweeper_Assets_Blank: 444931455
-      Minesweeper_Assets_Eight: 1800698889
-      Minesweeper_Assets_Five: -1857383725
-      Minesweeper_Assets_Four: 1544965789
-      Minesweeper_Assets_Mine: 1155456839
-      Minesweeper_Assets_One: 1578575587
-      Minesweeper_Assets_Seven: -1709377125
-      Minesweeper_Assets_Six: -1555560880
-      Minesweeper_Assets_Three: -2078068128
-      Minesweeper_Assets_Tile: 630166163
-      Minesweeper_Assets_TileMarked: -640755976
-      Minesweeper_Assets_Two: 2095214997
+      Minesweeper_Assets_0: 1078862218
+      Minesweeper_Assets_1: 943706055
+      Minesweeper_Assets_10: 1079900603
+      Minesweeper_Assets_11: 1591054936
+      Minesweeper_Assets_2: -20159636
+      Minesweeper_Assets_3: -382533755
+      Minesweeper_Assets_4: -2045726807
+      Minesweeper_Assets_5: -1043917851
+      Minesweeper_Assets_6: -1326920018
+      Minesweeper_Assets_7: -935872363
+      Minesweeper_Assets_8: 979850238
+      Minesweeper_Assets_9: 1773346036
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

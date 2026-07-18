@@ -8,9 +8,9 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     [SerializeField] protected Image highlight;
     
-    [SerializeField] bool hoverable = true;
-    [FormerlySerializedAs("clickable")] [SerializeField] bool leftClickable  = true;
-    [SerializeField] bool rightClickable = true;
+    [SerializeField] protected bool hoverable = true;
+    [SerializeField] protected bool leftClickable  = true;
+    [SerializeField] protected bool rightClickable = true;
     
     public UnityEvent onHoverStart;
     public UnityEvent onHoverStop;

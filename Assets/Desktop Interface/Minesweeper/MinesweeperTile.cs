@@ -1,33 +1,33 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MinesweeperTile : UIComponent
 {
-    public int tileValue;
-    public bool activated;
-    public bool marked;
+    private int tileValue;
+    private bool activated = false;
+    private bool marked = false;
 
     [SerializeField] Image topTileImage;
     [SerializeField] Image bottomTileImage;
-    [SerializeField] Image markedImage;
-    [SerializeField] Image valueImage;
     
-    [SerializeField] Sprite oneSprite;
-    [SerializeField] Sprite twoSprite;
-    [SerializeField] Sprite threeSprite;
-    [SerializeField] Sprite fourSprite;
-    [SerializeField] Sprite fiveSprite;
-    [SerializeField] Sprite sixSprite;
-    [SerializeField] Sprite sevenSprite;
-    [SerializeField] Sprite eightSprite;
-    [SerializeField] Sprite bombSprite;
+    [SerializeField] List<Sprite> sprites;
+    
+    // Events
+    // OnActivate
+    // OnMark
+    // OnExplode
 
     private void Start()
     {
         onLeftClicked.AddListener(Activate);
         onRightClicked.AddListener(Mark);
+        
+        // Testing Please Remove
+        SetTileValue(4);
+        Debug.Log("IsBomb: " + IsBomb());
     }
 
     private void OnDestroy()
@@ -38,55 +38,36 @@ public class MinesweeperTile : UIComponent
 
     public void SetTileValue(int value)
     {
-        switch (value)
+        tileValue = value;
+        UpdateBottomSprite();
+    }
+
+    public void UpdateBottomSprite()
+    {
+        if (tileValue > 0 && tileValue < 10)
         {
-            case 0:
-                valueImage.sprite = null;
-                tileValue = 0;
-                break;
-            case 1:
-                valueImage.sprite = oneSprite;
-                tileValue = 1;
-                break;
-            case 2:
-                valueImage.sprite = twoSprite;
-                tileValue = 2;
-                break;
-            case 3:
-                valueImage.sprite = threeSprite;
-                tileValue = 3;
-                break;
-            case 4:
-                valueImage.sprite = fourSprite;
-                tileValue = 4;
-                break;
-            case 5:
-                valueImage.sprite = fiveSprite;
-                tileValue = 5;
-                break;
-            case 6:
-                valueImage.sprite = sixSprite;
-                tileValue = 6;
-                break;
-            case 7:
-                valueImage.sprite = sevenSprite;
-                tileValue = 7;
-                break;
-            case 8:
-                valueImage.sprite = eightSprite;
-                tileValue = 8;
-                break;
-            case 9:
-                valueImage.sprite = bombSprite;
-                tileValue = 9;
-                break;
-            default:
-                valueImage.sprite = null;
-                tileValue = 0;
-                break;
+            bottomTileImage.sprite = sprites[tileValue];
+        }
+
+        else
+        {
+            Debug.Log("Invalid Bottom Sprite");
         }
     }
 
+    public void UpdateTopSprite()
+    {
+        if (!marked)
+        {
+            topTileImage.sprite = sprites[10];
+        }
+        
+        else
+        {
+            topTileImage.sprite = sprites[11];
+        }
+    }
+    
     public bool IsBomb()
     {
         return tileValue == 9;
@@ -118,6 +99,7 @@ public class MinesweeperTile : UIComponent
         {
             activated = true;
             topTileImage.enabled = false;
+            DisableInteraction();
             // Fire Event
         
             if (IsBomb())
@@ -127,10 +109,19 @@ public class MinesweeperTile : UIComponent
         }
     }
 
+    public void DisableInteraction()
+    {
+        highlight.enabled = false;
+        hoverable = false;
+        leftClickable = false;
+        rightClickable = false;
+    }
+
     public void Mark() // On Right LeftClick
     {
         marked = !marked;
-
+        Debug.Log("Marked: " + marked);
+        UpdateTopSprite();
         // Fire Event
     }
 

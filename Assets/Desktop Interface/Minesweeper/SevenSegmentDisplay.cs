@@ -20,14 +20,14 @@ public class SevenSegmentDisplay : UIComponent
     {
         Sprite sprite = sprites[GetValueNumeric()];
         
-        Debug.Log("SevenSegmentDisplay - " + sprite.name);
+        //Debug.Log("SevenSegmentDisplay - " + sprite.name);
         
         image.sprite = sprites[GetValueNumeric()];
     }
 
     public void SetValue(SevenSegmentValues ssValue)
     {
-        Debug.Log("SevenSegmentDisplay - SetValue: " + ssValue);
+        //Debug.Log("SevenSegmentDisplay - SetValue: " + ssValue);
         
         value = ssValue;
         UpdateDisplay();
@@ -35,7 +35,7 @@ public class SevenSegmentDisplay : UIComponent
 
     public void SetValue(int numValue)
     {
-        Debug.Log("SevenSegmentDisplay - SetValueNumeric: " + numValue);
+        //Debug.Log("SevenSegmentDisplay - SetValueNumeric: " + numValue);
         
         switch (numValue)
         {
@@ -85,14 +85,14 @@ public class SevenSegmentDisplay : UIComponent
 
     public SevenSegmentValues GetValue()
     {
-        Debug.Log("SevenSegmentDisplay - GetValue: " + value);
+        //Debug.Log("SevenSegmentDisplay - GetValue: " + value);
         
         return value;
     }
 
     public int GetValueNumeric()
     {
-        Debug.Log("SevenSegmentDisplay - GetValueNumeric: " + value);
+        //Debug.Log("SevenSegmentDisplay - GetValueNumeric: " + value);
         
         switch (value)
         {
