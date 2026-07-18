@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minesweeper : MonoBehaviour
+public class Minesweeper : DesktopWindow
 {
     // Generate Grid Of Tile Prefab.
     // Determine Mine Tiles
@@ -14,8 +14,8 @@ public class Minesweeper : MonoBehaviour
     // Mines Left
     // Need A Reset Button
     
-    [SerializeField] SevenSegmentDisplay minesDisplay;
-    [SerializeField] SevenSegmentDisplay timerDisplay;
+    [SerializeField] SevenSegmentDisplayArray minesDisplay;
+    [SerializeField] SevenSegmentDisplayArray timerDisplay;
     
     public List<MinesweeperTile> tiles = new List<MinesweeperTile>();
     

@@ -9,7 +9,7 @@ public class MinesweeperTile : UIComponent
     public bool activated;
     public bool marked;
 
-    [FormerlySerializedAs("tileImage")] [SerializeField] Image topTileImage;
+    [SerializeField] Image topTileImage;
     [SerializeField] Image bottomTileImage;
     [SerializeField] Image markedImage;
     [SerializeField] Image valueImage;

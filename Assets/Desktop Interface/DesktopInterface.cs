@@ -37,7 +37,7 @@ public class DesktopInterface : MonoBehaviour
 
     public IEnumerator RunOnAnimFinish(Animator animator, string stateName, Action method)
     {
-        Debug.Log(method.Method.Name + "Awaiting " + animator.name + " - " + stateName + " Finish");
+        //Debug.Log(method.Method.Name + "Awaiting " + animator.name + " - " + stateName + " Finish");
         yield return null;
         
         while (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
@@ -45,13 +45,13 @@ public class DesktopInterface : MonoBehaviour
             yield return null;
         }
         
-        Debug.Log(animator.name + " - " + stateName + " Finished");
+        //Debug.Log(animator.name + " - " + stateName + " Finished");
         method.Invoke();
     }
     
     public IEnumerator RunOnAnimFinish(Animator animator, string stateName, Action method, float delaySeconds)
     {
-        Debug.Log(method.Method.Name + "Awaiting " + animator.name + " - " + stateName + " Finish");
+        //Debug.Log(method.Method.Name + "Awaiting " + animator.name + " - " + stateName + " Finish");
         yield return null;
         
         while (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
@@ -61,20 +61,20 @@ public class DesktopInterface : MonoBehaviour
 
         yield return new WaitForSeconds(delaySeconds);
 
-        Debug.Log(animator.name + " - " + stateName + " Finished");
+        //Debug.Log(animator.name + " - " + stateName + " Finished");
         method.Invoke();
     }
 
     public void ScreenOnAnim()
     {
-        Debug.Log("Desktop Interface - ScreenOnAnim");
+        //Debug.Log("Desktop Interface - ScreenOnAnim");
         animScreenOn.gameObject.SetActive(true);
         animScreenOn.Play("DesktopBoot");
     }
 
     public void SystemLoad()
     {
-        Debug.Log("Desktop Interface - SystemLoad");
+        //Debug.Log("Desktop Interface - SystemLoad");
         bgSystemLoad.gameObject.SetActive(true);
         animOSLogo.gameObject.SetActive(true);
         animOSLogo.Play("OSLogo");
@@ -85,7 +85,7 @@ public class DesktopInterface : MonoBehaviour
 
     public void SystemLoaded()
     {
-        Debug.Log("Desktop Interface - SystemLoaded");
+        //Debug.Log("Desktop Interface - SystemLoaded");
         bgSystemLoad.gameObject.SetActive(false);
         animOSLogo.gameObject.SetActive(false);
         animSystemLoad.gameObject.SetActive(false);
@@ -98,7 +98,7 @@ public class DesktopInterface : MonoBehaviour
 
     public void CreateWindow()
     {
-        Debug.Log("Desktop Interface - CreateWindow");
+        //Debug.Log("Desktop Interface - CreateWindow");
         DesktopWindow window = Instantiate(windowPrefab, transform);
     }
 }
