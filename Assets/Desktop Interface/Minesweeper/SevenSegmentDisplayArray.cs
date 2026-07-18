@@ -55,7 +55,15 @@ public class SevenSegmentDisplayArray : MonoBehaviour
         
         for (int i = 0; i < displayCount; i++)
         {
-            displays[i].SetValue(Convert.ToInt32(valueString.Substring(i, 1)));
+            if (i < valueString.Length - 1)
+            {
+                displays[i].SetValue(Convert.ToInt32(valueString.Substring(i, 1)));
+            }
+
+            else
+            {
+                displays[i].SetValue(0);
+            }
         }
     }
 

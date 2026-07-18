@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class MinesweeperTile : UIComponent
 {
     private int tileValue;
-    private bool activated = false;
-    private bool marked = false;
+    private bool activated;
+    private bool marked;
 
     [SerializeField] Image topTileImage;
     [SerializeField] Image bottomTileImage;
@@ -24,12 +24,15 @@ public class MinesweeperTile : UIComponent
     {
         onLeftClicked.AddListener(Activate);
         onRightClicked.AddListener(Mark);
-        
-        // Testing Please Remove
-        SetTileValue(4);
-        Debug.Log("IsBomb: " + IsBomb());
     }
 
+    public void Initialize()
+    {
+        tileValue = 0;
+        activated = false;
+        marked = false;
+    }
+    
     private void OnDestroy()
     {
         onLeftClicked.RemoveListener(Activate);
