@@ -29,7 +29,6 @@ public class Minesweeper : DesktopWindow
 
     public int gridTilePadding;
     public int gridBorderWidth;
-    private Vector2 gridBorderSize;
     private Vector2 windowSize;
 
     public MinesweeperTile[,] tileGrid;
@@ -56,41 +55,44 @@ public class Minesweeper : DesktopWindow
     {
         tileGrid = new MinesweeperTile[gridWidth, gridHeight];
 
-        for (int row = 0; row < gridHeight; row++) // Loop Rows
-        {
-            for (int column = 0; column < gridWidth; column++) // Loop Columns
-            {
-                // For Each Tile
-                Vector2 spawnPos = Vector2.zero;
-
-                // Offset that grows with each addition would solve issue.
-                
-                if (row != 0)
-                {
-                    
-                }
-                MinesweeperTile tile = Instantiate(tilePrefab, new Vector3(gridTilePadding + gridBorderWidth + column * 16, gridTilePadding + row * 16 , 0), Quaternion.identity, transform);
-            }
-        }
+        Vector2 spawnPos = new Vector2(gridTilePadding + gridBorderWidth, -gridTilePadding + -gridBorderWidth);
+        //Vector2 spawnPos = new Vector2(spawnPos.x = (gridTilePadding + gridBorderWidth) * 2, spawnPos.y = (-gridTilePadding + -gridBorderWidth) * 2);
+        int row = 0;
+        int column = 0;
         
-        SetGridBorderSize(new Vector2(gridWidth + (gridTilePadding + gridBorderWidth) * 2, gridHeight + (gridTilePadding + gridBorderWidth) * 2));
-        gridBorder.enabled = true;
+        for ( ; row < gridHeight; row++) // Loop Rows
+        {
+            if (row != 0)
+            {
+                spawnPos.y += -16 + -gridTilePadding;
+            }
+            
+            for ( ; column < gridWidth; column++) // Loop Columns
+            {
+                if (column != 0)
+                {
+                    spawnPos.x += 16 + gridTilePadding;
+                }
+                
+                SpawnGridTile(column, row, spawnPos);
+            }
+            
+            column = 0;
+            spawnPos.x = gridTilePadding + gridBorderWidth;
+        }
     }
 
-    public void SetGridTile(int column, int row, MinesweeperTile tile)
+    public void SpawnGridTile(int column, int row, Vector2 position)
     {
+        MinesweeperTile tile = Instantiate(tilePrefab, Vector3.zero, Quaternion.identity, gridBorder.transform);
+        tile.transform.SetLocalPositionAndRotation(new Vector3(position.x, position.y, 0), Quaternion.identity);
         tileGrid[column, row] = tile;
+        Debug.Log("Grid Tile Spawned: " + column + ", " + row);
     }
 
     public MinesweeperTile GetGridTile(int column, int row)
     {
         return tileGrid[column, row];
-    }
-
-    public void SetGridBorderSize(Vector2 size)
-    {
-        gridBorderSize = size;
-        gridBorder.rectTransform.sizeDelta = gridBorderSize;
     }
     
     public void SpawnMines(int amount)
