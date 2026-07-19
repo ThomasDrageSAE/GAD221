@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -36,12 +37,15 @@ public class Minesweeper : DesktopWindow
     
     void Start()
     {
+        MinesweeperTile.onActivate.AddListener(TileActivated);
+        MinesweeperTile.onMark.AddListener(TileMarked);
         Generate(gridWidth, gridHeight, 10);
     }
 
     private void OnDestroy()
     {
-        
+        MinesweeperTile.onActivate.RemoveListener(TileActivated);
+        MinesweeperTile.onMark.RemoveListener(TileMarked);
     }
 
     public void Generate(int gridWidth, int gridHeight, int mineAmount)
@@ -88,6 +92,7 @@ public class Minesweeper : DesktopWindow
         MinesweeperTile tile = Instantiate(tilePrefab, Vector3.zero, Quaternion.identity, gridBorder.transform);
         tile.transform.SetLocalPositionAndRotation(new Vector3(position.x, position.y, 0), Quaternion.identity);
         tileGrid[column, row] = tile;
+        tile.Initialize(new Vector2(column, row));
         Debug.Log("Grid Tile Spawned: " + column + ", " + row);
     }
 
@@ -176,12 +181,45 @@ public class Minesweeper : DesktopWindow
         // Set Mine Amount Counter
     }
 
+    public void TileMarked(MinesweeperTile tile)
+    {
+        
+    }
+
+    public void TileActivated(MinesweeperTile tile)
+    {
+        if (tile.IsBomb())
+        {
+            LoseGame();
+        }
+
+        if (tile.IsEmpty())
+        {
+            ActivateSurrounding(tile);
+        }
+    }
+
+    public void ActivateSurrounding(MinesweeperTile originTile)
+    {
+        List<MinesweeperTile> surroundingTiles = GetSurroundingTiles(originTile.GetGridPos());
+        
+        foreach (MinesweeperTile tile in surroundingTiles)
+        {
+            tile.Activate();
+        }
+    }
+
     public void LoseGame()
     {
         
     }
 
-    public void Reset()
+    public void WinGame()
+    {
+        
+    }
+
+    public void ResetGame()
     {
         
     }
