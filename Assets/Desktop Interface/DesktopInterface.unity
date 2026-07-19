@@ -5392,6 +5392,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1997077667}
     m_Modifications:
+    - target: {fileID: 2299346332386164068, guid: f4526012d17cec140afb73eec8551110, type: 3}
+      propertyPath: mineDefusedSprite
+      value: 
+      objectReference: {fileID: 1885179742, guid: 86dcf71a90f9a114e8d663e47e6adfd4, type: 3}
+    - target: {fileID: 2299346332386164068, guid: f4526012d17cec140afb73eec8551110, type: 3}
+      propertyPath: mineExplodedSprite
+      value: 
+      objectReference: {fileID: -1707388097, guid: 86dcf71a90f9a114e8d663e47e6adfd4, type: 3}
     - target: {fileID: 8259165275424923201, guid: f4526012d17cec140afb73eec8551110, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

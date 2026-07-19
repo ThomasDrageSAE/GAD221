@@ -316,3 +316,5 @@ MonoBehaviour:
   - {fileID: 1773346036, guid: 695f6c6bcc800bc4dbeea9ff8bb60ff1, type: 3}
   - {fileID: 1079900603, guid: 695f6c6bcc800bc4dbeea9ff8bb60ff1, type: 3}
   - {fileID: 1591054936, guid: 695f6c6bcc800bc4dbeea9ff8bb60ff1, type: 3}
+  mineDefusedSprite: {fileID: 1885179742, guid: 86dcf71a90f9a114e8d663e47e6adfd4, type: 3}
+  mineExplodedSprite: {fileID: -1707388097, guid: 86dcf71a90f9a114e8d663e47e6adfd4, type: 3}

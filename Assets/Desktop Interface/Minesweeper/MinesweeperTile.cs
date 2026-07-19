@@ -16,22 +16,16 @@ public class MinesweeperTile : UIComponent
     [SerializeField] Image bottomTileImage;
     
     [SerializeField] List<Sprite> sprites;
+    [SerializeField] Sprite mineDefusedSprite;
+    [SerializeField] Sprite mineExplodedSprite;
     
-    // Events
-    // OnActivate
     public static UnityEvent<MinesweeperTile> onActivate = new UnityEvent<MinesweeperTile>();
-    // OnMark
     public static UnityEvent<MinesweeperTile> onMark = new UnityEvent<MinesweeperTile>();
 
     private void Start()
     {
         onLeftClicked.AddListener(Activate);
         onRightClicked.AddListener(Mark);
-    }
-
-    public void Initialize()
-    {
-        Initialize(0, false, false, Vector2.zero);
     }
     
     public void Initialize(Vector2 gridPos)
@@ -84,7 +78,7 @@ public class MinesweeperTile : UIComponent
 
     public void UpdateTopSprite()
     {
-        if (!marked)
+        if (!IsMarked())
         {
             topTileImage.sprite = sprites[10];
         }
@@ -95,14 +89,14 @@ public class MinesweeperTile : UIComponent
         }
     }
 
-    public void Activate() // On Left LeftClick
+    public void Activate()
     {
-        if (marked)
+        if (IsMarked())
         {
             return;
         }
 
-        if (activated)
+        if (IsActivated())
         {
             return;
         }
@@ -121,7 +115,7 @@ public class MinesweeperTile : UIComponent
         rightClickable = false;
     }
 
-    public void Mark() // On Right LeftClick
+    public void Mark()
     {
         marked = !marked;
         Debug.Log("Marked: " + marked);
@@ -129,6 +123,26 @@ public class MinesweeperTile : UIComponent
         onMark?.Invoke(this);
     }
 
+    public void GameFinished()
+    {
+        if (IsBomb())
+        {
+            if (IsMarked())
+            {
+                bottomTileImage.sprite = mineDefusedSprite;
+            }
+
+            else
+            {
+                bottomTileImage.sprite = mineExplodedSprite;
+            }
+        }
+        
+        activated = true;
+        topTileImage.enabled = false;
+        DisableInteraction();
+    }
+    
     public bool IsEmpty()
     {
         return tileValue == 0;
@@ -138,7 +152,7 @@ public class MinesweeperTile : UIComponent
     {
         return tileValue == 9;
     }
-
+    
     public bool IsActivated()
     {
         return activated;
@@ -147,25 +161,5 @@ public class MinesweeperTile : UIComponent
     public bool IsMarked()
     {
         return marked;
-    }
-
-    public bool IsDefused()
-    {
-        if (tileValue == 9 && marked)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool IsIncorrect()
-    {
-        if (tileValue != 9 && marked)
-        {
-            return true;
-        }
-        
-        return false;
     }
 }

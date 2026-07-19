@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -8,23 +9,12 @@ using Random = UnityEngine.Random;
 
 public class Minesweeper : DesktopWindow
 {
-    // Generate Grid Of Tile Prefab.
     [SerializeField] MinesweeperTile tilePrefab;
-    
-    // Determine Mine Tiles
-    // Determine Other Tile Values
-    
-    // Complete Check
-    // Loss Sequence
-    // Timer
-    // Mines Left
-    // Need A Reset Button
     
     [SerializeField] SevenSegmentDisplayArray minesDisplay;
     [SerializeField] SevenSegmentDisplayArray timerDisplay;
     [SerializeField] Image gridBorder;
     
-    // Should probably be a 2D array
     public int mineAmount;
     public int gridWidth;
     public int gridHeight;
@@ -32,6 +22,7 @@ public class Minesweeper : DesktopWindow
     public int gridTilePadding;
     public int gridBorderWidth;
     private Vector2 windowSize;
+    private bool gameActive;
 
     public MinesweeperTile[,] tileGrid;
     
@@ -54,6 +45,7 @@ public class Minesweeper : DesktopWindow
         List<Vector2> minePositions = SpawnMines(mineAmount);
         DetermineTileValues(minePositions);
         GenerationFinished();
+        gameActive = true;
     }
 
     public void GenerateGrid(int gridWidth, int gridHeight)
@@ -188,6 +180,11 @@ public class Minesweeper : DesktopWindow
 
     public void TileActivated(MinesweeperTile tile)
     {
+        if (!gameActive)
+        {
+            return;
+        }
+        
         if (tile.IsBomb())
         {
             LoseGame();
@@ -208,18 +205,44 @@ public class Minesweeper : DesktopWindow
             tile.Activate();
         }
     }
+    
+    public void GameFinish(bool win)
+    {
+        gameActive = false;
+        
+        foreach (MinesweeperTile tile in tileGrid)
+        {
+            tile.GameFinished();
+        }
+    }
 
     public void LoseGame()
     {
-        
+        GameFinish(false);
     }
 
     public void WinGame()
     {
-        
+        GameFinish(true);
     }
 
     public void ResetGame()
+    {
+        gameActive = false;
+        
+    }
+
+    public void StartTimer()
+    {
+        
+    }
+
+    public void StopTimer()
+    {
+        
+    }
+
+    public void ResetTimer()
     {
         
     }
