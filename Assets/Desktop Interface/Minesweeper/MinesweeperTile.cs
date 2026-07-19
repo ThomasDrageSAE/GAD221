@@ -45,6 +45,11 @@ public class MinesweeperTile : UIComponent
         UpdateBottomSprite();
     }
 
+    public int GetTileValue()
+    {
+        return tileValue;
+    }
+
     public void UpdateBottomSprite()
     {
         if (tileValue > 0 && tileValue < 10)

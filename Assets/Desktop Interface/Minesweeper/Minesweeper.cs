@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Minesweeper : DesktopWindow
 {
@@ -46,8 +47,8 @@ public class Minesweeper : DesktopWindow
     public void Generate(int gridWidth, int gridHeight, int mineAmount)
     {
         GenerateGrid(gridWidth, gridHeight);
-        SpawnMines(mineAmount);
-        DetermineTileValues();
+        List<Vector2> minePositions = SpawnMines(mineAmount);
+        DetermineTileValues(minePositions);
         GenerationFinished();
     }
 
@@ -95,15 +96,78 @@ public class Minesweeper : DesktopWindow
         return tileGrid[column, row];
     }
     
-    public void SpawnMines(int amount)
+    public List<Vector2> SpawnMines(int amount)
     {
         Debug.Log("Spawning " + mineAmount + " Mines");
-        //minesDisplay.SetValue(mineAmount);
+        List<Vector2> minePositions = new List<Vector2>();
+
+        for (int i = 0; i < amount; )
+        {
+            int column = Random.Range(0, gridWidth);
+            int row = Random.Range(0, gridHeight);
+            MinesweeperTile tile = tileGrid[column, row];
+
+            if (tile.GetTileValue() != 0)
+            {
+                continue;
+            }
+
+            tile.SetTileValue(9);
+            minePositions.Add(new Vector2(column, row));
+            Debug.Log("Mine Spawned: " + column + ", " + row);
+            i++;
+        }
+        
+        minesDisplay.SetValue(mineAmount);
+        return minePositions;
     }
 
-    public void DetermineTileValues()
+    public void DetermineTileValues(List<Vector2> minePositions)
     {
+        Debug.Log("Determining Tile Values");
         
+        foreach (Vector2 minePosition in minePositions)
+        {
+            List<MinesweeperTile> surroundingTiles = GetSurroundingTiles(minePosition);
+            Debug.Log("Mine (" + minePosition + ") has " + surroundingTiles.Count + " surrounding tiles");
+            
+            foreach (MinesweeperTile tile in surroundingTiles)
+            {
+                int tileValue = tile.GetTileValue();
+                if (tileValue < 8)
+                {
+                    tileValue++;
+                    tile.SetTileValue(tileValue);
+                }
+            }
+        }
+    }
+
+    public List<MinesweeperTile> GetSurroundingTiles(Vector2 originTilePos)
+    {
+        Debug.Log("Getting Surrounding Tiles Of " + originTilePos);
+        List<MinesweeperTile> surroundingTiles = new List<MinesweeperTile>();
+        for (int y = (int)originTilePos.y - 1; y < originTilePos.y + 2; y++)
+        {
+            for (int x = (int)originTilePos.x - 1; x < originTilePos.x + 2; x++)
+            {
+                if (x < 0 || x > gridWidth - 1 || y < 0 || y > gridHeight - 1)
+                {
+                    continue;
+                }
+                
+                MinesweeperTile tile = tileGrid[x, y];
+                
+                if (tile.IsBomb())
+                {
+                    continue;
+                }
+                
+                surroundingTiles.Add(tile);
+            }
+        }
+        
+        return surroundingTiles;
     }
 
     public void GenerationFinished()
