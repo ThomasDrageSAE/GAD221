@@ -118,7 +118,6 @@ public class MinesweeperTile : UIComponent
     public void Mark()
     {
         marked = !marked;
-        Debug.Log("Marked: " + marked);
         UpdateTopSprite();
         onMark?.Invoke(this);
     }

@@ -30,8 +30,8 @@ public class SevenSegmentDisplayArray : MonoBehaviour
         maximumValue = Convert.ToInt32(maxValueString);
         minimumValue = -(maximumValue / 10);
         
-        Debug.Log("Maximum Value: " + maximumValue);
-        Debug.Log("Minimum Value: " + minimumValue);
+        //Debug.Log("Maximum Value: " + maximumValue);
+        //Debug.Log("Minimum Value: " + minimumValue);
     }
 
     public void SetValue(int value)
@@ -57,7 +57,7 @@ public class SevenSegmentDisplayArray : MonoBehaviour
         
         if (valueLength > displays.Count)
         {
-            Debug.Log("Value length is greater than the amount of displays");
+            //Debug.Log("Value length is greater than the amount of displays");
             return;
         }
         
@@ -66,27 +66,56 @@ public class SevenSegmentDisplayArray : MonoBehaviour
         for (int i = 0; i < displayCount; i++)
         {
             SevenSegmentDisplay display = displays[i];
-            char character = valueString[i];
             
             if (i < emptyDisplays)
             {
-                display.SetValue(-1);
+                //Debug.Log("empty");
+                display.SetValue(11);
                 continue;
             }
+            
+            char character = valueString[i - emptyDisplays];
 
             if (character.Equals('-'))
             {
+                //Debug.Log("dash");
                 display.SetValue(10);
                 continue;
             }
 
             if (character >= '0' && character <= '9')
             {
-                display.SetValue(Convert.ToInt32(character));
+                //Debug.Log("num: " + character);
+                display.SetValue((int)char.GetNumericValue(character));
                 continue;
             }
             
-            Debug.Log("Invalid Display Character: " + character);
+            //Debug.Log("Invalid Display Character: " + character);
+        }
+    }
+
+    public int GetMaxValue()
+    {
+        return maximumValue;
+    }
+
+    public int GetMinValue()
+    {
+        return minimumValue;
+    }
+
+    public int GetDisplayCount()
+    {
+        return displayCount;
+    }
+
+    public void ResetDisplay()
+    {
+        arrayValue = 0;
+        
+        foreach (SevenSegmentDisplay display in displays)
+        {
+            display.SetValue(11);    
         }
     }
 }

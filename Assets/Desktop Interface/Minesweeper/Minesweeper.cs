@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,6 +24,7 @@ public class Minesweeper : DesktopWindow
     public int gridBorderWidth;
     private Vector2 windowSize;
     private bool gameActive;
+    private bool timerActive;
 
     public MinesweeperTile[,] tileGrid;
     
@@ -46,6 +48,7 @@ public class Minesweeper : DesktopWindow
         DetermineTileValues(minePositions);
         GenerationFinished();
         gameActive = true;
+        StartTimer(TimerType.Increment, 0, timerDisplay.GetMaxValue());
     }
 
     public void GenerateGrid(int gridWidth, int gridHeight)
@@ -85,7 +88,7 @@ public class Minesweeper : DesktopWindow
         tile.transform.SetLocalPositionAndRotation(new Vector3(position.x, position.y, 0), Quaternion.identity);
         tileGrid[column, row] = tile;
         tile.Initialize(new Vector2(column, row));
-        Debug.Log("Grid Tile Spawned: " + column + ", " + row);
+        //Debug.Log("Grid Tile Spawned: " + column + ", " + row);
     }
 
     public MinesweeperTile GetGridTile(int column, int row)
@@ -95,7 +98,7 @@ public class Minesweeper : DesktopWindow
     
     public List<Vector2> SpawnMines(int amount)
     {
-        Debug.Log("Spawning " + mineAmount + " Mines");
+        //Debug.Log("Spawning " + mineAmount + " Mines");
         List<Vector2> minePositions = new List<Vector2>();
 
         for (int i = 0; i < amount; )
@@ -111,7 +114,7 @@ public class Minesweeper : DesktopWindow
 
             tile.SetTileValue(9);
             minePositions.Add(new Vector2(column, row));
-            Debug.Log("Mine Spawned: " + column + ", " + row);
+            //Debug.Log("Mine Spawned: " + column + ", " + row);
             i++;
         }
         
@@ -121,12 +124,12 @@ public class Minesweeper : DesktopWindow
 
     public void DetermineTileValues(List<Vector2> minePositions)
     {
-        Debug.Log("Determining Tile Values");
+        //Debug.Log("Determining Tile Values");
         
         foreach (Vector2 minePosition in minePositions)
         {
             List<MinesweeperTile> surroundingTiles = GetSurroundingTiles(minePosition);
-            Debug.Log("Mine (" + minePosition + ") has " + surroundingTiles.Count + " surrounding tiles");
+            //Debug.Log("Mine (" + minePosition + ") has " + surroundingTiles.Count + " surrounding tiles");
             
             foreach (MinesweeperTile tile in surroundingTiles)
             {
@@ -142,7 +145,7 @@ public class Minesweeper : DesktopWindow
 
     public List<MinesweeperTile> GetSurroundingTiles(Vector2 originTilePos)
     {
-        Debug.Log("Getting Surrounding Tiles Of " + originTilePos);
+        //Debug.Log("Getting Surrounding Tiles Of " + originTilePos);
         List<MinesweeperTile> surroundingTiles = new List<MinesweeperTile>();
         for (int y = (int)originTilePos.y - 1; y < originTilePos.y + 2; y++)
         {
@@ -209,6 +212,7 @@ public class Minesweeper : DesktopWindow
     public void GameFinish(bool win)
     {
         gameActive = false;
+        StopTimer();
         
         foreach (MinesweeperTile tile in tileGrid)
         {
@@ -229,21 +233,98 @@ public class Minesweeper : DesktopWindow
     public void ResetGame()
     {
         gameActive = false;
-        
+        ResetTimer();
     }
 
-    public void StartTimer()
+    // Timer
+    TimerType timerType;
+    int timerValue;
+    int timerStartValue;
+    int timerStopValue;
+    
+    public enum TimerType
     {
-        
+        Increment, Decrement
     }
+    
+    public void StartTimer(TimerType timerType, int startValue)
+    {
+        timerActive = true;
+        StartCoroutine(Timer(startValue, timerType, 0, true));
+    }
+    
+    public void StartTimer(TimerType timerType, int startValue, int stopValue)
+    {
+        timerActive = true;
+        StartCoroutine(Timer(startValue, timerType, stopValue, false));
+    }
+    
+    IEnumerator Timer(int startValue, TimerType timerType, int stopValue, bool infinite)
+    {
+        this.timerType = timerType;
+        timerValue = startValue;
+        timerDisplay.SetValue(startValue);
+        
+        while (timerActive)
+        {
+            yield return new WaitForSeconds(1f);
+            
+            if (this.timerType == TimerType.Increment)
+            {
+                timerValue++;
 
+                if (timerValue >= timerDisplay.GetMaxValue())
+                {
+                    Debug.Log("Time has exceeded max display value");
+                    continue;
+                }
+                
+                if (timerValue >= stopValue)
+                {
+                    timerActive = false;
+                }
+            }
+            
+            else if (this.timerType == TimerType.Decrement)
+            {
+                timerValue--;
+                
+                if (timerValue <= timerDisplay.GetMinValue())
+                {
+                    Debug.Log("Time has exceeded min display value");
+                    continue;
+                }
+                
+                if (timerValue <= stopValue)
+                {
+                    timerActive = false;
+                }
+            }
+
+            timerDisplay.SetValue(timerValue);
+        }
+    }
+    
     public void StopTimer()
     {
-        
+        timerActive = false;
+        StopCoroutine("Timer");
     }
 
     public void ResetTimer()
     {
-        
+        StopTimer();
+        timerValue = 0;
+        timerDisplay.ResetDisplay();
+    }
+
+    public int SecondsElapsed()
+    {
+        return Math.Abs(timerValue - timerStartValue);
+    }
+
+    public int SecondsRemaining()
+    {
+        return Math.Abs(timerValue - timerStopValue);
     }
 }

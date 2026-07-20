@@ -25,14 +25,6 @@ public class SevenSegmentDisplay : UIComponent
         image.sprite = sprites[GetValueNumeric()];
     }
 
-    public void SetValue(SevenSegmentValues ssValue)
-    {
-        //Debug.Log("SevenSegmentDisplay - SetValue: " + ssValue);
-        
-        value = ssValue;
-        UpdateDisplay();
-    }
-
     public void SetValue(int numValue)
     {
         //Debug.Log("SevenSegmentDisplay - SetValueNumeric: " + numValue);
