@@ -16,7 +16,7 @@ public class Minesweeper : DesktopWindow
     [SerializeField] SevenSegmentDisplayArray timerDisplay;
     [SerializeField] Image gridBorder;
     
-    public int mineAmount;
+    [FormerlySerializedAs("mineAmount")] public int totalMines;
     public int gridWidth;
     public int gridHeight;
 
@@ -27,11 +27,21 @@ public class Minesweeper : DesktopWindow
     private bool timerActive;
 
     public MinesweeperTile[,] tileGrid;
+
+    private int totalTiles;
+    private int totalSafeTiles;
+    private int activatedSafeTiles;
+    private int minesMarked;
     
     void Start()
     {
         MinesweeperTile.onActivate.AddListener(TileActivated);
         MinesweeperTile.onMark.AddListener(TileMarked);
+        
+        totalTiles = gridWidth * gridHeight;
+        totalSafeTiles = totalTiles - totalMines;
+        activatedSafeTiles = 0;
+        
         Generate(gridWidth, gridHeight, 10);
     }
 
@@ -98,7 +108,7 @@ public class Minesweeper : DesktopWindow
     
     public List<Vector2> SpawnMines(int amount)
     {
-        //Debug.Log("Spawning " + mineAmount + " Mines");
+        //Debug.Log("Spawning " + totalMines + " Mines");
         List<Vector2> minePositions = new List<Vector2>();
 
         for (int i = 0; i < amount; )
@@ -118,7 +128,7 @@ public class Minesweeper : DesktopWindow
             i++;
         }
         
-        minesDisplay.SetValue(mineAmount);
+        minesDisplay.SetValue(totalMines);
         return minePositions;
     }
 
@@ -178,7 +188,17 @@ public class Minesweeper : DesktopWindow
 
     public void TileMarked(MinesweeperTile tile)
     {
+        if (!gameActive)
+        {
+            return;
+        }
+
+        if (tile.IsBomb())
+        {
+            minesMarked++;
+        }
         
+        WinCheck();
     }
 
     public void TileActivated(MinesweeperTile tile)
@@ -191,11 +211,24 @@ public class Minesweeper : DesktopWindow
         if (tile.IsBomb())
         {
             LoseGame();
+            return;
         }
+
+        activatedSafeTiles++;
 
         if (tile.IsEmpty())
         {
             ActivateSurrounding(tile);
+        }
+        
+        WinCheck();
+    }
+
+    public void WinCheck()
+    {
+        if (activatedSafeTiles == totalSafeTiles && minesMarked == totalMines)
+        {
+            WinGame();
         }
     }
 
@@ -209,7 +242,7 @@ public class Minesweeper : DesktopWindow
         }
     }
     
-    public void GameFinish(bool win)
+    public void GameFinish(bool gameResult)
     {
         gameActive = false;
         StopTimer();
@@ -218,6 +251,8 @@ public class Minesweeper : DesktopWindow
         {
             tile.GameFinished();
         }
+        
+        Debug.Log("Game Finished - Result: " + gameResult);
     }
 
     public void LoseGame()
@@ -316,6 +351,7 @@ public class Minesweeper : DesktopWindow
         StopTimer();
         timerValue = 0;
         timerDisplay.ResetDisplay();
+        activatedSafeTiles = 0;
     }
 
     public int SecondsElapsed()
