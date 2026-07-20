@@ -68,6 +68,7 @@ public class Minesweeper : DesktopWindow
     
     public static UnityEvent onGameStart = new UnityEvent();
     public static UnityEvent onGameReset = new UnityEvent();
+    public static UnityEvent onMinesweeperClose = new UnityEvent();
     
     #endregion
     
@@ -90,6 +91,7 @@ public class Minesweeper : DesktopWindow
     {
         base.OnDestroy();
         
+        onMinesweeperClose?.Invoke();
         EventUnsubscription();
     }
 
@@ -104,6 +106,10 @@ public class Minesweeper : DesktopWindow
     {
         MinesweeperTile.onActivate.RemoveListener(TileActivated);
         MinesweeperTile.onMark.RemoveListener(TileMarked);
+        MinesweeperTile.onUnmark.RemoveListener(TileUnmarked);
+        onGameStart.RemoveAllListeners();
+        onGameReset.RemoveAllListeners();
+        onMinesweeperClose.RemoveAllListeners();
     }
 
     // -- Variable Initialization --

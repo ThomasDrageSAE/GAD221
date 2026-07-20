@@ -17,8 +17,16 @@ public class DesktopInterface : MonoBehaviour
 
     [SerializeField] private DesktopWindow windowPrefab; 
     
+    [SerializeField] private Minesweeper minesweeperPrefab;
+    Minesweeper currentMinesweeper;
+
+    [SerializeField] private GameObject windowLayer;
+    [SerializeField] private GameObject shortcutLayer;
+    
     void Start()
     {
+        EventSubscription();
+        
         animScreenOn.gameObject.SetActive(true);
         animSystemLoad.gameObject.SetActive(true);
         animOSLogo.gameObject.SetActive(true);
@@ -26,6 +34,21 @@ public class DesktopInterface : MonoBehaviour
         //animScreenOff.gameObject.SetActive(true);
         
         StartCoroutine(InterfaceOpen());
+    }
+
+    private void OnDestroy()
+    {
+        EventUnsubscription();
+    }
+
+    public void EventSubscription()
+    {
+        
+    }
+
+    public void EventUnsubscription()
+    {
+        
     }
 
     public IEnumerator InterfaceOpen()
@@ -96,9 +119,23 @@ public class DesktopInterface : MonoBehaviour
         
     }
 
+    public void MinesweeperShortcut()
+    {
+        if (currentMinesweeper == null)
+        {
+            currentMinesweeper = Instantiate(minesweeperPrefab, windowLayer.transform);
+            Minesweeper.onMinesweeperClose.AddListener(MinesweeperClosed);
+        }
+    }
+
+    public void MinesweeperClosed()
+    {
+        currentMinesweeper = null;
+    }
+
     public void CreateWindow()
     {
         //Debug.Log("Desktop Interface - CreateWindow");
-        DesktopWindow window = Instantiate(windowPrefab, transform);
+        DesktopWindow window = Instantiate(windowPrefab, windowLayer.transform);
     }
 }
