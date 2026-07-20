@@ -4168,7 +4168,7 @@ MonoBehaviour:
   minesDisplay: {fileID: 1883848301}
   timerDisplay: {fileID: 1293959414}
   gridBorder: {fileID: 53923456}
-  mineAmount: 10
+  totalMines: 10
   gridWidth: 9
   gridHeight: 9
   gridTilePadding: 1
@@ -4687,7 +4687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 361bd56a54f08934189c19ded27176d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4533a1e610ef2646998c3f50a135ebd, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
