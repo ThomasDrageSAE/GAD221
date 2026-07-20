@@ -188,6 +188,7 @@ public class MinesweeperTile : UIComponent
         bottomTileImage.enabled = true;
         activated = false;
         Unmark();
+        DisableInteraction();
     }
 
     public bool IsEmpty()
