@@ -4,9 +4,9 @@ using UnityEngine.EventSystems;
 
 public class DesktopWindow : MonoBehaviour
 {
-    [SerializeField] WindowBar windowBar;
+    [SerializeField] protected WindowBar windowBar;
 
-    private Vector2 dragOffset;
+    protected Vector2 dragOffset;
     
     public event Action onWindowOpen;
     public event Action onWindowMinimize;
@@ -14,14 +14,14 @@ public class DesktopWindow : MonoBehaviour
     public event Action onWindowClose;
     
     
-    void Start()
+    protected virtual void Start()
     {
         windowBar.onDragStart += DragStart;
         windowBar.onDrag += Drag;
         windowBar.onDragEnd += DragEnd;
     }
 
-    void OnDestroy()
+    protected virtual void OnDestroy()
     {
         windowBar.onDragStart -= DragStart;
         windowBar.onDrag -= Drag;

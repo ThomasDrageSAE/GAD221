@@ -1090,6 +1090,123 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275334059}
   m_CullTransparentMesh: 1
+--- !u!1 &276008085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 276008086}
+  - component: {fileID: 276008089}
+  - component: {fileID: 276008088}
+  - component: {fileID: 276008087}
+  m_Layer: 0
+  m_Name: Play / Reset Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &276008086
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276008085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1655994683}
+  m_Father: {fileID: 6461138413734793445}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -28}
+  m_SizeDelta: {x: 22, y: 22}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &276008087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276008085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44bebc2ae62455642bfaad9e910057b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
+  highlight: {fileID: 1655994684}
+  hoverable: 1
+  leftClickable: 1
+  rightClickable: 1
+  onHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoverStop:
+    m_PersistentCalls:
+      m_Calls: []
+  onLeftClicked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1979029083}
+        m_TargetAssemblyTypeName: Minesweeper, Assembly-CSharp
+        m_MethodName: ButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRightClicked:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &276008088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276008085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 2041113151, guid: cab17f5c2d4f79a46aa7ef8c0f772e7f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &276008089
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276008085}
+  m_CullTransparentMesh: 1
 --- !u!1 &343633770
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3476,81 @@ MonoBehaviour:
   onRightClicked:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1655994682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655994683}
+  - component: {fileID: 1655994685}
+  - component: {fileID: 1655994684}
+  m_Layer: 0
+  m_Name: Highlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1655994683
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655994682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 276008086}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1655994684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655994682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 584968c1e79b1ad4b8aab416fa7a085b, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1655994685
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655994682}
+  m_CullTransparentMesh: 1
 --- !u!1 &1666839340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3978,6 +4170,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6461138413734793445}
     m_Modifications:
+    - target: {fileID: 2876291881219926817, guid: b69c38d6179140d44ab1d883552cc686, type: 3}
+      propertyPath: displays.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876291881219926817, guid: b69c38d6179140d44ab1d883552cc686, type: 3}
+      propertyPath: 'displays.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2029145557}
     - target: {fileID: 3169705823169091034, guid: b69c38d6179140d44ab1d883552cc686, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.5000076
@@ -4164,10 +4364,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minesweeper
   windowBar: {fileID: 996425465797417052}
-  tilePrefab: {fileID: 2299346332386164068, guid: f4526012d17cec140afb73eec8551110, type: 3}
   minesDisplay: {fileID: 1883848301}
   timerDisplay: {fileID: 1293959414}
   gridBorder: {fileID: 53923456}
+  buttonImage: {fileID: 276008088}
+  tilePrefab: {fileID: 2299346332386164068, guid: f4526012d17cec140afb73eec8551110, type: 3}
+  buttonPlay: {fileID: 2041113151, guid: cab17f5c2d4f79a46aa7ef8c0f772e7f, type: 3}
+  buttonRestart: {fileID: 1443613865, guid: cab17f5c2d4f79a46aa7ef8c0f772e7f, type: 3}
   totalMines: 10
   gridWidth: 9
   gridHeight: 9
@@ -4360,6 +4563,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2029145557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7103982743461781450, guid: b69c38d6179140d44ab1d883552cc686, type: 3}
+  m_PrefabInstance: {fileID: 1883848299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c180a877c55c84419abe67ec63c135a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SevenSegmentDisplay
 --- !u!1 &2030137499
 GameObject:
   m_ObjectHideFlags: 0
@@ -5546,6 +5760,7 @@ RectTransform:
   - {fileID: 1883848300}
   - {fileID: 1293959413}
   - {fileID: 1426294123}
+  - {fileID: 276008086}
   m_Father: {fileID: 1997077667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -5699,9 +5914,9 @@ MonoBehaviour:
   onLeftClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7601967947539384024}
-        m_TargetAssemblyTypeName: DesktopWindow, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1979029083}
+        m_TargetAssemblyTypeName: Minesweeper, Assembly-CSharp
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5784,8 +5999,8 @@ MonoBehaviour:
   onLeftClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7601967947539384024}
-        m_TargetAssemblyTypeName: DesktopWindow, Assembly-CSharp
+      - m_Target: {fileID: 1979029083}
+        m_TargetAssemblyTypeName: Minesweeper, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
         m_Arguments:

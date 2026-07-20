@@ -21,16 +21,28 @@ public class MinesweeperTile : UIComponent
     
     public static UnityEvent<MinesweeperTile> onActivate = new UnityEvent<MinesweeperTile>();
     public static UnityEvent<MinesweeperTile> onMark = new UnityEvent<MinesweeperTile>();
+    public static UnityEvent<MinesweeperTile> onUnmark = new UnityEvent<MinesweeperTile>();
 
     private void Start()
     {
         onLeftClicked.AddListener(Activate);
         onRightClicked.AddListener(Mark);
+        Minesweeper.onGameStart.AddListener(GameStarted);
+        Minesweeper.onGameReset.AddListener(Reset);
+    }
+    
+    private void OnDestroy()
+    {
+        onLeftClicked.RemoveListener(Activate);
+        onRightClicked.RemoveListener(RightClicked);
+        Minesweeper.onGameStart.RemoveListener(GameStarted);
+        Minesweeper.onGameReset.RemoveListener(Reset);
     }
     
     public void Initialize(Vector2 gridPos)
     {
         Initialize(0, false, false, gridPos);
+        DisableInteraction();
     }
     
     public void Initialize(int tileValue, bool activated, bool marked, Vector2 gridPos)
@@ -41,12 +53,6 @@ public class MinesweeperTile : UIComponent
         this.gridPos = gridPos;
     }
     
-    private void OnDestroy()
-    {
-        onLeftClicked.RemoveListener(Activate);
-        onRightClicked.RemoveListener(Mark);
-    }
-
     public void SetTileValue(int value)
     {
         tileValue = value;
@@ -65,14 +71,14 @@ public class MinesweeperTile : UIComponent
 
     public void UpdateBottomSprite()
     {
-        if (tileValue > 0 && tileValue < 10)
+        if (tileValue >= 0 && tileValue < 10)
         {
             bottomTileImage.sprite = sprites[tileValue];
         }
 
         else
         {
-            Debug.Log("Invalid Bottom Sprite");
+            Debug.Log("Invalid Bottom Sprite: " + tileValue);
         }
     }
 
@@ -115,11 +121,39 @@ public class MinesweeperTile : UIComponent
         rightClickable = false;
     }
 
+    public void EnableInteraction()
+    {
+        highlight.enabled = false;
+        hoverable = true;
+        leftClickable = true;
+        rightClickable = true;
+    }
+
+    public void RightClicked()
+    {
+        if (marked)
+        {
+            Unmark();
+        }
+
+        else
+        {
+            Mark();
+        }
+    }
+
     public void Mark()
     {
-        marked = !marked;
+        marked = true;
         UpdateTopSprite();
         onMark?.Invoke(this);
+    }
+
+    public void Unmark()
+    {
+        marked = false;
+        UpdateTopSprite();
+        onUnmark?.Invoke(this);
     }
 
     public void GameFinished()
@@ -141,7 +175,21 @@ public class MinesweeperTile : UIComponent
         topTileImage.enabled = false;
         DisableInteraction();
     }
-    
+
+    public void GameStarted()
+    {
+        EnableInteraction();
+    }
+
+    public void Reset()
+    {
+        SetTileValue(0);
+        topTileImage.enabled = true;
+        bottomTileImage.enabled = true;
+        activated = false;
+        Unmark();
+    }
+
     public bool IsEmpty()
     {
         return tileValue == 0;

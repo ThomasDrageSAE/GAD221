@@ -8,16 +8,11 @@ using UnityEngine.UI;
 
 public class WindowBar : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    private bool isDragging;
+    bool isDragging;
 
     public event Action<PointerEventData> onDragStart;
     public event Action<PointerEventData> onDrag;
     public event Action<PointerEventData> onDragEnd;
-
-    private void Awake()
-    {
-        
-    }
 
     void DragStart(PointerEventData eventData)
     {
