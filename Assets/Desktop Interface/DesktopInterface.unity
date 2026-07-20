@@ -1179,7 +1179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 450171463}
   m_Layer: 0
-  m_Name: Windows
+  m_Name: Window Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3379,7 +3379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1709980089}
   m_Layer: 0
-  m_Name: Shortcuts
+  m_Name: Shortcut Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3988,8 +3988,8 @@ RectTransform:
   - {fileID: 1132816617}
   - {fileID: 1808287488}
   - {fileID: 806985282}
-  - {fileID: 450171463}
   - {fileID: 1709980089}
+  - {fileID: 450171463}
   - {fileID: 218762537}
   - {fileID: 1790752623}
   - {fileID: 529533934}
@@ -4042,6 +4042,8 @@ MonoBehaviour:
   animScreenOff: {fileID: 0}
   windowPrefab: {fileID: 8878853217547683330, guid: fffe1805933a65845a23087b8cd1c171, type: 3}
   minesweeperPrefab: {fileID: 9138496037347529703, guid: 635fa6c2117d25745983a6813dc6eb09, type: 3}
+  windowLayer: {fileID: 450171462}
+  shortcutLayer: {fileID: 1709980088}
 --- !u!114 &1997077670
 MonoBehaviour:
   m_ObjectHideFlags: 0
