@@ -1,12 +1,18 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
 
-public class StartMenu : MonoBehaviour
+public class StartMenu : UIComponent
 {
     #region --- Inspector References ---
     
     // -- In Scene --
-    
+    [SerializeField] public GameObject mainMenu;
+    [SerializeField] public GameObject gameMenu;
+    [SerializeField] public GameObject displayMenu;
+    [SerializeField] public GameObject audioMenu;
+    [SerializeField] public GameObject creditsMenu;
     
     // -- Resources & Prefabs --
     
@@ -19,12 +25,18 @@ public class StartMenu : MonoBehaviour
     
     
     // -- Private --
-    
+    private bool menuOpen;
+    private bool subMenuOpen;
     
     #endregion
     
     #region --- Events ---
 
+    public UnityEvent onMenuOpen = new UnityEvent();
+    public UnityEvent onMenuClose = new UnityEvent();
+    public UnityEvent onSubMenuOpen = new UnityEvent();
+    public UnityEvent onSubMenuClose = new UnityEvent();
+    
     private void EventSubscription()
     {
         
@@ -55,5 +67,56 @@ public class StartMenu : MonoBehaviour
 
     #endregion
     
+    #region --- Menu Control ---
+
+    public void OpenMenu()
+    {
+        
+    }
+
+    public void CloseMenu()
+    {
+        
+    }
+
+    public void OpenSubMenu()
+    {
+        
+    }
+
+    public void CloseSubMenu()
+    {
+        
+    }
+
+    public void Shutdown()
+    {
+        DesktopInterface.InterfaceClose();
+    }
     
+    #endregion
+    
+    #region --- SubMenu Control ---
+
+    public void GameSubMenu()
+    {
+        
+    }
+
+    public void DisplaySubMenu()
+    {
+        
+    }
+
+    public void AudioSubMenu()
+    {
+        
+    }
+    
+    public void CreditsSubMenu()
+    {
+        
+    }
+    
+    #endregion
 }

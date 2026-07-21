@@ -114,7 +114,7 @@ public class DesktopInterface : MonoBehaviour
         animSystemLoad.gameObject.SetActive(false);
     }
 
-    public void InterfaceClose()
+    public static void InterfaceClose()
     {
         
     }
