@@ -1,0 +1,61 @@
+using System;
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    #region --- Inspector References ---
+    #NOTRIM#
+    // -- In Scene --
+    #NOTRIM#
+    #NOTRIM#
+    // -- Resources & Prefabs --
+    #NOTRIM#
+    #NOTRIM#
+    #endregion
+    #NOTRIM#
+    #region --- Properties & Variables ---
+    #NOTRIM#
+    // -- Public --
+    #NOTRIM#
+    #NOTRIM#
+    // -- Private --
+    #NOTRIM#
+    #NOTRIM#
+    #endregion
+    
+    #region --- Events ---
+    #NOTRIM#
+    private void EventSubscription()
+    {
+        #NOTRIM#
+    }
+    #NOTRIM#
+    private void EventUnsubscription()
+    {
+        
+    }
+    #NOTRIM#
+    #endregion
+    #NOTRIM#
+    #region --- Initialization & Termination ---
+    #NOTRIM#
+    private void Start()
+    {
+        EventSubscription();
+        #NOTRIM#
+        #NOTRIM#
+    }
+    #NOTRIM#
+    private void OnDestroy()
+    {
+        EventUnsubscription();
+        #NOTRIM#
+        #NOTRIM#
+    }
+    #NOTRIM#
+    #endregion
+    #NOTRIM#
+    #NOTRIM#
+}
+#ROOTNAMESPACEEND#

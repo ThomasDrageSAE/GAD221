@@ -70,6 +70,23 @@ public class Minesweeper : DesktopWindow
     public static UnityEvent onGameReset = new UnityEvent();
     public static UnityEvent onMinesweeperClose = new UnityEvent();
     
+    private void EventSubscription()
+    {
+        MinesweeperTile.onActivate.AddListener(TileActivated);
+        MinesweeperTile.onMark.AddListener(TileMarked);
+        MinesweeperTile.onUnmark.AddListener(TileUnmarked);
+    }
+
+    private void EventUnsubscription()
+    {
+        MinesweeperTile.onActivate.RemoveListener(TileActivated);
+        MinesweeperTile.onMark.RemoveListener(TileMarked);
+        MinesweeperTile.onUnmark.RemoveListener(TileUnmarked);
+        onGameStart.RemoveAllListeners();
+        onGameReset.RemoveAllListeners();
+        onMinesweeperClose.RemoveAllListeners();
+    }
+    
     #endregion
     
     #region --- Initialization & Termination ---
@@ -94,25 +111,7 @@ public class Minesweeper : DesktopWindow
         onMinesweeperClose?.Invoke();
         EventUnsubscription();
     }
-
-    private void EventSubscription()
-    {
-        MinesweeperTile.onActivate.AddListener(TileActivated);
-        MinesweeperTile.onMark.AddListener(TileMarked);
-        MinesweeperTile.onUnmark.AddListener(TileUnmarked);
-    }
-
-    private void EventUnsubscription()
-    {
-        MinesweeperTile.onActivate.RemoveListener(TileActivated);
-        MinesweeperTile.onMark.RemoveListener(TileMarked);
-        MinesweeperTile.onUnmark.RemoveListener(TileUnmarked);
-        onGameStart.RemoveAllListeners();
-        onGameReset.RemoveAllListeners();
-        onMinesweeperClose.RemoveAllListeners();
-    }
-
-    // -- Variable Initialization --
+    
     public void Initialize(int gridWidth, int gridHeight)
     {
         SpawnGrid(gridWidth, gridHeight);
