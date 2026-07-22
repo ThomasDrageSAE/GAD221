@@ -9,7 +9,6 @@ public class StartMenu : UIComponent
     
     // -- In Scene --
     [SerializeField] public GameObject primaryMenu;
-    [SerializeField] public GameObject subMenuBackground;
     
     [SerializeField] public GameObject shutdownMenu;
     [SerializeField] public GameObject gameMenu;
@@ -66,9 +65,13 @@ public class StartMenu : UIComponent
         EventSubscription();
 
         primaryMenu.gameObject.SetActive(false);
-        subMenuBackground.gameObject.SetActive(false);
         primaryMenuOpen = false;
         currentSubMenu = SubMenu.None;
+        shutdownMenu.SetActive(false);
+        gameMenu.SetActive(false);
+        displayMenu.SetActive(false);
+        audioMenu.SetActive(false);
+        creditsMenu.SetActive(false);
     }
 
     private void OnDestroy()
@@ -171,7 +174,7 @@ public class StartMenu : UIComponent
         
     }
 
-    private void CloseSubMenu()
+    public void CloseSubMenu()
     {
         Debug.Log("StartMenu - CloseSubMenu");
         
@@ -202,7 +205,6 @@ public class StartMenu : UIComponent
         }
         
         currentSubMenu = SubMenu.None;
-        subMenuBackground.SetActive(false);
         
         Debug.Log("StartMenu - Current Sub Menu: " + currentSubMenu);
     }
@@ -263,7 +265,7 @@ public class StartMenu : UIComponent
 
     private void SubOpenAnim()
     {
-        subMenuBackground.SetActive(true);
+        
     }
 
     private void SubCloseAnim()

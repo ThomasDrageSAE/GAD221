@@ -116,7 +116,7 @@ public class DesktopInterface : MonoBehaviour
 
     public static void InterfaceClose()
     {
-        
+        Debug.Log("InterfaceClose");
     }
 
     public void MinesweeperShortcut()
