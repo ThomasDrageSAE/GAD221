@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class StartMenu : UIComponent
 {
     #region --- Inspector References ---
     
     // -- In Scene --
-    [SerializeField] public GameObject mainMenu;
+    [SerializeField] public GameObject primaryMenu;
     [SerializeField] public GameObject gameMenu;
     [SerializeField] public GameObject displayMenu;
     [SerializeField] public GameObject audioMenu;
@@ -25,7 +25,7 @@ public class StartMenu : UIComponent
     
     
     // -- Private --
-    private bool menuOpen;
+    private bool primaryMenuOpen;
     private bool subMenuOpen;
     
     #endregion
@@ -54,8 +54,9 @@ public class StartMenu : UIComponent
     private void Start()
     {
         EventSubscription();
-        
-        
+
+        primaryMenu.gameObject.SetActive(false);
+        primaryMenuOpen = false;
     }
 
     private void OnDestroy()
@@ -69,14 +70,29 @@ public class StartMenu : UIComponent
     
     #region --- Menu Control ---
 
-    public void OpenMenu()
+    public void MenuButtonClicked()
     {
-        
+        if (!primaryMenuOpen)
+        {
+            OpenStartMenu();
+        }
+
+        else
+        {
+            CloseStartMenu();
+        }
+    }
+    
+    public void OpenStartMenu()
+    {
+        primaryMenu.SetActive(true);
+        primaryMenuOpen = true;
     }
 
-    public void CloseMenu()
+    public void CloseStartMenu()
     {
-        
+        primaryMenu.SetActive(false);
+        primaryMenuOpen = false;
     }
 
     public void OpenSubMenu()

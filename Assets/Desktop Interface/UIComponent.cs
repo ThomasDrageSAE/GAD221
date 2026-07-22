@@ -14,7 +14,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     
     public UnityEvent onHoverStart;
     public UnityEvent onHoverStop;
-    [FormerlySerializedAs("onClicked")] public UnityEvent onLeftClicked;
+    public UnityEvent onLeftClicked;
     public UnityEvent onRightClicked;
 
     private bool hovered;
