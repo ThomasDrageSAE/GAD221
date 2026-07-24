@@ -91,9 +91,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToggleSlider
   highlight: {fileID: 1610525982392342961}
+  interactable: 1
   hoverable: 1
   leftClickable: 1
-  rightClickable: 1
+  rightClickable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -107,6 +108,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   animator: {fileID: 6462998480967337814}
+  image: {fileID: 8469346335409058169}
+  offSprite: {fileID: -128607562, guid: 4f1b2de6150818e4582f5c562dd92df6, type: 3}
+  onSprite: {fileID: 1143631907, guid: 4f1b2de6150818e4582f5c562dd92df6, type: 3}
+  defaultValue: 1
 --- !u!95 &6462998480967337814
 Animator:
   serializedVersion: 7

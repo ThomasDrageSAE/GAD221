@@ -8,6 +8,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     [SerializeField] protected Image highlight;
     
+    [SerializeField] protected bool interactable = true;
     [SerializeField] protected bool hoverable = true;
     [SerializeField] protected bool leftClickable  = true;
     [SerializeField] protected bool rightClickable = true;
@@ -29,7 +30,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     
     virtual protected void HoverStart()
     {
-        if (hoverable)
+        if (hoverable && interactable)
         {
             onHoverStart?.Invoke();
             hovered = true;
@@ -49,7 +50,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
 
     virtual protected void LeftClick()
     {
-        if (leftClickable)
+        if (leftClickable && interactable)
         {
             onLeftClicked?.Invoke();
         }
@@ -57,7 +58,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     
     virtual protected void RightClick()
     {
-        if (leftClickable)
+        if (leftClickable && interactable)
         {
             onRightClicked?.Invoke();
         }

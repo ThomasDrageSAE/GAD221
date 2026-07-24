@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,14 +19,14 @@ public class StartMenu : UIComponent
     [SerializeField] public GameObject creditsMenu;
     
     // -- Resources & Prefabs --
-    
+    [SerializeField] private Animator animator;
     
     #endregion
     
     #region --- Properties & Variables ---
     
     // -- Public --
-    
+    public bool animPlaying;
     
     // -- Private --
     private bool primaryMenuOpen;
@@ -40,7 +42,7 @@ public class StartMenu : UIComponent
     #endregion
     
     #region --- Events ---
-
+    
     public UnityEvent onMenuOpen = new UnityEvent();
     public UnityEvent onMenuClose = new UnityEvent();
     public UnityEvent onSubMenuOpen = new UnityEvent();
@@ -88,12 +90,11 @@ public class StartMenu : UIComponent
     public void MenuButtonClicked()
     {
         Debug.Log("StartMenu - MenuButtonClicked");
-        
+
         if (!primaryMenuOpen)
         {
             OpenStartMenu();
         }
-
         else
         {
             CloseStartMenu();
@@ -103,28 +104,29 @@ public class StartMenu : UIComponent
     public void OpenStartMenu()
     {
         Debug.Log("StartMenu - OpenStartMenu");
-        PrimaryOpenAnim();
         primaryMenu.SetActive(true);
-        primaryMenuOpen = true;
+        
+        animator.Play("StartMenuOpen");
     }
 
-    private void PrimaryMenuOpened() // once anim finished
+    public void PrimaryMenuOpened() // once anim finished
     {
-        
+        Debug.Log("StartMenu - PrimaryMenuOpened");
+        primaryMenuOpen = true;
     }
 
     public void CloseStartMenu()
     {
         Debug.Log("StartMenu - CloseStartMenu");
-        PrimaryCloseAnim();
-        primaryMenu.SetActive(false);
-        primaryMenuOpen = false;
+        animator.Play("StartMenuClose");
         CloseSubMenu();
     }
 
-    private void PrimaryMenuClosed() // once anim finished
+    public void PrimaryMenuClosed() // once anim finished
     {
-        
+        Debug.Log("StartMenu - PrimaryMenuClosed");
+        primaryMenu.SetActive(false);
+        primaryMenuOpen = false;
     }
     
     #endregion
@@ -141,8 +143,6 @@ public class StartMenu : UIComponent
         }
         
         currentSubMenu = subMenu;
-        
-        SubOpenAnim();
         
         switch (currentSubMenu)
         {
@@ -184,23 +184,23 @@ public class StartMenu : UIComponent
                 break;
             case SubMenu.Shutdown:
                 shutdownMenu.SetActive(false);
-                SubCloseAnim();
+                
                 break;
             case SubMenu.Game:
                 gameMenu.SetActive(false);
-                SubCloseAnim();
+                
                 break;
             case SubMenu.Display:
                 displayMenu.SetActive(false);
-                SubCloseAnim();
+                
                 break;
             case SubMenu.Audio:
                 audioMenu.SetActive(false);
-                SubCloseAnim();
+                
                 break;
             case SubMenu.Credits:
                 creditsMenu.SetActive(false);
-                SubCloseAnim();
+                
                 break;
         }
         
@@ -217,61 +217,81 @@ public class StartMenu : UIComponent
     public void ShutdownButton()
     {
         Debug.Log("StartMenu - ShutdownButton");
-        
-        OpenSubMenu(SubMenu.Shutdown);
+
+        if (currentSubMenu != SubMenu.Shutdown)
+        {
+            OpenSubMenu(SubMenu.Shutdown);
+        }
+
+        else
+        {
+            CloseSubMenu();
+        }
     }
     
     public void GameButton()
     {
         Debug.Log("StartMenu - GameButton");
         
-        OpenSubMenu(SubMenu.Game);
+        if (currentSubMenu != SubMenu.Game)
+        {
+            OpenSubMenu(SubMenu.Game);
+        }
+
+        else
+        {
+            CloseSubMenu();
+        }
     }
 
     public void DisplayButton()
     {
         Debug.Log("StartMenu - DisplayButton");
         
-        OpenSubMenu(SubMenu.Display);
+        if (currentSubMenu != SubMenu.Display)
+        {
+            OpenSubMenu(SubMenu.Display);
+        }
+
+        else
+        {
+            CloseSubMenu();
+        }
     }
 
     public void AudioButton()
     {
         Debug.Log("StartMenu - AudioButton");
         
-        OpenSubMenu(SubMenu.Audio);
+        if (currentSubMenu != SubMenu.Audio)
+        {
+            OpenSubMenu(SubMenu.Audio);
+        }
+
+        else
+        {
+            CloseSubMenu();
+        }
     }
     
     public void CreditsButton()
     {
         Debug.Log("StartMenu - CreditsButton");
         
-        OpenSubMenu(SubMenu.Credits);
+        if (currentSubMenu != SubMenu.Credits)
+        {
+            OpenSubMenu(SubMenu.Credits);
+        }
+
+        else
+        {
+            CloseSubMenu();
+        }
     }
     
     #endregion
     
     #region --- Animation ---
-
-    private void PrimaryOpenAnim()
-    {
-        primaryMenu.SetActive(true);
-    }
-
-    private void PrimaryCloseAnim()
-    {
-        
-    }
-
-    private void SubOpenAnim()
-    {
-        
-    }
-
-    private void SubCloseAnim()
-    {
-        
-    }
     
     #endregion
 }
