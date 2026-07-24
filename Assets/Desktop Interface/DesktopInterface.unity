@@ -6706,7 +6706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825202186647434780, guid: 9375ccbc81bb77c4c9c051d515045a20, type: 3}
       propertyPath: onLeftClicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseSubMenu
+      value: Close
       objectReference: {fileID: 0}
     - target: {fileID: 1825202186647434780, guid: 9375ccbc81bb77c4c9c051d515045a20, type: 3}
       propertyPath: onLeftClicked.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
