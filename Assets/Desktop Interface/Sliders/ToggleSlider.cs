@@ -11,7 +11,7 @@ public class ToggleSlider : UIComponent
 
     public bool defaultValue;
     
-    private bool toggleValue;
+    public bool toggleValue;
 
     private void Start()
     {
@@ -50,11 +50,6 @@ public class ToggleSlider : UIComponent
             animator.StopPlayback();
             animator.Play("ToggleOff");
         }
-    }
-
-    public bool GetToggleValue()
-    {
-        return toggleValue;
     }
     
     override protected void LeftClick()

@@ -2,30 +2,22 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DesktopWindow : MonoBehaviour
+public class DesktopWindow : UIComponent
 {
-    [SerializeField] protected WindowBar windowBar;
-
-    protected Vector2 dragOffset;
-    
     public event Action onWindowOpen;
     public event Action onWindowMinimize;
     public event Action onWindowMaximize;
     public event Action onWindowClose;
     
     
-    protected virtual void Start()
+    protected override void Start()
     {
-        windowBar.onDragStart += DragStart;
-        windowBar.onDrag += Drag;
-        windowBar.onDragEnd += DragEnd;
+        base.Start();
     }
 
-    protected virtual void OnDestroy()
+    protected override void OnDestroy()
     {
-        windowBar.onDragStart -= DragStart;
-        windowBar.onDrag -= Drag;
-        windowBar.onDragEnd -= DragEnd;
+        base.OnDestroy();
     }
 
     public void Open()
@@ -53,37 +45,5 @@ public class DesktopWindow : MonoBehaviour
         Debug.Log("Window - Close");
         onWindowClose?.Invoke();
         Destroy(gameObject);
-    }
-
-    public void DragStart(PointerEventData eventData)
-    {
-        Debug.Log("Window - DragStart" + eventData.pressPosition);
-        dragOffset = eventData.pressPosition - (Vector2)gameObject.transform.position;
-    }
-
-    public void Drag(PointerEventData eventData)
-    {
-        RectTransform rectTransform = (RectTransform)gameObject.transform;
-        
-        int taskBarHeight = 25;
-        
-        Vector2 windowSize = rectTransform.rect.size;
-        Vector2 pivotPoint = rectTransform.pivot;
-        
-        
-        float minX = windowSize.x * pivotPoint.x; float maxX = Screen.width - windowSize.x * (1f - pivotPoint.x);
-        float minY = windowSize.y * pivotPoint.y + taskBarHeight; float maxY = Screen.height - windowSize.y * (1f - pivotPoint.y);
-        
-        Vector2 newPos = eventData.position - dragOffset;
-        
-        newPos.x = Mathf.Round(Mathf.Clamp(newPos.x, minX, maxX));
-        newPos.y = Mathf.Round(Mathf.Clamp(newPos.y, minY, maxY));
-        
-        gameObject.transform.position = newPos;
-    }
-
-    public void DragEnd(PointerEventData eventData)
-    {
-        Debug.Log("Window - DragEnd" + eventData.position);
     }
 }
