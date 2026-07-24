@@ -35,7 +35,6 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         if (hoverable && interactable && !interactionPaused)
         {
             onHoverStart?.Invoke();
-            hovered = true;
             highlight.enabled = true;
         }
     }
@@ -45,7 +44,6 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         if (hoverable)
         {
             onHoverStop?.Invoke();
-            hovered = false;
             highlight.enabled = false;
         }
     }
@@ -66,28 +64,32 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         }
     }
 
-    public bool IsHovered()
-    {
-        return hovered;
-    }
-
     public void PauseInteraction()
     {
-        interactionPaused = false;
+        interactionPaused = true;
     }
 
     public void ResumeInteraction()
     {
-        interactionPaused = true;
+        interactionPaused = false;
+
+        if (hovered)
+        {
+            HoverStart();
+        }
+        
+        Debug.Log($"{name} - Resume, hovered: {hovered}");
     }
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        hovered = true;
         HoverStart();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        hovered = false;
         HoverStop();
     }
 

@@ -310,7 +310,7 @@ public class StartMenu : UIComponent
 
         foreach (UIComponent uiComponent in uiComponents)
         {
-            uiComponent.PauseInteraction();
+            uiComponent.ResumeInteraction();
         }
         
         Debug.Log("StartMenu - EnableInteraction");
@@ -322,7 +322,7 @@ public class StartMenu : UIComponent
 
         foreach (UIComponent uiComponent in uiComponents)
         {
-            uiComponent.ResumeInteraction();
+            uiComponent.PauseInteraction();
         }
         
         Debug.Log("StartMenu - DisableInteraction");
