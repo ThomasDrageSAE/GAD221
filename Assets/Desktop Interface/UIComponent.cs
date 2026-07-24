@@ -9,6 +9,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     [SerializeField] protected Image highlight;
     
     [SerializeField] protected bool interactable = true;
+    
     [SerializeField] protected bool hoverable = true;
     [SerializeField] protected bool leftClickable  = true;
     [SerializeField] protected bool rightClickable = true;
@@ -18,7 +19,8 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     public UnityEvent onLeftClicked;
     public UnityEvent onRightClicked;
 
-    private bool hovered;
+    protected bool hovered;
+    protected bool interactionPaused;
     
     void Awake()
     {
@@ -30,7 +32,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     
     virtual protected void HoverStart()
     {
-        if (hoverable && interactable)
+        if (hoverable && interactable && !interactionPaused)
         {
             onHoverStart?.Invoke();
             hovered = true;
@@ -50,7 +52,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
 
     virtual protected void LeftClick()
     {
-        if (leftClickable && interactable)
+        if (leftClickable && interactable && !interactionPaused)
         {
             onLeftClicked?.Invoke();
         }
@@ -58,7 +60,7 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     
     virtual protected void RightClick()
     {
-        if (leftClickable && interactable)
+        if (leftClickable && interactable && !interactionPaused)
         {
             onRightClicked?.Invoke();
         }
@@ -67,6 +69,16 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
     public bool IsHovered()
     {
         return hovered;
+    }
+
+    public void PauseInteraction()
+    {
+        interactionPaused = false;
+    }
+
+    public void ResumeInteraction()
+    {
+        interactionPaused = true;
     }
     
     public void OnPointerEnter(PointerEventData eventData)
