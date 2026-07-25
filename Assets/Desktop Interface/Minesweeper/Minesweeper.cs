@@ -275,8 +275,6 @@ public class Minesweeper : DesktopWindow
 
     public void WinCheck()
     {
-        Debug.Log("Safe: " + activatedSafeTiles + "/" + totalSafeTiles + " Mines: " + minesMarked + "/" + totalMines);
-        
         if (activatedSafeTiles == totalSafeTiles && minesMarked == totalMines)
         {
             WinGame();

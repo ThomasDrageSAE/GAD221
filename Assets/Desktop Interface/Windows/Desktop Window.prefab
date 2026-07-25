@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a98ae115069bf45986abc89c759878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragAreaComponent
-  target: {fileID: 6461138415134869181}
   onDragStart:
     m_PersistentCalls:
       m_Calls: []
@@ -805,6 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6461138415134869181}
   - component: {fileID: 8878853217547683330}
+  - component: {fileID: 4881018398416116309}
   m_Layer: 0
   m_Name: Desktop Window
   m_TagString: Untagged
@@ -863,6 +863,24 @@ MonoBehaviour:
   onRightClicked:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4881018398416116309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601967947338748032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1219dfeb470b00b4ca443b450badd5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Draggable
+  dragHandle: {fileID: 6810869533488456506}
+  container: {fileID: 0}
+  containerMarginLeft: 2
+  containerMarginRight: 2
+  containerMarginTop: 2
+  containerMarginBottom: 27
 --- !u!1 &8326878033952934344
 GameObject:
   m_ObjectHideFlags: 0

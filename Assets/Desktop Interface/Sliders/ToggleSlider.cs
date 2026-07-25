@@ -18,12 +18,14 @@ public class ToggleSlider : UIComponent
 
         if (defaultValue)
         {
+            toggleValue = true;
             image.sprite = onSprite;
             animator.Play("ToggleOn", 0, 1f);
         }
 
         else
         {
+            toggleValue = false;
             image.sprite = offSprite;
             animator.Play("ToggleOff", 0, 1f);
         }

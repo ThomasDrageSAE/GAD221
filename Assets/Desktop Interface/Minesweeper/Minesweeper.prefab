@@ -358,7 +358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a98ae115069bf45986abc89c759878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragAreaComponent
-  target: {fileID: 3222469946743681288}
   onDragStart:
     m_PersistentCalls:
       m_Calls: []
@@ -752,6 +751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3222469946743681288}
   - component: {fileID: 9138496037347529703}
+  - component: {fileID: 4655211647058090503}
   m_Layer: 0
   m_Name: Minesweeper
   m_TagString: Untagged
@@ -826,6 +826,24 @@ MonoBehaviour:
   gridHeight: 9
   gridTilePadding: 1
   gridBorderWidth: 4
+--- !u!114 &4655211647058090503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282027183863476303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1219dfeb470b00b4ca443b450badd5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Draggable
+  dragHandle: {fileID: 8189990491989194286}
+  container: {fileID: 0}
+  containerMarginLeft: 2
+  containerMarginRight: 2
+  containerMarginTop: 2
+  containerMarginBottom: 27
 --- !u!1 &5802072353082309589
 GameObject:
   m_ObjectHideFlags: 0
