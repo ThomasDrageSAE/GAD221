@@ -23,16 +23,20 @@ public class MinesweeperTile : UIComponent
     public static UnityEvent<MinesweeperTile> onMark = new UnityEvent<MinesweeperTile>();
     public static UnityEvent<MinesweeperTile> onUnmark = new UnityEvent<MinesweeperTile>();
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         onLeftClicked.AddListener(Activate);
-        onRightClicked.AddListener(Mark);
+        onRightClicked.AddListener(RightClicked);
         Minesweeper.onGameStart.AddListener(GameStarted);
         Minesweeper.onGameReset.AddListener(Reset);
     }
     
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+        
         onLeftClicked.RemoveListener(Activate);
         onRightClicked.RemoveListener(RightClicked);
         Minesweeper.onGameStart.RemoveListener(GameStarted);

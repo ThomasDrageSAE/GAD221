@@ -70,15 +70,19 @@ public class Minesweeper : DesktopWindow
     public static UnityEvent onGameReset = new UnityEvent();
     public static UnityEvent onMinesweeperClose = new UnityEvent();
     
-    private void EventSubscription()
+    protected override void EventSubscription()
     {
+        base.EventSubscription();
+        
         MinesweeperTile.onActivate.AddListener(TileActivated);
         MinesweeperTile.onMark.AddListener(TileMarked);
         MinesweeperTile.onUnmark.AddListener(TileUnmarked);
     }
 
-    private void EventUnsubscription()
+    protected override void EventUnsubscription()
     {
+        base.EventUnsubscription();
+        
         MinesweeperTile.onActivate.RemoveListener(TileActivated);
         MinesweeperTile.onMark.RemoveListener(TileMarked);
         MinesweeperTile.onUnmark.RemoveListener(TileUnmarked);
@@ -95,8 +99,6 @@ public class Minesweeper : DesktopWindow
     {
         base.Start();
         
-        EventSubscription();
-        
         totalTiles = gridWidth * gridHeight;
         totalSafeTiles = totalTiles - totalMines;
         activatedSafeTiles = 0;
@@ -109,7 +111,6 @@ public class Minesweeper : DesktopWindow
         base.OnDestroy();
         
         onMinesweeperClose?.Invoke();
-        EventUnsubscription();
     }
     
     public void Initialize(int gridWidth, int gridHeight)
@@ -174,6 +175,7 @@ public class Minesweeper : DesktopWindow
     {
         gameActive = false;
         activatedSafeTiles = 0;
+        minesMarked = 0;
         ResetTimer();
         minesDisplay.ResetDisplay();
         buttonImage.sprite = buttonPlay;
@@ -224,11 +226,6 @@ public class Minesweeper : DesktopWindow
         {
             return;
         }
-        
-        if (tile.IsMarked())
-        {
-            return;
-        }
 
         if (tile.IsBomb())
         {
@@ -241,11 +238,6 @@ public class Minesweeper : DesktopWindow
     public void TileUnmarked(MinesweeperTile tile)
     {
         if (!gameActive)
-        {
-            return;
-        }
-
-        if (!tile.IsMarked())
         {
             return;
         }
@@ -283,6 +275,8 @@ public class Minesweeper : DesktopWindow
 
     public void WinCheck()
     {
+        Debug.Log("Safe: " + activatedSafeTiles + "/" + totalSafeTiles + " Mines: " + minesMarked + "/" + totalMines);
+        
         if (activatedSafeTiles == totalSafeTiles && minesMarked == totalMines)
         {
             WinGame();
