@@ -10,46 +10,54 @@ public class ToggleSlider : UIComponent
     [SerializeField] Sprite onSprite;
 
     public bool defaultValue;
-    
-    public bool toggleValue;
+    private bool toggleValue;
 
-    private void Start()
+    protected override void Start()
     {
-        SetToggleValue(defaultValue);
-    }
+        base.Start();
 
-    public void SetToggleValue(bool value)
-    {
-        toggleValue = value;
-
-        if (value)
+        if (defaultValue)
         {
             image.sprite = onSprite;
+            animator.Play("ToggleOn", 0, 1f);
         }
 
         else
         {
             image.sprite = offSprite;
+            animator.Play("ToggleOff", 0, 1f);
         }
     }
     
     public void Toggle()
     {
-        toggleValue = !toggleValue;
-        
-        Debug.Log("Toggle Slider - " + toggleValue);
+        Debug.Log("Toggle Slider Was - " + toggleValue);
         
         if (toggleValue)
         {
-            animator.StopPlayback();
-            animator.Play("ToggleOn");
+            ToggleOff();
         }
 
         else
         {
-            animator.StopPlayback();
-            animator.Play("ToggleOff");
+            ToggleOn();
         }
+        
+        toggleValue = !toggleValue;
+        
+        Debug.Log("Toggle Slider Now - " + toggleValue);
+    }
+
+    public void ToggleOn()
+    {
+        Debug.Log("Toggle Slider Anim - ToggleOn");
+        animator.Play("ToggleOn");
+    }
+
+    public void ToggleOff()
+    {
+        Debug.Log("Toggle Slider Anim - ToggleOff");
+        animator.Play("ToggleOff");
     }
     
     override protected void LeftClick()

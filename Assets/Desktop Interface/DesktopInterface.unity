@@ -394,12 +394,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SearchField
   highlight: {fileID: 640719852}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -410,15 +408,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
   inputField: {fileID: 2030137501}
@@ -1585,12 +1574,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 1102897007}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -1613,15 +1600,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &446713217
@@ -2273,12 +2251,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 1978761734}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2301,15 +2277,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &598692695
@@ -2725,12 +2692,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 906133965}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2753,15 +2718,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!224 &777584263 stripped
@@ -2820,12 +2776,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SevenSegmentDisplay
   highlight: {fileID: 0}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 0
   leftClickable: 0
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2836,15 +2790,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
   image: {fileID: 806985284}
@@ -3216,12 +3161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableIcon
   highlight: {fileID: 0}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 0
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3232,15 +3175,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &881431269
@@ -3295,12 +3229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 1415137703}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3323,15 +3255,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &906133963
@@ -3764,12 +3687,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartMenu
   highlight: {fileID: 0}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 0
   leftClickable: 0
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3780,15 +3701,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
   primaryMenu: {fileID: 816666059}
@@ -4496,12 +4408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 273317078}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -4524,15 +4434,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1228600671
@@ -4587,12 +4488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 502168150}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -4615,15 +4514,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1228600674
@@ -5016,12 +4906,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 1212586574}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5044,15 +4932,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1376658088
@@ -5295,12 +5174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 1772808873}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5323,15 +5200,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1516358701
@@ -5492,12 +5360,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 446713219}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5520,15 +5386,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1666839340
@@ -5583,12 +5440,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shortcut
   highlight: {fileID: 748079597}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5611,15 +5466,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1689646396
@@ -5713,12 +5559,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 527410548}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 1
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5741,15 +5585,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1709980088
@@ -6043,12 +5878,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 815972320}
-  dragTransform: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
-  draggable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -6071,15 +5904,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1775140720
@@ -7695,13 +7519,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1997077667}
     m_Modifications:
+    - target: {fileID: 513430040915488286, guid: 1167f9abf7c0fa54cbe16906e9f337eb, type: 3}
+      propertyPath: toggleValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 513430040915488286, guid: 1167f9abf7c0fa54cbe16906e9f337eb, type: 3}
+      propertyPath: defaultValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3883198288707595258, guid: 1167f9abf7c0fa54cbe16906e9f337eb, type: 3}
       propertyPath: m_Name
       value: Toggle Slider
       objectReference: {fileID: 0}
     - target: {fileID: 3883198288707595258, guid: 1167f9abf7c0fa54cbe16906e9f337eb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462998480967337814, guid: 1167f9abf7c0fa54cbe16906e9f337eb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6714371809395743589, guid: 1167f9abf7c0fa54cbe16906e9f337eb, type: 3}
       propertyPath: m_Pivot.x
