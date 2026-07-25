@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 5388027732625051622}
   - component: {fileID: 2715155873643823577}
   - component: {fileID: 6057994374006037074}
-  - component: {fileID: 7163998820597181778}
+  - component: {fileID: 6810869533488456506}
   m_Layer: 0
   m_Name: Window Bar
   m_TagString: Untagged
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7163998820597181778
+--- !u!114 &6810869533488456506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,28 +312,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1149893006912694349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb97938a24fd9a44a249dc972f1c5f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 53a98ae115069bf45986abc89c759878, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WindowBar
-  highlight: {fileID: 0}
-  dragComponent: {fileID: 0}
-  interactable: 1
-  hoverable: 0
-  leftClickable: 0
-  rightClickable: 0
-  draggable: 1
-  onHoverStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onHoverStop:
-    m_PersistentCalls:
-      m_Calls: []
-  onLeftClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
+  m_EditorClassIdentifier: Assembly-CSharp::DragAreaComponent
+  target: {fileID: 6461138415134869181}
   onDragStart:
     m_PersistentCalls:
       m_Calls: []
@@ -478,12 +460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 5518201882126251970}
-  dragComponent: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
-  rightClickable: 1
-  draggable: 0
+  rightClickable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -494,15 +474,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1642954264097015236
@@ -660,12 +631,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 3282510903480944458}
-  dragComponent: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
-  rightClickable: 1
-  draggable: 0
+  rightClickable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -674,17 +643,20 @@ MonoBehaviour:
       m_Calls: []
   onLeftClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8878853217547683330}
+        m_TargetAssemblyTypeName: DesktopWindow, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2379455194722063359
@@ -777,12 +749,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 1564785349251816893}
-  dragComponent: {fileID: 0}
   interactable: 1
   hoverable: 1
   leftClickable: 1
-  rightClickable: 1
-  draggable: 0
+  rightClickable: 0
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -793,15 +763,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &4212482716503676666
@@ -886,12 +847,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopWindow
   highlight: {fileID: 0}
-  dragComponent: {fileID: 7163998820597181778}
   interactable: 1
   hoverable: 0
   leftClickable: 0
   rightClickable: 0
-  draggable: 1
   onHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -902,15 +861,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onRightClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onDragEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8326878033952934344
