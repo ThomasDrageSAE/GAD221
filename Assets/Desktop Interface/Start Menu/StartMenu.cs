@@ -50,13 +50,13 @@ public class StartMenu : UIComponent
     public UnityEvent onSubMenuOpen = new UnityEvent();
     public UnityEvent onSubMenuClose = new UnityEvent();
     
-    private void EventSubscription()
+    override protected void EventSubscription()
     {
         SubMenus.subMenusOpened += SubMenuOpened;
         SubMenus.subMenusClosed += SubMenuClosed;
     }
 
-    private void EventUnsubscription()
+    override protected void EventUnsubscription()
     {
         SubMenus.subMenusOpened -= SubMenuOpened;
         SubMenus.subMenusClosed -= SubMenuClosed;
@@ -66,8 +66,10 @@ public class StartMenu : UIComponent
 
     #region --- Initialization & Termination ---
 
-    private void Start()
+    override protected void Start()
     {
+        base.Start();
+        
         EventSubscription();
 
         primaryMenu.gameObject.SetActive(false);
@@ -80,8 +82,10 @@ public class StartMenu : UIComponent
         creditsMenu.SetActive(false);
     }
 
-    private void OnDestroy()
+    override protected void OnDestroy()
     {
+        base.OnDestroy();
+        
         EventUnsubscription();
         
         
@@ -93,7 +97,7 @@ public class StartMenu : UIComponent
 
     public void MenuButtonClicked()
     {
-        Debug.Log("StartMenu - MenuButtonClicked");
+        //Debug.Log("StartMenu - MenuButtonClicked");
 
         if (!primaryMenuOpen)
         {
@@ -112,7 +116,7 @@ public class StartMenu : UIComponent
     
     public IEnumerator OpenStartMenu()
     {
-        Debug.Log("StartMenu - OpenStartMenu");
+        //Debug.Log("StartMenu - OpenStartMenu");
         primaryMenu.SetActive(true);
         
         primaryMenuAnimator.Play("StartMenuOpen");
@@ -123,7 +127,7 @@ public class StartMenu : UIComponent
 
     public void PrimaryMenuOpened() // once anim finished
     {
-        Debug.Log("StartMenu - PrimaryMenuOpened");
+        //Debug.Log("StartMenu - PrimaryMenuOpened");
         primaryMenuOpen = true;
     }
 
@@ -134,7 +138,7 @@ public class StartMenu : UIComponent
 
     public IEnumerator CloseStartMenu()
     {
-        Debug.Log("StartMenu - CloseStartMenu");
+        //Debug.Log("StartMenu - CloseStartMenu");
         
         yield return StartCoroutine(CloseSubMenu());
         
@@ -146,7 +150,7 @@ public class StartMenu : UIComponent
 
     public void PrimaryMenuClosed() // once anim finished
     {
-        Debug.Log("StartMenu - PrimaryMenuClosed");
+        //Debug.Log("StartMenu - PrimaryMenuClosed");
         primaryMenu.SetActive(false);
         primaryMenuOpen = false;
     }
@@ -157,7 +161,7 @@ public class StartMenu : UIComponent
 
     private IEnumerator OpenSubMenu(SubMenu subMenu)
     {
-        Debug.Log("StartMenu - OpenSubMenu");
+        //Debug.Log("StartMenu - OpenSubMenu");
         
         if (currentSubMenu != SubMenu.None)
         {
@@ -196,14 +200,14 @@ public class StartMenu : UIComponent
 
     private void SubMenuOpened() // once anim finished
     {
-        Debug.Log("StartMenu - SubMenuOpened");
+        //Debug.Log("StartMenu - SubMenuOpened");
         subMenuOpen = true;
-        Debug.Log("StartMenu - Current Sub Menu: " + currentSubMenu);
+        //Debug.Log("StartMenu - Current Sub Menu: " + currentSubMenu);
     }
 
     public IEnumerator CloseSubMenu()
     {
-        Debug.Log("StartMenu - CloseSubMenu");
+        //Debug.Log("StartMenu - CloseSubMenu");
         
         subMenuAnimator.Play("SubMenusClose");
         DisableInteraction();
@@ -213,7 +217,7 @@ public class StartMenu : UIComponent
 
     private void SubMenuClosed() // once anim finished.
     {
-        Debug.Log("StartMenu - SubMenuClosed");
+        //Debug.Log("StartMenu - SubMenuClosed");
         
         shutdownMenu.SetActive(false);
         gameMenu.SetActive(false);
@@ -227,7 +231,7 @@ public class StartMenu : UIComponent
     
     public void ShutdownButton()
     {
-        Debug.Log("StartMenu - ShutdownButton");
+        //Debug.Log("StartMenu - ShutdownButton");
 
         if (currentSubMenu != SubMenu.Shutdown)
         {
@@ -242,7 +246,7 @@ public class StartMenu : UIComponent
     
     public void GameButton()
     {
-        Debug.Log("StartMenu - GameButton");
+        //Debug.Log("StartMenu - GameButton");
         
         if (currentSubMenu != SubMenu.Game)
         {
@@ -257,7 +261,7 @@ public class StartMenu : UIComponent
 
     public void DisplayButton()
     {
-        Debug.Log("StartMenu - DisplayButton");
+        //Debug.Log("StartMenu - DisplayButton");
         
         if (currentSubMenu != SubMenu.Display)
         {
@@ -272,7 +276,7 @@ public class StartMenu : UIComponent
 
     public void AudioButton()
     {
-        Debug.Log("StartMenu - AudioButton");
+        //Debug.Log("StartMenu - AudioButton");
         
         if (currentSubMenu != SubMenu.Audio)
         {
@@ -287,7 +291,7 @@ public class StartMenu : UIComponent
     
     public void CreditsButton()
     {
-        Debug.Log("StartMenu - CreditsButton");
+        //Debug.Log("StartMenu - CreditsButton");
         
         if (currentSubMenu != SubMenu.Credits)
         {
@@ -313,7 +317,7 @@ public class StartMenu : UIComponent
             uiComponent.ResumeInteraction();
         }
         
-        Debug.Log("StartMenu - EnableInteraction");
+        //Debug.Log("StartMenu - EnableInteraction");
     }
 
     public void DisableInteraction()
@@ -325,7 +329,7 @@ public class StartMenu : UIComponent
             uiComponent.PauseInteraction();
         }
         
-        Debug.Log("StartMenu - DisableInteraction");
+        //Debug.Log("StartMenu - DisableInteraction");
     }
     #endregion
 }

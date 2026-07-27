@@ -36,7 +36,7 @@ public class SevenSegmentDisplayArray : MonoBehaviour
 
     public void SetValue(int value)
     {
-        //Debug.Log("SevenSegmentDisplayArray - SetValue: " + value);
+        //Debug.Log("SevenSegmentDisplayArray - SetTrackValue: " + value);
 
         if (value <= maximumValue && value >= minimumValue)
         {

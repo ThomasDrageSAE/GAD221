@@ -79,7 +79,11 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         if (hoverable && interactable && !interactionPaused)
         {
             onHoverStart?.Invoke();
-            highlight.enabled = true;
+
+            if (highlight != null)
+            {
+                highlight.enabled = true;
+            }
         }
     }
 
@@ -88,7 +92,11 @@ public abstract class UIComponent : MonoBehaviour, IPointerEnterHandler, IPointe
         if (hoverable)
         {
             onHoverStop?.Invoke();
-            highlight.enabled = false;
+
+            if (highlight != null)
+            {
+                highlight.enabled = false;
+            }
         }
     }
 
