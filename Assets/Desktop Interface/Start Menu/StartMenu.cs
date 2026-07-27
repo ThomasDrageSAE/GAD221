@@ -52,12 +52,16 @@ public class StartMenu : UIComponent
     
     override protected void EventSubscription()
     {
+        base.EventSubscription();
+        
         SubMenus.subMenusOpened += SubMenuOpened;
         SubMenus.subMenusClosed += SubMenuClosed;
     }
 
     override protected void EventUnsubscription()
     {
+        base.EventUnsubscription();
+        
         SubMenus.subMenusOpened -= SubMenuOpened;
         SubMenus.subMenusClosed -= SubMenuClosed;
     }
@@ -69,8 +73,6 @@ public class StartMenu : UIComponent
     override protected void Start()
     {
         base.Start();
-        
-        EventSubscription();
 
         primaryMenu.gameObject.SetActive(false);
         primaryMenuOpen = false;
@@ -80,15 +82,6 @@ public class StartMenu : UIComponent
         displayMenu.SetActive(false);
         audioMenu.SetActive(false);
         creditsMenu.SetActive(false);
-    }
-
-    override protected void OnDestroy()
-    {
-        base.OnDestroy();
-        
-        EventUnsubscription();
-        
-        
     }
 
     #endregion

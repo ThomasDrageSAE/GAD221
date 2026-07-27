@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class DropdownField : MonoBehaviour
+public class DropdownField : UIComponent
 {
     #region --- Inspector References ---
     
@@ -25,13 +25,17 @@ public class DropdownField : MonoBehaviour
     
     #region --- Events ---
     
-    private void EventSubscription()
+    override protected void EventSubscription()
     {
+        base.EventSubscription();
+        
         
     }
     
-    private void EventUnsubscription()
+    override protected void EventUnsubscription()
     {
+        base.EventUnsubscription();
+        
         
     }
     
@@ -39,16 +43,16 @@ public class DropdownField : MonoBehaviour
     
     #region --- Initialization & Termination ---
     
-    private void Start()
+    override protected void Start()
     {
-        EventSubscription();
+        base.Start();
         
         
     }
     
-    private void OnDestroy()
+    override protected void OnDestroy()
     {
-        EventUnsubscription();
+        base.OnDestroy();
         
         
     }

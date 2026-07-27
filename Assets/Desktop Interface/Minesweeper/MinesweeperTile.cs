@@ -27,15 +27,29 @@ public class MinesweeperTile : UIComponent
     {
         base.Start();
         
-        onLeftClicked.AddListener(Activate);
-        onRightClicked.AddListener(RightClicked);
-        Minesweeper.onGameStart.AddListener(GameStarted);
-        Minesweeper.onGameReset.AddListener(Reset);
+        
     }
     
     protected override void OnDestroy()
     {
         base.OnDestroy();
+        
+        
+    }
+
+    protected override void EventSubscription()
+    {
+        base.EventSubscription();
+        
+        onLeftClicked.AddListener(Activate);
+        onRightClicked.AddListener(RightClicked);
+        Minesweeper.onGameStart.AddListener(GameStarted);
+        Minesweeper.onGameReset.AddListener(Reset);
+    }
+
+    protected override void EventUnsubscription()
+    {
+        base.EventUnsubscription();
         
         onLeftClicked.RemoveListener(Activate);
         onRightClicked.RemoveListener(RightClicked);

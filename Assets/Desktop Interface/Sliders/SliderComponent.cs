@@ -72,6 +72,7 @@ public class SliderComponent : UIComponent
     protected override void Start()
     {
         base.Start();
+        
         handleRectTransform = dragHandle.transform as RectTransform;
         SetSliderIndex(defaultSliderIndex);
     }

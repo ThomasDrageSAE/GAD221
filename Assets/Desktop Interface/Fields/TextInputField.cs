@@ -19,8 +19,24 @@ public class TextInputField : UIComponent
     
     bool activated = false;
 
-    void Awake()
+    override protected void Start()
     {
+        base.Start();
+        
+        
+    }
+
+    override protected void OnDestroy()
+    {
+        base.OnDestroy();
+        
+        
+    }
+
+    override protected void EventSubscription()
+    {
+        base.EventSubscription();
+        
         onLeftClicked.AddListener(Activate); ;
         inputField.onSelect.AddListener(Select);
         inputField.onDeselect.AddListener(Deselect);
@@ -28,8 +44,10 @@ public class TextInputField : UIComponent
         inputField.onSubmit.AddListener(Submit);
     }
 
-    private void OnDestroy()
+    override protected void EventUnsubscription()
     {
+        base.EventUnsubscription();
+        
         onLeftClicked.RemoveListener(Activate);
         inputField.onSelect.RemoveListener(Select);
         inputField.onDeselect.RemoveListener(Deselect);
