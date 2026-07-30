@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Desktop Interface/DesktopInterface.unity
+    guid: b830a2a51dac00f44877fde224a9e553
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
