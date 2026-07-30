@@ -4,27 +4,25 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
     [Header("Camera Positions")]
-    public Transform deskView;
-    public Transform computerView;
+    [SerializeField] private Transform deskView;
+    [SerializeField] private Transform computerView;
 
     [Header("Settings")]
-    public float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 3f;
 
-    [Header("UI")]
-    public GameObject desktopUI;
+    [Header("Desktop")]
+    [SerializeField] private DesktopSceneLoader sceneLoader;
+
+    [Header("Optional")]
+    [SerializeField] private GameObject officeCanvas;
 
     private bool atComputer = false;
     private bool moving = false;
 
     private void Start()
     {
-        // Start at the desk view
         transform.position = deskView.position;
         transform.rotation = deskView.rotation;
-
-        // Hide desktop UI
-        if (desktopUI != null)
-            desktopUI.SetActive(false);
     }
 
     public void GoToComputer()
@@ -32,12 +30,7 @@ public class CameraController : MonoBehaviour
         if (moving || atComputer)
             return;
 
-        atComputer = true;
-
-        if (desktopUI != null)
-            desktopUI.SetActive(true);
-
-        StartCoroutine(MoveCamera(computerView));
+        StartCoroutine(OpenComputer());
     }
 
     public void LeaveComputer()
@@ -45,18 +38,49 @@ public class CameraController : MonoBehaviour
         if (moving || !atComputer)
             return;
 
-        atComputer = false;
-
-        if (desktopUI != null)
-            desktopUI.SetActive(false);
-
-        StartCoroutine(MoveCamera(deskView));
+        StartCoroutine(CloseComputer());
     }
 
-    IEnumerator MoveCamera(Transform target)
+    private IEnumerator OpenComputer()
+    {
+        moving = true;
+        atComputer = true;
+
+        // Move camera to the monitor
+        yield return StartCoroutine(MoveCamera(computerView));
+
+        // Hide office UI
+        if (officeCanvas != null)
+            officeCanvas.SetActive(false);
+
+        // Load the desktop scene
+        if (sceneLoader != null)
+            yield return StartCoroutine(sceneLoader.ShowDesktop());
+
+        moving = false;
+    }
+
+    private IEnumerator CloseComputer()
     {
         moving = true;
 
+        // Unload the desktop scene
+        if (sceneLoader != null)
+            yield return StartCoroutine(sceneLoader.HideDesktop());
+
+        // Show office UI
+        if (officeCanvas != null)
+            officeCanvas.SetActive(true);
+
+        // Move camera back
+        yield return StartCoroutine(MoveCamera(deskView));
+
+        atComputer = false;
+        moving = false;
+    }
+
+    private IEnumerator MoveCamera(Transform target)
+    {
         while (Vector3.Distance(transform.position, target.position) > 0.01f ||
                Quaternion.Angle(transform.rotation, target.rotation) > 0.5f)
         {
@@ -75,8 +99,6 @@ public class CameraController : MonoBehaviour
 
         transform.position = target.position;
         transform.rotation = target.rotation;
-
-        moving = false;
     }
 
     private void Update()
