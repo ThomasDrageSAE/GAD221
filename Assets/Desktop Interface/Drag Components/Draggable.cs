@@ -27,6 +27,7 @@ public class Draggable : MonoBehaviour
     [SerializeField] private int containerMarginBottom;
     
     private RectTransform rectTransform;
+    private Canvas canvas;
     private Vector2 startPos;
     private Vector3[] containerCorners = new Vector3[4];
     
@@ -55,6 +56,7 @@ public class Draggable : MonoBehaviour
         EventSubscription();
 
         rectTransform = (RectTransform)transform;
+        canvas = GetComponentInParent<Canvas>().rootCanvas;
     }
     
     private void OnDestroy()
@@ -79,6 +81,8 @@ public class Draggable : MonoBehaviour
     
     private Vector2 ClampToContainer(Vector2 position)
     {
+        float scaleFactor = canvas.scaleFactor;
+        
         Vector2 size = rectTransform.rect.size;
         Vector2 pivot = rectTransform.pivot;
         
@@ -88,14 +92,14 @@ public class Draggable : MonoBehaviour
         if (container != null)
         {
             container.GetWorldCorners(containerCorners);
-            containerMin = containerCorners[0];
-            containerMax = containerCorners[2];
+            containerMin = (Vector2)containerCorners[0] / scaleFactor;
+            containerMax = (Vector2)containerCorners[2] / scaleFactor;
         }
         
         else
         {
             containerMin = Vector2.zero;
-            containerMax = new Vector2(Screen.width, Screen.height);
+            containerMax = new Vector2(Screen.width / scaleFactor, Screen.height / scaleFactor);
         }
         
         float minX = containerMin.x + size.x * pivot.x + containerMarginLeft;
@@ -103,9 +107,11 @@ public class Draggable : MonoBehaviour
         float minY = containerMin.y + size.y * pivot.y + containerMarginBottom;
         float maxY = containerMax.y - size.y * (1f - pivot.y) - containerMarginTop;
         
+        position /= scaleFactor;
+        
         position.x = Mathf.Round(Mathf.Clamp(position.x, minX, maxX));
         position.y = Mathf.Round(Mathf.Clamp(position.y, minY, maxY));
         
-        return position;
+        return position * scaleFactor;
     }
 }

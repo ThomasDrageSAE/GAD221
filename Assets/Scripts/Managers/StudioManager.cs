@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class StudioManager : MonoBehaviour
+public class StudioManager : Singleton<StudioManager>
 {
-    public static StudioManager Instance;
-
     [Header("Studio")]
     public string studioName = "";
     public int money = 5000;
@@ -12,19 +10,6 @@ public class StudioManager : MonoBehaviour
 
     [Header("Current Game")]
     public GameProject currentProject;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void CreateNewProject()
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Canvas = UnityEngine.Canvas;
 
 public class SliderComponent : UIComponent
 {
@@ -26,8 +27,8 @@ public class SliderComponent : UIComponent
     [SerializeField] private int defaultSliderIndex;
     private int sliderIndex;
     private float trackValue;
-    
-    
+
+    private Canvas canvas;
     private RectTransform handleRectTransform;
     private float dragStartX;
     
@@ -72,7 +73,7 @@ public class SliderComponent : UIComponent
     protected override void Start()
     {
         base.Start();
-        
+        canvas = GetComponentInParent<Canvas>().rootCanvas;
         handleRectTransform = dragHandle.transform as RectTransform;
         SetSliderIndex(defaultSliderIndex);
     }
@@ -92,7 +93,7 @@ public class SliderComponent : UIComponent
         trackValue = (float)sliderIndex / (sliderValues.Length - 1); // Get track value (normalised float 0-1 range)
         onSliderValueChanged?.Invoke(GetSliderValue());
         
-        Debug.Log("Index: " + GetSliderIndex() + ", Value: " + GetSliderValue());
+        //Debug.Log("SliderComponent - SetSliderIndex() - Index: " + GetSliderIndex() + ", Value: " + GetSliderValue());
     }
     
     public void SetHandlePos(Vector2 newHandlePos)
@@ -143,7 +144,7 @@ public class SliderComponent : UIComponent
     
     private void Drag(DragHandle.DragData data)
     {
-        float candidateX = dragStartX + data.posDifference.x;
+        float candidateX = dragStartX + data.posDifference.x / canvas.scaleFactor;
         SetSliderIndex(GetNearestIndex(candidateX));
     }
 }

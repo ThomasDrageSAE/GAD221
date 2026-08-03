@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class PublisherManager : MonoBehaviour
+public class PublisherManager : Singleton<PublisherManager>
 {
-    public static PublisherManager Instance;
-
-
     [Header("Current Demand")]
     public DarkPatternType currentDemand;
 
@@ -17,9 +14,9 @@ public class PublisherManager : MonoBehaviour
     private DarkPatternData[] demands;
 
 
-    private void Awake()
+    override protected void Awake()
     {
-        Instance = this;
+        base.Awake();
 
         CreateDemands();
     }

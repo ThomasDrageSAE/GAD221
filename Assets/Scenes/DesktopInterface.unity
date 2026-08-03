@@ -7569,6 +7569,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4655211647058090503, guid: 635fa6c2117d25745983a6813dc6eb09, type: 3}
+      propertyPath: container
+      value: 
+      objectReference: {fileID: 1997077667}
     - target: {fileID: 5282027183863476303, guid: 635fa6c2117d25745983a6813dc6eb09, type: 3}
       propertyPath: m_Name
       value: Minesweeper
@@ -7916,6 +7920,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4881018398416116309, guid: fffe1805933a65845a23087b8cd1c171, type: 3}
+      propertyPath: container
+      value: 
+      objectReference: {fileID: 1997077667}
     - target: {fileID: 6461138415134869181, guid: fffe1805933a65845a23087b8cd1c171, type: 3}
       propertyPath: m_Pivot.x
       value: 0

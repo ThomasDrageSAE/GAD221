@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
     private void Start()
     {
         StudioManager.Instance.CreateNewProject();
 
-        Debug.Log("New Studio Created");
+        //Debug.Log("GameManager - Start - New Studio Created");
     }
 }

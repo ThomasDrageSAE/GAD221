@@ -13065,103 +13065,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6887222778572775391, guid: 89823434d5b226f4e8d410ced06ac197, type: 3}
   m_PrefabInstance: {fileID: 1358700157}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1363048839
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1363048843}
-  - component: {fileID: 1363048842}
-  - component: {fileID: 1363048841}
-  - component: {fileID: 1363048840}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1363048840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363048839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6784b98c4fa9ad048b763e44359fa66c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PublisherManager
-  currentDemand: 0
-  currentDemandData:
-    name: 
-    description: 
-    audienceModifier: 0
-    profitModifier: 0
-    ethicsModifier: 0
---- !u!114 &1363048841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363048839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01d2df0433624145ad3707091d276e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StudioManager
-  studioName: 
-  money: 5000
-  ethics: 100
-  currentDay: 1
-  currentProject:
-    gameName: Untitled Game
-    genre: 0
-    theme: 0
-    engine: 0
-    mechanic: 0
-    platform: 0
-    stats:
-      gameplay: 0
-      story: 0
-      style: 0
-      audience: 0
-      profit: 0
-    reviewScore: 0
-    sales: 0
-    moneyEarned: 0
---- !u!114 &1363048842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363048839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341473c4339ca5842847c8b23fec17f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
---- !u!4 &1363048843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363048839}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.24039, y: 0.92676, z: 2.35847}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1363965333
 GameObject:
   m_ObjectHideFlags: 0
@@ -15236,6 +15139,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526107092}
   m_CullTransparentMesh: 1
+--- !u!1 &1537382114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537382115}
+  - component: {fileID: 1537382116}
+  m_Layer: 0
+  m_Name: Office
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537382115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537382114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537382116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537382114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f319734e48951d543b0acf2465982e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Office
+  officeCamera: {fileID: 1574729225}
+  deskView: {fileID: 122730630}
+  computerView: {fileID: 1716029150}
+  moveSpeed: 3
+  desktopSceneName: DesktopInterface
+  officeCanvas: {fileID: 965855028}
 --- !u!1 &1538794899
 GameObject:
   m_ObjectHideFlags: 0
@@ -15652,10 +15605,8 @@ GameObject:
   - component: {fileID: 1574729224}
   - component: {fileID: 1574729223}
   - component: {fileID: 1574729222}
-  - component: {fileID: 1574729226}
-  - component: {fileID: 1574729227}
   m_Layer: 0
-  m_Name: Main Camera (2)
+  m_Name: Office Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15743,36 +15694,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 4.42, y: 90, z: 0}
---- !u!114 &1574729226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574729220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cdfe08b70374c6488388e7e69da067d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  deskView: {fileID: 122730630}
-  computerView: {fileID: 1716029150}
-  moveSpeed: 3
-  sceneLoader: {fileID: 2086806717}
-  officeCanvas: {fileID: 0}
---- !u!114 &1574729227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574729220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a18baac12ad06143b63f7623e6cdf75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesktopCameraController
-  officeCamera: {fileID: 1574729224}
 --- !u!1 &1581419548
 GameObject:
   m_ObjectHideFlags: 0
@@ -15837,7 +15758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7371105354565825366, guid: 6b0648615443f9b4898056346e474438, type: 3}
       propertyPath: m_Name
-      value: office_pack_allInOneComputer_1_black
+      value: Interactable Computer
       objectReference: {fileID: 0}
     - target: {fileID: 7371105354566315894, guid: 6b0648615443f9b4898056346e474438, type: 3}
       propertyPath: m_RootOrder
@@ -15908,7 +15829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955d0d6f1244e2045a89db5d4973ab6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComputerInteract
-  cameraController: {fileID: 1574729226}
+  office: {fileID: 1537382116}
 --- !u!1 &1628350619
 GameObject:
   m_ObjectHideFlags: 0
@@ -21288,53 +21209,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 43.36}
   m_SizeDelta: {x: 500, y: 130.67833}
   m_Pivot: {x: 0.5, y: 1}
---- !u!1 &2086806716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2086806718}
-  - component: {fileID: 2086806717}
-  m_Layer: 0
-  m_Name: DesktopSceneLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2086806717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086806716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77a2e4299fd12e418900418224094ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesktopSceneLoader
-  desktopSceneName: DesktopInterface
-  officeCamera: {fileID: 1574729224}
-  officeUI: {fileID: 965855028}
---- !u!4 &2086806718
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086806716}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.59017, y: 0.67562, z: 2.27154}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2089189729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22320,12 +22194,11 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1537382115}
   - {fileID: 1574729225}
   - {fileID: 122730630}
   - {fileID: 1716029150}
   - {fileID: 1581419549}
-  - {fileID: 2086806718}
   - {fileID: 1267235535}
-  - {fileID: 1363048843}
   - {fileID: 965855032}
   - {fileID: 2028107305}

@@ -116,7 +116,8 @@ public class DesktopInterface : MonoBehaviour
 
     public static void InterfaceClose()
     {
-        Debug.Log("InterfaceClose");
+        //Debug.Log("InterfaceClose");
+        GameSceneLoader.Instance.LoadScene("Office");
     }
 
     public void MinesweeperShortcut()

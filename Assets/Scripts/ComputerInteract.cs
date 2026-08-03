@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ComputerInteract : MonoBehaviour
 {
-    public CameraController cameraController;
+    public Office office;
 
     private void OnMouseDown()
     {
-        cameraController.GoToComputer();
+        office.GoToComputer();
     }
 }
