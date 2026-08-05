@@ -203,6 +203,7 @@ MonoBehaviour:
     audienceModifier: 0
     profitModifier: 0
     ethicsModifier: 0
+  publisherUI: {fileID: 0}
 --- !u!114 &1363048841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +219,7 @@ MonoBehaviour:
   studioName: 
   money: 5000
   ethics: 100
+  publisherSatisfaction: 100
   currentDay: 1
   currentProject:
     gameName: Untitled Game

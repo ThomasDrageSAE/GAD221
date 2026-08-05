@@ -1,26 +1,57 @@
 using UnityEngine;
 
-public class PublisherManager : Singleton<PublisherManager>
+public class PublisherManager : MonoBehaviour
 {
+    public static PublisherManager Instance;
+
     [Header("Current Demand")]
     public DarkPatternType currentDemand;
-
     public DarkPatternData currentDemandData;
 
+    public bool HasAnsweredCurrentDemand { get; private set; }
 
     private int currentDay = 0;
-
-
     private DarkPatternData[] demands;
 
+    // changed to assign automatically by PublisherUI when the Office scene loads.
+    private PublisherUI publisherUI;
 
-    override protected void Awake()
+    private void Awake()
     {
-        base.Awake();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         CreateDemands();
     }
 
+    #region UI Registration
+
+    public void RegisterPublisherUI(PublisherUI ui)
+    {
+        publisherUI = ui;
+
+        Debug.Log("Publisher UI Registered.");
+    }
+
+    public void UnregisterPublisherUI(PublisherUI ui)
+    {
+        if (publisherUI == ui)
+        {
+            publisherUI = null;
+
+            Debug.Log("Publisher UI Unregistered.");
+        }
+    }
+
+    #endregion
 
     private void CreateDemands()
     {
@@ -33,14 +64,12 @@ public class PublisherManager : Singleton<PublisherManager>
                 1,
                 -10),
 
-
             new DarkPatternData(
                 "Microtransactions",
                 "The publisher wants players to purchase extra content.",
                 -1,
                 2,
                 -20),
-
 
             new DarkPatternData(
                 "Loot Boxes",
@@ -49,14 +78,12 @@ public class PublisherManager : Singleton<PublisherManager>
                 3,
                 -35),
 
-
             new DarkPatternData(
                 "FOMO Events",
                 "The publisher wants limited time events to keep players returning.",
                 1,
                 2,
                 -25),
-
 
             new DarkPatternData(
                 "Gacha System",
@@ -67,7 +94,12 @@ public class PublisherManager : Singleton<PublisherManager>
         };
     }
 
+    public void StartDayOne()
+    {
+        Debug.Log("Day 1: Studio Founded");
 
+        StudioManager.Instance.currentDay = 1;
+    }
 
     public void StartPublisherDay()
     {
@@ -79,79 +111,102 @@ public class PublisherManager : Singleton<PublisherManager>
             return;
         }
 
+        HasAnsweredCurrentDemand = false;
+
         currentDemandData = demands[currentDay];
 
         Debug.Log("Current demand: " + currentDemandData.name);
 
-        PublisherUI ui = FindFirstObjectByType<PublisherUI>();
-
-        if (ui != null)
+        if (publisherUI != null)
         {
-            Debug.Log("Found PublisherUI");
-            ui.ShowDemand();
+            publisherUI.ShowDemand();
         }
         else
         {
-            Debug.LogError("PublisherUI not found in the scene!");
+            Debug.LogWarning(
+                "PublisherUI has not registered yet.");
         }
-    }
-
-
-    public void StartDayOne()
-    {
-        Debug.Log(
-            "Day 1: Studio Founded"
-        );
-
-
-        StudioManager.Instance.currentDay = 1;
     }
 
     public void AcceptDemand()
     {
+        if (HasAnsweredCurrentDemand)
+            return;
+
         ApplyDemand();
+
+        HasAnsweredCurrentDemand = true;
+
+        StudioManager.Instance.publisherSatisfaction =
+            Mathf.Clamp(
+                StudioManager.Instance.publisherSatisfaction + 5,
+                0,
+                100);
 
         Debug.Log(
             "Accepted publisher demand: " +
-            currentDemandData.name
-        );
-
+            currentDemandData.name);
 
         currentDay++;
-
-        StudioManager.Instance.EndDay();
     }
-
-
 
     public void RejectDemand()
     {
+        if (HasAnsweredCurrentDemand)
+            return;
+
+        HasAnsweredCurrentDemand = true;
+
+        StudioManager.Instance.publisherSatisfaction =
+            Mathf.Clamp(
+                StudioManager.Instance.publisherSatisfaction - 20,
+                0,
+                100);
+
         Debug.Log(
             "Rejected publisher demand: " +
-            currentDemandData.name
-        );
+            currentDemandData.name);
 
+        currentDay++;
+    }
+
+    public void RejectDemandFromTimeout()
+    {
+        if (HasAnsweredCurrentDemand)
+            return;
+
+        HasAnsweredCurrentDemand = true;
+
+        StudioManager.Instance.publisherSatisfaction =
+            Mathf.Clamp(
+                StudioManager.Instance.publisherSatisfaction - 20,
+                0,
+                100);
+
+        Debug.Log(
+            "Publisher demand automatically rejected.");
 
         currentDay++;
 
-        StudioManager.Instance.EndDay();
+        if (publisherUI != null)
+        {
+            publisherUI.HideDemand();
+        }
     }
-
-
 
     private void ApplyDemand()
     {
         GameProject project =
             StudioManager.Instance.currentProject;
 
+        if (project == null)
+            return;
 
         project.stats.audience +=
             currentDemandData.audienceModifier;
 
-
         project.stats.profit +=
             currentDemandData.profitModifier;
-
 
         StudioManager.Instance.ethics +=
             currentDemandData.ethicsModifier;

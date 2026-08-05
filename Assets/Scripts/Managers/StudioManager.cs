@@ -3,11 +3,12 @@ using UnityEngine;
 public class StudioManager : Singleton<StudioManager>
 {
     [Header("Studio")]
+    [Header("Studio")]
     public string studioName = "";
     public int money = 5000;
     public int ethics = 100;
+    public int publisherSatisfaction = 100;
     public int currentDay = 1;
-
     [Header("Current Game")]
     public GameProject currentProject;
 
@@ -16,14 +17,11 @@ public class StudioManager : Singleton<StudioManager>
         currentProject = new GameProject();
     }
 
-    public void EndDay()
+    public void AdvanceDay()
     {
         currentDay++;
 
-        if (currentDay > 5)
-        {
-            ReleaseGame();
-        }
+        Debug.Log("Advanced to Day " + currentDay);
     }
 
     public void ReleaseGame()
@@ -37,4 +35,13 @@ public class StudioManager : Singleton<StudioManager>
         Debug.Log("Sales: " + currentProject.sales);
         Debug.Log("Money Earned: £" + currentProject.moneyEarned);
     }
+    
+    public event System.Action StudioDataChanged;
+
+    public void NotifyStudioDataChanged()
+    {
+        StudioDataChanged?.Invoke();
+    }
+    
+    
 }

@@ -3,8 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 
 
-public class GameSetupUI : MonoBehaviour
-{
+public class GameSetupUI : MonoBehaviour{
     [Header("Inputs")]
     public TMP_InputField studioNameInput;
     public TMP_InputField gameNameInput;
@@ -24,6 +23,9 @@ public class GameSetupUI : MonoBehaviour
     [Header("UI")]
     public GameObject mainCanvas;
 
+    [Header("Office HUD")]
+    [SerializeField] private GameObject officeHUDObject;
+    [SerializeField] private OfficeHUD officeHUD;
 
     void Start()
     {
@@ -112,11 +114,23 @@ public class GameSetupUI : MonoBehaviour
         );
 
 
+        if (officeHUDObject != null)
+        {
+            officeHUDObject.SetActive(true);
+        }
+
+        if (officeHUD != null)
+        {
+            officeHUD.Refresh();
+        }
+        
         setupPanel.SetActive(false);
 
         StartDayOne();
 
         dayOneUI.ShowDayOne();
+        
+        
     }
 
 
