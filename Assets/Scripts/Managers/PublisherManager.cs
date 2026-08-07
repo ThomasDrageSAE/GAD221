@@ -193,7 +193,7 @@ public class PublisherManager : MonoBehaviour
 
         StudioManager.Instance.publisherSatisfaction =
             Mathf.Clamp(
-                StudioManager.Instance.publisherSatisfaction + 5,
+                StudioManager.Instance.publisherSatisfaction + 10,
                 0,
                 100);
 
@@ -215,7 +215,7 @@ public class PublisherManager : MonoBehaviour
 
         StudioManager.Instance.publisherSatisfaction =
             Mathf.Clamp(
-                StudioManager.Instance.publisherSatisfaction - 20,
+                StudioManager.Instance.publisherSatisfaction - 30,
                 0,
                 100);
 
@@ -226,6 +226,8 @@ public class PublisherManager : MonoBehaviour
             currentDemandData.name +
             " | Publisher Trust: " +
             StudioManager.Instance.publisherSatisfaction);
+
+        CheckPublisherFailure();
     }
 
     public void RejectDemandFromTimeout()
@@ -237,22 +239,33 @@ public class PublisherManager : MonoBehaviour
 
         StudioManager.Instance.publisherSatisfaction =
             Mathf.Clamp(
-                StudioManager.Instance.publisherSatisfaction - 20,
+                StudioManager.Instance.publisherSatisfaction - 35,
                 0,
                 100);
 
         StudioManager.Instance.NotifyStudioDataChanged();
 
         Debug.Log(
-            "Demand timed out | Publisher Trust: " +
+            "Publisher demand timed out | Publisher Trust: " +
             StudioManager.Instance.publisherSatisfaction);
 
         if (publisherUI != null)
         {
             publisherUI.HideDemand();
         }
+
+        CheckPublisherFailure();
     }
 
+    private void CheckPublisherFailure()
+    {
+        if (StudioManager.Instance.publisherSatisfaction <= 0)
+        {
+            Debug.Log("GAME OVER - Publisher has pulled funding.");
+
+            DayManager.Instance.StopCurrentDay();
+        }
+    }
     private void ApplyDemand()
     {
         GameProject project =
