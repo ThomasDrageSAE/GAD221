@@ -4,12 +4,31 @@ using UnityEngine.UI;
 
 public class DayHUD : MonoBehaviour
 {
+    public static DayHUD Instance { get; private set; }
+
     [Header("Text")]
     [SerializeField] private TMP_Text dayText;
     [SerializeField] private TMP_Text clockText;
 
     [Header("Controls")]
     [SerializeField] private Button endDayButton;
+
+    [Header("Visuals")]
+    [SerializeField] private GameObject hudVisuals;
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     private void Start()
     {
@@ -22,57 +41,29 @@ public class DayHUD : MonoBehaviour
         RefreshClock();
     }
 
-    private void OnEnable()
-    {
-        if (DayManager.Instance == null)
-            return;
 
-        DayManager.Instance.TimeChanged += OnTimeChanged;
-        DayManager.Instance.DayStarted += OnDayStarted;
-        DayManager.Instance.DayEnded += OnDayEnded;
+    private void Update()
+    {
+        // Read directly from the global managers.
+        // This avoids problems caused by scene/manager initialization order.
 
         RefreshDay();
         RefreshClock();
-    }
 
-    private void OnDisable()
-    {
-        if (DayManager.Instance == null)
-            return;
-
-        DayManager.Instance.TimeChanged -= OnTimeChanged;
-        DayManager.Instance.DayStarted -= OnDayStarted;
-        DayManager.Instance.DayEnded -= OnDayEnded;
-    }
-
-    private void OnTimeChanged(float unusedTimeRemaining)
-    {
-        RefreshClock();
-    }
-
-    private void OnDayStarted(int day)
-    {
-        dayText.text = "DAY " + day;
-        RefreshClock();
-
-        if (endDayButton != null)
+        if (endDayButton != null && DayManager.Instance != null)
         {
-            endDayButton.interactable = true;
+            endDayButton.interactable =
+                DayManager.Instance.IsDayRunning &&
+                !DayManager.Instance.IsEndingDay;
         }
     }
 
-    private void OnDayEnded(int day)
-    {
-        RefreshClock();
-
-        if (endDayButton != null)
-        {
-            endDayButton.interactable = false;
-        }
-    }
 
     private void RefreshDay()
     {
+        if (dayText == null)
+            return;
+
         if (StudioManager.Instance == null)
         {
             dayText.text = "DAY --";
@@ -83,8 +74,12 @@ public class DayHUD : MonoBehaviour
             "DAY " + StudioManager.Instance.currentDay;
     }
 
+
     private void RefreshClock()
     {
+        if (clockText == null)
+            return;
+
         if (DayManager.Instance == null)
         {
             clockText.text = "--:--";
@@ -115,11 +110,30 @@ public class DayHUD : MonoBehaviour
             period;
     }
 
+
     private void EndDayEarly()
     {
         if (DayManager.Instance != null)
         {
             DayManager.Instance.EndDayEarly();
+        }
+    }
+
+
+    public void ShowHUD()
+    {
+        if (hudVisuals != null)
+        {
+            hudVisuals.SetActive(true);
+        }
+    }
+
+
+    public void HideHUD()
+    {
+        if (hudVisuals != null)
+        {
+            hudVisuals.SetActive(false);
         }
     }
 }

@@ -4,8 +4,7 @@ public class GameManager : Singleton<GameManager>
 {
     private void Start()
     {
-        StudioManager.Instance.CreateNewProject();
-
-        //Debug.Log("GameManager - Start - New Studio Created");
+        
+        //will add to this asap
     }
 }

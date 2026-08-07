@@ -64,8 +64,13 @@ public class DayManager : MonoBehaviour
 
     public void EndDayEarly()
     {
-        if (!IsDayRunning || IsEndingDay)
+        if (!IsDayRunning)
             return;
+
+        if (IsEndingDay)
+            return;
+
+        Debug.Log("Clocking out from Day " + StudioManager.Instance.currentDay);
 
         EndCurrentDay();
     }
@@ -80,8 +85,8 @@ public class DayManager : MonoBehaviour
 
         int completedDay = StudioManager.Instance.currentDay;
 
-        // If the player ignored today's publisher request,
-        // treat it as a rejection.
+        Debug.Log("Ending Day " + completedDay);
+
         if (completedDay > 1 &&
             PublisherManager.Instance != null &&
             !PublisherManager.Instance.HasAnsweredCurrentDemand)
@@ -89,9 +94,9 @@ public class DayManager : MonoBehaviour
             PublisherManager.Instance.RejectDemandFromTimeout();
         }
 
+        StudioManager.Instance.CalculateDailyBudget();
+        
         DayEnded?.Invoke(completedDay);
-
-        Debug.Log("Ended Day " + completedDay);
 
         if (completedDay >= finalDay)
         {
@@ -100,6 +105,10 @@ public class DayManager : MonoBehaviour
         }
 
         StudioManager.Instance.AdvanceDay();
+
+        Debug.Log(
+            "Now starting Day " +
+            StudioManager.Instance.currentDay);
 
         StartCurrentDay();
     }

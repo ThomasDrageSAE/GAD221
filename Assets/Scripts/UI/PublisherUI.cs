@@ -52,7 +52,10 @@ public class PublisherUI : MonoBehaviour
 
 
         effectsText.text =
-            "AUDIENCE: " + FormatNumber(demand.audienceModifier) +
+            "GAMEPLAY: " + FormatNumber(demand.gameplayModifier) +
+            "\nSTORY: " + FormatNumber(demand.storyModifier) +
+            "\nSTYLE: " + FormatNumber(demand.styleModifier) +
+            "\nAUDIENCE: " + FormatNumber(demand.audienceModifier) +
             "\nPROFIT: " + FormatNumber(demand.profitModifier) +
             "\nETHICS: " + FormatNumber(demand.ethicsModifier);
     }
