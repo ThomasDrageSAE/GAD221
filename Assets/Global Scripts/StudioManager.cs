@@ -20,6 +20,13 @@ public class StudioManager : Singleton<StudioManager>
     public int lastDailyCosts;
     public int lastBudgetChange;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        
+    }
+    
     public void CreateNewProject()
     {
         currentProject = new GameProject();

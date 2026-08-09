@@ -8880,7 +8880,7 @@ GameObject:
   - component: {fileID: 965855030}
   - component: {fileID: 965855029}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Office Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11478,10 +11478,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267235535}
-  - component: {fileID: 1267235537}
   - component: {fileID: 1267235538}
+  - component: {fileID: 1267235539}
   m_Layer: 0
-  m_Name: GameMusic
+  m_Name: Office Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11502,18 +11502,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1267235537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267235533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1e3c82e9eac9845bc1da14d5c19b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
 --- !u!114 &1267235538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11527,6 +11515,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioTrigger
   audioResource: {fileID: 11400000, guid: 88233366f8d9e30459d12c88dacfe298, type: 2}
+  playOnStart: 1
+--- !u!114 &1267235539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267235533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5549c50d6b9700a4ba1a995e20e51b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioTrigger
+  audioResource: {fileID: 11400000, guid: 0245ebcca8768de4f8557988c61cccd2, type: 2}
   playOnStart: 1
 --- !u!1 &1269348347
 GameObject:
@@ -15709,7 +15711,6 @@ GameObject:
   - component: {fileID: 1574729225}
   - component: {fileID: 1574729224}
   - component: {fileID: 1574729223}
-  - component: {fileID: 1574729222}
   m_Layer: 0
   m_Name: Office Camera
   m_TagString: MainCamera
@@ -15717,14 +15718,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1574729222
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574729220}
-  m_Enabled: 1
 --- !u!124 &1574729223
 Behaviour:
   m_ObjectHideFlags: 0
@@ -15809,7 +15802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581419549}
   m_Layer: 0
-  m_Name: Assets
+  m_Name: Room Props
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17267,7 +17260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1716029150}
   m_Layer: 0
-  m_Name: Computerview
+  m_Name: ComputerViewPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21573,8 +21566,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1537382115}
   - {fileID: 1574729225}
+  - {fileID: 1267235535}
   - {fileID: 122730630}
   - {fileID: 1716029150}
   - {fileID: 1581419549}
-  - {fileID: 1267235535}
   - {fileID: 965855032}

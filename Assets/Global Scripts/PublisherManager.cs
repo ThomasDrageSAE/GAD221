@@ -1,9 +1,8 @@
+using System;
 using UnityEngine;
 
-public class PublisherManager : MonoBehaviour
+public class PublisherManager : Singleton<PublisherManager>
 {
-    public static PublisherManager Instance;
-
     [Header("Current Demand")]
     public DarkPatternType currentDemand;
     public DarkPatternData currentDemandData;
@@ -16,19 +15,15 @@ public class PublisherManager : MonoBehaviour
     //
     private PublisherUI publisherUI;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Awake();
+        
+        
+    }
 
+    private void Start()
+    {
         CreateDemands();
     }
 

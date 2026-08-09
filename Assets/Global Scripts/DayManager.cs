@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class DayManager : MonoBehaviour
+public class DayManager : Singleton<DayManager>
 {
-    public static DayManager Instance { get; private set; }
-
     [Header("Day Settings")]
     [SerializeField] private float dayDurationSeconds = 300f;
     [SerializeField] private int finalDay = 5;
@@ -26,16 +24,15 @@ public class DayManager : MonoBehaviour
     private bool waitingForOfficeToLoad;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Awake();
+        
+        
+    }
 
-        Instance = this;
-
+    private void Start()
+    {
         TimeRemaining = dayDurationSeconds;
     }
 

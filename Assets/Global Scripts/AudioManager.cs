@@ -18,14 +18,14 @@ public class AudioManager : Singleton<AudioManager>
     #region --- Properties & Variables---
     
     // -- Public --
-    public int masterVolume;
-    public bool masterMuted;
-    public int musicVolume;
-    public bool musicMuted;
-    public int ambienceVolume;
-    public bool ambienceMuted;
-    public int sfxVolume;
-    public bool sfxMuted;
+    public int masterVolume = 100;
+    public bool masterMuted = false;
+    public int musicVolume = 100;
+    public bool musicMuted = false;
+    public int ambienceVolume = 100;
+    public bool ambienceMuted = false;
+    public int sfxVolume = 100;
+    public bool sfxMuted = false;
     
     public const float baseSourceVolume = 0.5f;
     public const float baseSourcePitch = 1.0f;
