@@ -11,6 +11,26 @@ public class PublisherUI : MonoBehaviour
     public TMP_Text effectsText;
 
 
+    private void OnEnable()
+    {
+        if (PublisherManager.Instance != null)
+        {
+            PublisherManager.Instance.RegisterPublisherUI(this);
+        }
+        else
+        {
+            Debug.LogError(
+                "PublisherUI could not find PublisherManager.Instance.");
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (PublisherManager.Instance != null)
+        {
+            PublisherManager.Instance.UnregisterPublisherUI(this);
+        }
+    }
     public void ShowDemand()
     {
         Debug.Log("ShowDemand called");
@@ -32,7 +52,10 @@ public class PublisherUI : MonoBehaviour
 
 
         effectsText.text =
-            "AUDIENCE: " + FormatNumber(demand.audienceModifier) +
+            "GAMEPLAY: " + FormatNumber(demand.gameplayModifier) +
+            "\nSTORY: " + FormatNumber(demand.storyModifier) +
+            "\nSTYLE: " + FormatNumber(demand.styleModifier) +
+            "\nAUDIENCE: " + FormatNumber(demand.audienceModifier) +
             "\nPROFIT: " + FormatNumber(demand.profitModifier) +
             "\nETHICS: " + FormatNumber(demand.ethicsModifier);
     }
@@ -42,16 +65,12 @@ public class PublisherUI : MonoBehaviour
     public void Accept()
     {
         publisherPanel.SetActive(false);
-
         PublisherManager.Instance.AcceptDemand();
     }
-
-
 
     public void Reject()
     {
         publisherPanel.SetActive(false);
-
         PublisherManager.Instance.RejectDemand();
     }
 
@@ -63,5 +82,10 @@ public class PublisherUI : MonoBehaviour
             return "+" + number;
 
         return number.ToString();
+    }
+    
+    public void HideDemand()
+    {
+        publisherPanel.SetActive(false);
     }
 }

@@ -6,6 +6,8 @@ public class DayOneUI : MonoBehaviour
     public GameObject dayOnePanel;
 
     public TMP_Text messageText;
+    [Header("HUD")]
+    [SerializeField] private GameObject officeHUD;
 
 
     public void ShowDayOne()
@@ -25,6 +27,34 @@ public class DayOneUI : MonoBehaviour
 
         dayOnePanel.SetActive(false);
 
-        PublisherManager.Instance.StartPublisherDay();
+        if (DayHUD.Instance != null)
+        {
+            DayHUD.Instance.ShowHUD();
+        }
+        else
+        {
+            Debug.LogError("DayHUD.Instance is missing.");
+        }
+
+        if (officeHUD != null)
+        {
+            officeHUD.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("OfficeHUD has not been assigned.");
+        }
+
+        if (DayManager.Instance != null)
+        {
+            if (!DayManager.Instance.IsDayRunning)
+            {
+                DayManager.Instance.StartCurrentDay();
+            }
+        }
+        else
+        {
+            Debug.LogError("DayManager.Instance is missing.");
+        }
     }
 }
