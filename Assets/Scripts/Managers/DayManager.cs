@@ -6,24 +6,21 @@ public class DayManager : MonoBehaviour
 {
     public static DayManager Instance { get; private set; }
 
+
     [Header("Day Settings")]
     [SerializeField] private float dayDurationSeconds = 300f;
-    [SerializeField] private int finalDay = 5;
+    [SerializeField] private int finalDay = 10;
 
-    [Header("Scene Names")]
-    [SerializeField] private string officeSceneName = "Office";
-    [SerializeField] private string desktopSceneName = "DesktopInterface";
 
     public float TimeRemaining { get; private set; }
 
     public bool IsDayRunning { get; private set; }
     public bool IsEndingDay { get; private set; }
 
+
     public event Action<float> TimeChanged;
     public event Action<int> DayStarted;
     public event Action<int> DayEnded;
-
-    private bool waitingForOfficeToLoad;
 
 
     private void Awake()
@@ -52,6 +49,8 @@ public class DayManager : MonoBehaviour
 
         TimeChanged?.Invoke(TimeRemaining);
 
+
+        // end the day at 5:00 PM.
         if (TimeRemaining <= 0f)
         {
             StartCoroutine(EndDayRoutine());
@@ -59,6 +58,7 @@ public class DayManager : MonoBehaviour
     }
 
 
+    // START DAY
     public void StartCurrentDay()
     {
         if (StudioManager.Instance == null)
@@ -69,23 +69,29 @@ public class DayManager : MonoBehaviour
             return;
         }
 
-        Debug.Log(
-            "Starting timed Day " +
-            StudioManager.Instance.currentDay);
-
-        TimeRemaining = dayDurationSeconds;
-
-        IsDayRunning = true;
-        IsEndingDay = false;
 
         int day =
             StudioManager.Instance.currentDay;
 
-        TimeChanged?.Invoke(TimeRemaining);
 
+        Debug.Log(
+            "Starting timed Day " +
+            day);
+
+
+        TimeRemaining =
+            dayDurationSeconds;
+
+        IsDayRunning = true;
+        IsEndingDay = false;
+
+
+        TimeChanged?.Invoke(TimeRemaining);
         DayStarted?.Invoke(day);
 
-        // Day 1 has no publisher demand.
+
+        // Day 1 is the tutorial/setup day.
+        // Publisher demands begin on Day 2.
         if (day > 1 &&
             PublisherManager.Instance != null)
         {
@@ -94,6 +100,7 @@ public class DayManager : MonoBehaviour
     }
 
 
+    // CLOCK OUT
     public void EndDayEarly()
     {
         if (!IsDayRunning)
@@ -102,36 +109,47 @@ public class DayManager : MonoBehaviour
         if (IsEndingDay)
             return;
 
+
         Debug.Log(
             "Clocking out from Day " +
             StudioManager.Instance.currentDay);
 
-        StartCoroutine(EndDayRoutine());
+
+        StartCoroutine(
+            EndDayRoutine());
     }
 
+
+    // END DAY
 
     private IEnumerator EndDayRoutine()
     {
         if (IsEndingDay)
             yield break;
 
+
         IsEndingDay = true;
         IsDayRunning = false;
 
-        // Fade to black.
+
+        // Fade to black 
         if (ScreenFade.Instance != null)
         {
-            yield return ScreenFade.Instance.FadeOut();
+            yield return
+                ScreenFade.Instance.FadeOut();
         }
+
 
         int completedDay =
             StudioManager.Instance.currentDay;
+
 
         Debug.Log(
             "Ending Day " +
             completedDay);
 
-        // If  player did not answer the publisher request,automatically reject it.
+
+        // if player ignores the publisher email,automatically reject
         if (completedDay > 1 &&
             PublisherManager.Instance != null &&
             !PublisherManager.Instance.HasAnsweredCurrentDemand)
@@ -140,92 +158,90 @@ public class DayManager : MonoBehaviour
                 .RejectDemandFromTimeout();
         }
 
-        // Calculate finances at the end of the day.
-        StudioManager.Instance
-            .CalculateDailyBudget();
 
-        DayEnded?.Invoke(completedDay);
+        // Calculate today's finances.
+        if (StudioManager.Instance != null)
+        {
+            StudioManager.Instance
+                .CalculateDailyBudget();
+        }
 
-        // Final day.
+
+        DayEnded?.Invoke(
+            completedDay);
+
+
+        
+        // FINAL DAY
+
         if (completedDay >= finalDay)
         {
-            Debug.Log("Final day completed.");
+            Debug.Log(
+                "Final day completed.");
 
-            StudioManager.Instance.ReleaseGame();
 
+            if (StudioManager.Instance != null)
+            {
+                StudioManager.Instance
+                    .ReleaseGame();
+            }
+
+
+           
             if (ScreenFade.Instance != null)
             {
-                yield return ScreenFade.Instance.FadeIn();
+                yield return
+                    ScreenFade.Instance.FadeIn();
             }
+
 
             yield break;
         }
 
-        // Move to next day.
+
+        // NEXT DAy
         StudioManager.Instance.AdvanceDay();
 
         Debug.Log(
             "Advanced to Day " +
             StudioManager.Instance.currentDay);
-
-        // If  using the desktop,return to the Office before starting the next day.
-        if (GameSceneLoader.Instance != null &&
-            GameSceneLoader.Instance.currentGameScene ==
-            desktopSceneName)
+        
+        if (GameSceneLoader.Instance != null)
         {
-            Debug.Log(
-                "Clocked out from Desktop - returning to Office.");
-
-            waitingForOfficeToLoad = true;
-
             GameSceneLoader.Instance.OnGameSceneLoaded +=
-                OnGameSceneLoaded;
+                OnNextDayDesktopLoaded;
 
             GameSceneLoader.Instance.LoadScene(
-                officeSceneName);
+                "DesktopInterface");
 
             yield break;
         }
 
-        StartCurrentDay();
-
-        // Fade back in.
-        if (ScreenFade.Instance != null)
-        {
-            yield return ScreenFade.Instance.FadeIn();
-        }
+        Debug.LogError(
+            "DayManager could not find GameSceneLoader.Instance.");
     }
 
 
-    private void OnGameSceneLoaded(
-        string sceneName)
+    private void OnNextDayDesktopLoaded(string sceneName)
     {
-        if (!waitingForOfficeToLoad)
+        if (sceneName != "DesktopInterface")
             return;
-
-        if (sceneName != officeSceneName)
-            return;
-
-        waitingForOfficeToLoad = false;
 
         if (GameSceneLoader.Instance != null)
         {
             GameSceneLoader.Instance.OnGameSceneLoaded -=
-                OnGameSceneLoaded;
+                OnNextDayDesktopLoaded;
         }
 
         Debug.Log(
-            "Office loaded - preparing Day " +
+            "Desktop restarted for Day " +
             StudioManager.Instance.currentDay);
 
         StartCoroutine(
-            StartDayAfterSceneLoad());
+            StartDayAfterDesktopBoot());
     }
-
-
-    private IEnumerator StartDayAfterSceneLoad()
+    private IEnumerator StartDayAfterDesktopBoot()
     {
-        
         yield return null;
 
         StartCurrentDay();
@@ -235,14 +251,15 @@ public class DayManager : MonoBehaviour
             yield return ScreenFade.Instance.FadeIn();
         }
     }
-
-
+    
+    // DAY PROGRESS
     public float DayProgress
     {
         get
         {
             if (dayDurationSeconds <= 0f)
                 return 1f;
+
 
             return Mathf.Clamp01(
                 1f -
@@ -251,6 +268,7 @@ public class DayManager : MonoBehaviour
         }
     }
 
+    // GAME CLOCK
 
     public int CurrentGameMinutes
     {
@@ -264,19 +282,23 @@ public class DayManager : MonoBehaviour
 
             const int workdayMinutes =
                 endMinutes - startMinutes;
-            
-            // show 9:00 AM.
+
+
+            // Before the timed day begins,
+            // display 9:00 AM.
             if (!IsDayRunning &&
                 !IsEndingDay)
             {
                 return startMinutes;
             }
 
+
             float progress =
                 Mathf.Clamp01(
                     1f -
                     (TimeRemaining /
                      dayDurationSeconds));
+
 
             return startMinutes +
                    Mathf.RoundToInt(
@@ -285,19 +307,16 @@ public class DayManager : MonoBehaviour
         }
     }
 
-
-    private void OnDestroy()
-    {
-        if (GameSceneLoader.Instance != null)
-        {
-            GameSceneLoader.Instance.OnGameSceneLoaded -=
-                OnGameSceneLoaded;
-        }
-    }
+// STOP DAY
     
+
     public void StopCurrentDay()
     {
         IsDayRunning = false;
         IsEndingDay = true;
+
+
+        Debug.Log(
+            "Day stopped.");
     }
 }
