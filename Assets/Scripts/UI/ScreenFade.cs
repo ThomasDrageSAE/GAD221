@@ -8,7 +8,6 @@ public class ScreenFade : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float fadeDuration = 0.5f;
 
-
     private void Awake()
     {
         if (Instance == null)
@@ -34,13 +33,12 @@ public class ScreenFade : MonoBehaviour
         canvasGroup.interactable = false;
     }
 
-
     public IEnumerator FadeOut()
     {
         if (canvasGroup == null)
             yield break;
 
-        canvasGroup.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = false;
 
         float time = 0f;
 
@@ -58,13 +56,15 @@ public class ScreenFade : MonoBehaviour
         }
 
         canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = false;
     }
-
 
     public IEnumerator FadeIn()
     {
         if (canvasGroup == null)
             yield break;
+
+        canvasGroup.blocksRaycasts = false;
 
         float time = 0f;
 

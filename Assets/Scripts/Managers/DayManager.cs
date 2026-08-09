@@ -6,21 +6,42 @@ public class DayManager : MonoBehaviour
 {
     public static DayManager Instance { get; private set; }
 
-
     [Header("Day Settings")]
     [SerializeField] private float dayDurationSeconds = 300f;
     [SerializeField] private int finalDay = 10;
-
 
     public float TimeRemaining { get; private set; }
 
     public bool IsDayRunning { get; private set; }
     public bool IsEndingDay { get; private set; }
 
-
     public event Action<float> TimeChanged;
     public event Action<int> DayStarted;
     public event Action<int> DayEnded;
+
+    public bool HasPendingDaySummary { get; private set; }
+
+    public int SummaryDay { get; private set; }
+
+    public int SummaryBudgetChange { get; private set; }
+    public int SummaryTrustChange { get; private set; }
+    public int SummaryEthicsChange { get; private set; }
+
+    public int SummaryGameplayChange { get; private set; }
+    public int SummaryStoryChange { get; private set; }
+    public int SummaryStyleChange { get; private set; }
+    public int SummaryAudienceChange { get; private set; }
+    public int SummaryProfitChange { get; private set; }
+
+    private int startBudget;
+    private int startTrust;
+    private int startEthics;
+
+    private int startGameplay;
+    private int startStory;
+    private int startStyle;
+    private int startAudience;
+    private int startProfit;
 
 
     private void Awake()
@@ -49,8 +70,6 @@ public class DayManager : MonoBehaviour
 
         TimeChanged?.Invoke(TimeRemaining);
 
-
-        // end the day at 5:00 PM.
         if (TimeRemaining <= 0f)
         {
             StartCoroutine(EndDayRoutine());
@@ -58,7 +77,6 @@ public class DayManager : MonoBehaviour
     }
 
 
-    // START DAY
     public void StartCurrentDay()
     {
         if (StudioManager.Instance == null)
@@ -69,15 +87,12 @@ public class DayManager : MonoBehaviour
             return;
         }
 
-
         int day =
             StudioManager.Instance.currentDay;
-
 
         Debug.Log(
             "Starting timed Day " +
             day);
-
 
         TimeRemaining =
             dayDurationSeconds;
@@ -85,13 +100,11 @@ public class DayManager : MonoBehaviour
         IsDayRunning = true;
         IsEndingDay = false;
 
-
         TimeChanged?.Invoke(TimeRemaining);
         DayStarted?.Invoke(day);
 
+        CaptureStartOfDayStats();
 
-        // Day 1 is the tutorial/setup day.
-        // Publisher demands begin on Day 2.
         if (day > 1 &&
             PublisherManager.Instance != null)
         {
@@ -100,7 +113,6 @@ public class DayManager : MonoBehaviour
     }
 
 
-    // CLOCK OUT
     public void EndDayEarly()
     {
         if (!IsDayRunning)
@@ -109,47 +121,36 @@ public class DayManager : MonoBehaviour
         if (IsEndingDay)
             return;
 
-
         Debug.Log(
             "Clocking out from Day " +
             StudioManager.Instance.currentDay);
-
 
         StartCoroutine(
             EndDayRoutine());
     }
 
 
-    // END DAY
-
     private IEnumerator EndDayRoutine()
     {
         if (IsEndingDay)
             yield break;
 
-
         IsEndingDay = true;
         IsDayRunning = false;
 
-
-        // Fade to black 
         if (ScreenFade.Instance != null)
         {
-            yield return
-                ScreenFade.Instance.FadeOut();
-        }
+            yield return ScreenFade.Instance.FadeOut();
 
+        }
 
         int completedDay =
             StudioManager.Instance.currentDay;
-
 
         Debug.Log(
             "Ending Day " +
             completedDay);
 
-
-        // if player ignores the publisher email,automatically reject
         if (completedDay > 1 &&
             PublisherManager.Instance != null &&
             !PublisherManager.Instance.HasAnsweredCurrentDemand)
@@ -158,27 +159,52 @@ public class DayManager : MonoBehaviour
                 .RejectDemandFromTimeout();
         }
 
-
-        // Calculate today's finances.
         if (StudioManager.Instance != null)
         {
             StudioManager.Instance
                 .CalculateDailyBudget();
         }
 
+        CaptureEndOfDaySummary(
+            completedDay);
 
         DayEnded?.Invoke(
             completedDay);
 
+        if (EndDaySummaryUI.Instance != null)
+        {
+            EndDaySummaryUI.Instance
+                .ShowSummary();
+        }
+        else
+        {
+            Debug.LogWarning(
+                "EndDaySummaryUI.Instance could not be found.");
+        }
+    }
 
-        
-        // FINAL DAY
+
+    public void ContinueToNextDay()
+    {
+        if (!HasPendingDaySummary)
+            return;
+
+        StartCoroutine(
+            ContinueToNextDayRoutine());
+    }
+
+
+    private IEnumerator ContinueToNextDayRoutine()
+    {
+        int completedDay =
+            SummaryDay;
+
+        ClearPendingDaySummary();
 
         if (completedDay >= finalDay)
         {
             Debug.Log(
                 "Final day completed.");
-
 
             if (StudioManager.Instance != null)
             {
@@ -186,26 +212,30 @@ public class DayManager : MonoBehaviour
                     .ReleaseGame();
             }
 
+            yield break;
+        }
 
-           
-            if (ScreenFade.Instance != null)
-            {
-                yield return
-                    ScreenFade.Instance.FadeIn();
-            }
-
+        if (StudioManager.Instance == null)
+        {
+            Debug.LogError(
+                "StudioManager.Instance is missing.");
 
             yield break;
         }
 
-
-        // NEXT DAy
-        StudioManager.Instance.AdvanceDay();
+        StudioManager.Instance
+            .AdvanceDay();
 
         Debug.Log(
             "Advanced to Day " +
             StudioManager.Instance.currentDay);
-        
+
+        TimeRemaining =
+            dayDurationSeconds;
+
+        TimeChanged?.Invoke(
+            TimeRemaining);
+
         if (GameSceneLoader.Instance != null)
         {
             GameSceneLoader.Instance.OnGameSceneLoaded +=
@@ -222,7 +252,8 @@ public class DayManager : MonoBehaviour
     }
 
 
-    private void OnNextDayDesktopLoaded(string sceneName)
+    private void OnNextDayDesktopLoaded(
+        string sceneName)
     {
         if (sceneName != "DesktopInterface")
             return;
@@ -233,33 +264,30 @@ public class DayManager : MonoBehaviour
                 OnNextDayDesktopLoaded;
         }
 
-        Debug.Log(
-            "Desktop restarted for Day " +
-            StudioManager.Instance.currentDay);
-
         StartCoroutine(
-            StartDayAfterDesktopBoot());
+            StartNextDayAfterLoad());
     }
-    private IEnumerator StartDayAfterDesktopBoot()
+
+
+    private IEnumerator StartNextDayAfterLoad()
     {
         yield return null;
-
-        StartCurrentDay();
 
         if (ScreenFade.Instance != null)
         {
             yield return ScreenFade.Instance.FadeIn();
         }
+
+        StartCurrentDay();
     }
-    
-    // DAY PROGRESS
+
+
     public float DayProgress
     {
         get
         {
             if (dayDurationSeconds <= 0f)
                 return 1f;
-
 
             return Mathf.Clamp01(
                 1f -
@@ -268,7 +296,6 @@ public class DayManager : MonoBehaviour
         }
     }
 
-    // GAME CLOCK
 
     public int CurrentGameMinutes
     {
@@ -283,22 +310,17 @@ public class DayManager : MonoBehaviour
             const int workdayMinutes =
                 endMinutes - startMinutes;
 
-
-            // Before the timed day begins,
-            // display 9:00 AM.
             if (!IsDayRunning &&
                 !IsEndingDay)
             {
                 return startMinutes;
             }
 
-
             float progress =
                 Mathf.Clamp01(
                     1f -
                     (TimeRemaining /
                      dayDurationSeconds));
-
 
             return startMinutes +
                    Mathf.RoundToInt(
@@ -307,16 +329,136 @@ public class DayManager : MonoBehaviour
         }
     }
 
-// STOP DAY
-    
 
     public void StopCurrentDay()
     {
         IsDayRunning = false;
         IsEndingDay = true;
 
-
         Debug.Log(
             "Day stopped.");
+    }
+
+
+    private void CaptureStartOfDayStats()
+    {
+        if (StudioManager.Instance == null)
+            return;
+
+        GameProject project =
+            StudioManager.Instance.currentProject;
+
+        if (project == null ||
+            project.stats == null)
+        {
+            return;
+        }
+
+        startBudget =
+            StudioManager.Instance.money;
+
+        startTrust =
+            StudioManager.Instance.publisherSatisfaction;
+
+        startEthics =
+            StudioManager.Instance.ethics;
+
+        startGameplay =
+            project.stats.gameplay;
+
+        startStory =
+            project.stats.story;
+
+        startStyle =
+            project.stats.style;
+
+        startAudience =
+            project.stats.audience;
+
+        startProfit =
+            project.stats.profit;
+
+        Debug.Log(
+            "Day " +
+            StudioManager.Instance.currentDay +
+            " starting stats captured.");
+    }
+
+
+    private void CaptureEndOfDaySummary(
+        int completedDay)
+    {
+        if (StudioManager.Instance == null)
+            return;
+
+        GameProject project =
+            StudioManager.Instance.currentProject;
+
+        if (project == null ||
+            project.stats == null)
+        {
+            return;
+        }
+
+        SummaryDay =
+            completedDay;
+
+        SummaryBudgetChange =
+            StudioManager.Instance.money -
+            startBudget;
+
+        SummaryTrustChange =
+            StudioManager.Instance.publisherSatisfaction -
+            startTrust;
+
+        SummaryEthicsChange =
+            StudioManager.Instance.ethics -
+            startEthics;
+
+        SummaryGameplayChange =
+            project.stats.gameplay -
+            startGameplay;
+
+        SummaryStoryChange =
+            project.stats.story -
+            startStory;
+
+        SummaryStyleChange =
+            project.stats.style -
+            startStyle;
+
+        SummaryAudienceChange =
+            project.stats.audience -
+            startAudience;
+
+        SummaryProfitChange =
+            project.stats.profit -
+            startProfit;
+
+        HasPendingDaySummary = true;
+
+        Debug.Log(
+            "End of Day " +
+            completedDay +
+            " summary captured.");
+    }
+
+
+    public void ClearPendingDaySummary()
+    {
+        HasPendingDaySummary = false;
+
+        Debug.Log(
+            "End-of-day summary cleared.");
+    }
+
+
+    private void OnDestroy()
+    {
+        if (GameSceneLoader.Instance != null)
+        {
+            GameSceneLoader.Instance.OnGameSceneLoaded -=
+                OnNextDayDesktopLoaded;
+        }
     }
 }
