@@ -2,37 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EmailManager : MonoBehaviour
+public class EmailManager : Singleton<EmailManager>
 {
-    public static EmailManager Instance { get; private set; }
-
-    private List<EmailData> emails =
-        new List<EmailData>();
-
-
+    private List<EmailData> emails = new List<EmailData>();
     public event Action EmailsChanged;
+    
     public IReadOnlyList<EmailData> Emails
     {
         get { return emails; }
     }
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+       base.Awake();
+       
+       
     }
 
 
     public void AddEmail(EmailData email)
     {
+        Debug.Log("EmailManager - AddEmail");
+        
         if (email == null)
             return;
 
@@ -51,6 +43,8 @@ public class EmailManager : MonoBehaviour
 
     public bool HasEmail(string id)
     {
+        Debug.Log("EmailManager - HasEmail");
+        
         foreach (EmailData email in emails)
         {
             if (email.id == id)
@@ -63,6 +57,8 @@ public class EmailManager : MonoBehaviour
 
     public void MarkAsRead(EmailData email)
     {
+        Debug.Log("EmailManager - MarkAsRead");
+        
         if (email == null)
             return;
 
@@ -77,19 +73,23 @@ public class EmailManager : MonoBehaviour
 
     public int GetUnreadCount()
     {
-        int count = 0;
+        Debug.Log("EmailManager - GetUnreadCount");
+        
+        // int count = 0;
+        //
+        // foreach (EmailData email in emails)
+        // {
+        //     if (!email.isRead)
+        //         count++;
+        // }
 
-        foreach (EmailData email in emails)
-        {
-            if (!email.isRead)
-                count++;
-        }
-
-        return count;
+        return emails.Count;
     }
     
     public EmailData GetEmail(string id)
     {
+        Debug.Log("EmailManager - GetEmail");
+        
         foreach (EmailData email in emails)
         {
             if (email.id == id)

@@ -6,25 +6,29 @@ using UnityEngine.UI;
 
 public class DesktopInterface : MonoBehaviour
 {
+    // Screen Animations
     [SerializeField] private Animator animScreenOn;
+    [SerializeField] private Animator animScreenOff;
     
     [SerializeField] private Animator animSystemLoad;
     [SerializeField] private Animator animOSLogo;
     [SerializeField] private Image bgSystemLoad;
-    
-    [SerializeField] private Animator animScreenOff;
-
-    [SerializeField] private DesktopWindow windowPrefab; 
-    
-    [SerializeField] private Minesweeper minesweeperPrefab;
-    Minesweeper currentMinesweeper;
-    
-    [SerializeField] private EmailWindow emailWindowPrefab; //Prefab for the email ui i made
-    private EmailWindow currentEmailWindow;
-    [SerializeField] private GameObject emailUnreadMarker;
 
     [SerializeField] private GameObject windowLayer;
     [SerializeField] private GameObject shortcutLayer;
+    
+    // Applications
+    // Blank
+    [SerializeField] private DesktopWindow windowPrefab; 
+    
+    // Minesweeper
+    [SerializeField] private Minesweeper minesweeperPrefab;
+    Minesweeper currentMinesweeper;
+    
+    // Email
+    [SerializeField] private EmailWindow emailWindowPrefab; //Prefab for the email ui i made
+    [SerializeField] private GameObject emailUnreadMarker;
+    EmailWindow currentEmailWindow;
     
     void Start()
     {
@@ -36,7 +40,7 @@ public class DesktopInterface : MonoBehaviour
         bgSystemLoad.gameObject.SetActive(true);
         //animScreenOff.gameObject.SetActive(true);
         RefreshEmailNotification();
-
+        
         
         StartCoroutine(InterfaceOpen());
     }
@@ -48,20 +52,12 @@ public class DesktopInterface : MonoBehaviour
 
     public void EventSubscription()
     {
-        if (EmailManager.Instance != null)
-        {
-            EmailManager.Instance.EmailsChanged +=
-                RefreshEmailNotification;
-        }
+        EmailManager.Instance.EmailsChanged += RefreshEmailNotification;
     }
 
     public void EventUnsubscription()
     {
-        if (EmailManager.Instance != null)
-        {
-            EmailManager.Instance.EmailsChanged -=
-                RefreshEmailNotification;
-        }
+        EmailManager.Instance.EmailsChanged -= RefreshEmailNotification;
     }
 
     public IEnumerator InterfaceOpen()
@@ -69,20 +65,6 @@ public class DesktopInterface : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         ScreenOnAnim();
         StartCoroutine(RunOnAnimFinish(animScreenOn, "DesktopBoot", SystemLoad, 0.25f));
-    }
-
-    public IEnumerator RunOnAnimFinish(Animator animator, string stateName, Action method)
-    {
-        //Debug.Log(method.Method.Name + "Awaiting " + animator.name + " - " + stateName + " Finish");
-        yield return null;
-        
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-        {
-            yield return null;
-        }
-        
-        //Debug.Log(animator.name + " - " + stateName + " Finished");
-        method.Invoke();
     }
     
     public IEnumerator RunOnAnimFinish(Animator animator, string stateName, Action method, float delaySeconds)

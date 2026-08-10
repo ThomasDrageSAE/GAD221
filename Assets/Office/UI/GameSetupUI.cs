@@ -74,13 +74,9 @@ public class GameSetupUI : MonoBehaviour{
     {
         StudioManager studio = StudioManager.Instance;
 
+        studio.studioName = studioNameInput.text;
 
-        studio.studioName =
-            studioNameInput.text;
-
-
-        studio.CreateNewProject();
-
+        //studio.CreateNewProject();
 
         GameProject project = studio.currentProject;
         project.gameName = gameNameInput.text;
@@ -94,10 +90,8 @@ public class GameSetupUI : MonoBehaviour{
         
         studio.setupComplete = true;
 
-        Debug.Log("Created Game: " + project.gameName
-        );
-
-
+        Debug.Log("Created Game: " + project.gameName);
+        
         if (officeHUDObject != null)
         {
             officeHUDObject.SetActive(true);
@@ -113,11 +107,7 @@ public class GameSetupUI : MonoBehaviour{
         StartDayOne();
 
         dayOneUI.ShowDayOne();
-        
-        
     }
-
-
 
     void StartDayOne()
     {

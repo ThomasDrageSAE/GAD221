@@ -63,7 +63,7 @@ public class ScreenFade : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        Debug.Log("FadeOut");
+        //Debug.Log("FadeOut");
         if (canvasGroup == null)
             yield break;
 
@@ -108,7 +108,7 @@ public class ScreenFade : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        Debug.Log("FadeIn");
+        //Debug.Log("FadeIn");
         if (canvasGroup == null)
             yield break;
         

@@ -15,7 +15,7 @@ public class GameProject
 
 
     // Calculated stats
-    public GameStats stats = new GameStats();
+    public GameStats stats;
 
 
     // Results
@@ -23,8 +23,22 @@ public class GameProject
     public int sales;
     public int moneyEarned;
 
-
-
+    public GameProject(string gameName, Genre genre, Theme theme, Engine engine, Mechanic mechanic, Platform platform)
+    {
+        this.gameName = gameName;
+        this.genre = genre;
+        this.theme = theme;
+        this.engine = engine;
+        this.mechanic = mechanic;
+        this.platform = platform;
+        
+        stats = new GameStats();
+        
+        reviewScore = 0;
+        sales = 0;
+        moneyEarned = 0;
+    }
+    
     public void ResetStats()
     {
         stats = new GameStats();

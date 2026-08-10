@@ -88,7 +88,7 @@ public class DayHUD : MonoBehaviour
         clockText.text = hour12 + ":" + minute.ToString("00") + " " + period;
     }
     
-    private void EndDayButtonPress()
+    public void EndDayButtonPress()
     {
         DayManager.Instance.EndDay();
     }

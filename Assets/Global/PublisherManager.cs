@@ -171,6 +171,7 @@ public class PublisherManager : Singleton<PublisherManager>
         currentDemandData = null;
         HasAnsweredCurrentDemand = true;
         lastDecisionText = "";
+        SendIntroEmail();
     }
     
     public void StartPublisherDay(int day)
@@ -186,9 +187,7 @@ public class PublisherManager : Singleton<PublisherManager>
             currentDemandData = null;
             HasAnsweredCurrentDemand = true;
 
-            Debug.Log(
-                "No publisher demand for Day " +
-                day);
+            //Debug.Log("No publisher demand for Day " + day);
 
             return;
         }
@@ -204,22 +203,12 @@ public class PublisherManager : Singleton<PublisherManager>
 
     private void SendPublisherEmail(int day)
     {
-        if (EmailManager.Instance == null)
-        {
-            Debug.LogError(
-                "PublisherManager could not find EmailManager.Instance.");
-
-            return;
-        }
-
         if (currentDemandData == null)
             return;
 
-        string emailId =
-            "publisher_day_" + day;
+        string emailId = "publisher_day_" + day;
 
-        string subject =
-            GetPublisherEmailSubject(day);
+        string subject = GetPublisherEmailSubject(day);
 
         EmailData email =
             new EmailData(
@@ -477,7 +466,7 @@ public class PublisherManager : Singleton<PublisherManager>
         }
     }
     
-    // added email demands to seem like somthing in an actual email form a publisher
+    // added email demands to seem like something in an actual email form a publisher
     private string GetPublisherEmailBody(int day)
     {
         switch (day)

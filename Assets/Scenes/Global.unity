@@ -163,10 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc23b34991623e446a2f47d30e200aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
-  dayDurationSeconds: 300
-  finalDay: 5
-  officeSceneName: Office
-  desktopSceneName: DesktopInterface
+  FinalDay: 10
+  timerDurationSeconds: 300
 --- !u!1 &427966385
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +668,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   globalSceneName: Global
+  desktopSceneName: DesktopInterface
+  officeSceneName: Office
   initialGameScene: Office
 --- !u!1 &1363048839
 GameObject:
@@ -704,6 +704,7 @@ Transform:
   - {fileID: 1478560196}
   - {fileID: 551242045}
   - {fileID: 200898867}
+  - {fileID: 1641690240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478560195
@@ -755,7 +756,6 @@ MonoBehaviour:
   money: 5000
   ethics: 100
   publisherSatisfaction: 100
-  currentDay: 1
   currentProject:
     gameName: Untitled Game
     genre: 0
@@ -905,6 +905,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1641690239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641690240}
+  - component: {fileID: 1641690241}
+  m_Layer: 0
+  m_Name: Email Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1641690240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641690239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1363048843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641690241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641690239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb61449030555842b3752edb216d211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmailManager
 --- !u!1 &1699409935
 GameObject:
   m_ObjectHideFlags: 0

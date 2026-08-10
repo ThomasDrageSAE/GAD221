@@ -27,6 +27,8 @@ public class StudioManager : Singleton<StudioManager>
         
         DayManager.OnDayEnded += OnDayEnded;
         DayManager.OnFinalDayEnded += OnFinalDayEnded;
+        
+        CreateGameProject("dummyGame", Genre.Racing, Theme.Cyberpunk, Engine.Bodot, Mechanic.Ads, Platform.PC);
     }
 
     private void OnDestroy()
@@ -35,9 +37,11 @@ public class StudioManager : Singleton<StudioManager>
         DayManager.OnFinalDayEnded -= OnFinalDayEnded;
     }
 
-    public void CreateNewProject()
+    public void CreateGameProject(string gameName, Genre genre, Theme theme, Engine engine, Mechanic mechanic, Platform platform)
     {
-        currentProject = new GameProject();
+        currentProject = new GameProject(gameName, genre, theme, engine, mechanic, platform);
+        setupComplete = true;
+        //Debug.Log("Created Game: " + currentProject.gameName);
     }
 
     public void ReleaseGame()
@@ -52,7 +56,7 @@ public class StudioManager : Singleton<StudioManager>
         Debug.Log("Money Earned: £" + currentProject.moneyEarned);
     }
     
-    public event System.Action StudioDataChanged;
+    public event Action StudioDataChanged;
 
     public void NotifyStudioDataChanged()
     {

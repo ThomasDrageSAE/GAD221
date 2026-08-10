@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EmailWindow : MonoBehaviour
+public class EmailWindow : DesktopWindow
 {
     [Header("Inbox")]
     [SerializeField] private Transform emailListContent;
@@ -28,8 +28,10 @@ public class EmailWindow : MonoBehaviour
     private EmailData selectedEmail;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         BuildInbox();
         ClearSelection();
 
@@ -44,6 +46,8 @@ public class EmailWindow : MonoBehaviour
 
     private void BuildInbox()
     {
+        Debug.Log("Build Inbox");
+        
         if (EmailManager.Instance == null)
         {
             Debug.LogError(
@@ -75,7 +79,8 @@ public class EmailWindow : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-
+        Debug.Log("Email Count: " + EmailManager.Instance.Emails.Count);
+        
         // Create one list item for every email.
         foreach (EmailData email in EmailManager.Instance.Emails)
         {
@@ -328,17 +333,6 @@ public class EmailWindow : MonoBehaviour
 
         ShowPublisherEmail(selectedEmail);
     }
-
-
-    // --------------------------------------------------
-    // CLOSE WINDOW
-    // --------------------------------------------------
-
-    public void CloseWindow()
-    {
-        Destroy(gameObject);
-    }
-
 
     // --------------------------------------------------
     // HELPERS
