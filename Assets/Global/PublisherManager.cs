@@ -1,4 +1,4 @@
-    using System;
+using System;
 using UnityEngine;
 
 public class PublisherManager : Singleton<PublisherManager>
@@ -41,112 +41,129 @@ public class PublisherManager : Singleton<PublisherManager>
         
     }
 
-    #region UI Registration
-
     //increase the days to 10, and day 1 will act as a tutorial
     private void CreateDemands()
-{
-    demands = new DarkPatternData[]
     {
-        // DAY 2
-        new DarkPatternData(
-            "Advertisements",
-            "Add advertisements to the game to create an additional revenue stream.",
-
-        //Debug.Log("Publisher UI Registered.");
-
-        // Restore an unanswered publisher demand when returning
-        // to the Office scene.
-        if (currentDemandData != null &&
-            !HasAnsweredCurrentDemand &&
-            DayManager.Instance.CurrentDay > 1)
+        demands = new DarkPatternData[]
         {
-            publisherUI.ShowDemand();
-        }
+            // DAY 2
+            new DarkPatternData(
+                "Advertisements",
+                "Add advertisements to the game to create an additional revenue stream.",
 
-        else
-        {
-            Debug.Log("demand data null");
-        }
+                -1, // Gameplay
+                 0, // Story
+                -1, // Style
+                -1, // Audience
+                 1, // Profit
+                -5  // Ethics
+            ),
+
+            // DAY 3
+            new DarkPatternData(
+                "Microtransactions",
+                "Allow players to purchase optional items and content with real money.",
+
+                -1,
+                 0,
+                 0,
+                 0,
+                 2,
+                -10
+            ),
+
+            // DAY 4
+            new DarkPatternData(
+                "Premium Currency",
+                "Introduce a premium currency that players purchase before buying items.",
+
+                -1,
+                 0,
+                -1,
+                 0,
+                 3,
+                -15
+            ),
+
+            // DAY 5
+            new DarkPatternData(
+                "Loot Boxes",
+                "Add purchasable random reward boxes containing items of varying rarity.",
+
+                -1,
+                 0,
+                -1,
+                 1,
+                 4,
+                -20
+            ),
+
+            // DAY 6
+            new DarkPatternData(
+                "Daily Rewards",
+                "Reward players for returning every day, with larger rewards for maintaining a streak.",
+
+                -1,
+                 0,
+                 0,
+                 2,
+                 4,
+                -25
+            ),
+
+            // DAY 7
+            new DarkPatternData(
+                "Limited-Time Events",
+                "Introduce rewards that are only available for a short period to encourage players to return.",
+
+                -2,
+                 0,
+                 0,
+                 2,
+                 5,
+                -30
+            ),
+
+            // DAY 8
+            new DarkPatternData(
+                "Progress Slowdown",
+                "Increase the amount of time required to progress through the game.",
+
+                -3,
+                -1,
+                 0,
+                -1,
+                 5,
+                -35
+            ),
+
+            // DAY 9
+            new DarkPatternData(
+                "Pay to Skip",
+                "Allow players to pay to bypass the slower progression and continue immediately.",
+
+                -3,
+                -1,
+                -1,
+                -2,
+                 7,
+                -40
+            ),
+
+            // DAY 10
+            new DarkPatternData(
+                "Gacha System",
+                "Introduce a premium randomised reward system featuring rare characters and items.",
+
+                -4,
+                -2,
+                -1,
+                 3,
+                 9,
+                -50
+            )
+        };    
     }
-
-            -1,
-             0,
-             0,
-             0,
-             2,
-            -10
-        ),
-
-        // DAY 4
-        new DarkPatternData(
-            "Premium Currency",
-            "Introduce a premium currency that players purchase before buying items.",
-
-            -1,
-             0,
-            -1,
-             0,
-             3,
-            -15
-        ),
-
-        // DAY 5
-        new DarkPatternData(
-            "Loot Boxes",
-            "Add purchasable random reward boxes containing items of varying rarity.",
-
-            -1,
-             0,
-            -1,
-             1,
-             4,
-            -20
-        ),
-
-        // DAY 6
-        new DarkPatternData(
-            "Daily Rewards",
-            "Reward players for returning every day, with larger rewards for maintaining a streak.",
-
-            -1,
-             0,
-             0,
-             2,
-             4,
-            -25
-        ),
-
-        // DAY 7
-        new DarkPatternData(
-            "Limited-Time Events",
-            "Introduce rewards that are only available for a short period to encourage players to return.",
-
-            -2,
-             0,
-             0,
-             2,
-             5,
-            -30
-        ),
-
-        // DAY 8
-        new DarkPatternData(
-            "Progress Slowdown",
-            "Increase the amount of time required to progress through the game.",
-
-            -3,
-            -1,
-             0,
-            -1,
-             5,
-            -35
-        ),
-
-        // DAY 9
-        new DarkPatternData(
-            "Pay to Skip",
-            "Allow players to pay to bypass the slower progression and continue immediately.",
 
     public void StudioFounded()
     {
@@ -237,7 +254,8 @@ public class PublisherManager : Singleton<PublisherManager>
             case 6:
                 return "Player Retention";
 
-        Debug.Log("Day " + day + " Publisher Demand: " + currentDemandData.name);
+            case 7:
+                return "Limited-Time Content";
 
             case 8:
                 return "Progression Changes";
@@ -250,11 +268,6 @@ public class PublisherManager : Singleton<PublisherManager>
 
             default:
                 return "Publisher Message";
-        }
-        
-        else
-        {
-            Debug.LogWarning("PublisherUI has not registered yet.");
         }
     }
 
@@ -338,7 +351,7 @@ public class PublisherManager : Singleton<PublisherManager>
         if (currentDemandData == null)
             return;
 
-        int day = StudioManager.Instance.currentDay;
+        int day = DayManager.Instance.CurrentDay;
 
         HasAnsweredCurrentDemand = true;
 
@@ -463,84 +476,86 @@ public class PublisherManager : Singleton<PublisherManager>
             RejectDemandFromTimeout();
         }
     }
+    
+    // added email demands to seem like somthing in an actual email form a publisher
+    private string GetPublisherEmailBody(int day)
     {
-    switch (day)
-    {
-        case 2:
-            return
-                "Hi,\n\n" +
-                "We've reviewed the current revenue projections and we'd like to make a small adjustment.\n\n" +
-                "Please add advertisements to the game. This should give us an additional source of revenue without requiring major changes to the project.\n\n" +
-                "Let us know if you'll move forward with this.\n\n" +
-                "- Publishing";
-        case 3:
-            return
-                "Hi,\n\n" +
-                "The advertising strategy is a start, but we'd like to explore additional revenue opportunities.\n\n" +
-                "Please introduce optional microtransactions. Players could purchase cosmetic items or additional content directly.\n\n" +
-                "We believe this will significantly improve the project's commercial potential.\n\n" +
-                "- Publishing";
-        case 4:
-            return
-                "Team,\n\n" +
-                "We'd like purchases to operate through a premium in-game currency rather than direct prices.\n\n" +
-                "Players will purchase currency bundles first and then use that currency in the store.\n\n" +
-                "This gives us more flexibility with pricing and promotions going forward.\n\n" +
-                "- Publishing";
-        case 5:
-            return
-                "Team,\n\n" +
-                "We're looking for stronger engagement with the store.\n\n" +
-                "Please introduce purchasable reward boxes with random contents and varying item rarity.\n\n" +
-                "Rare rewards should give players a reason to make repeat purchases.\n\n" +
-                "- Publishing";
-        case 6:
-            return
-                "Team,\n\n" +
-                "Our retention numbers need improvement.\n\n" +
-                "Introduce daily login rewards, with increasingly valuable rewards for consecutive days.\n\n" +
-                "Players who break their streak should have to begin again.\n\n" +
-                "This should encourage more consistent engagement.\n\n" +
-                "- Publishing";
-        case 7:
-            return
-                "Team,\n\n" +
-                "We need to increase how frequently players return to the game.\n\n" +
-                "Create limited-time events with exclusive rewards that disappear when the event ends.\n\n" +
-                "Players should understand that missing the event means missing the rewards.\n\n" +
-                "- Publishing";
-        case 8:
-            return
-                "Team,\n\n" +
-                "Current progression is allowing players to move through the game too quickly.\n\n" +
-                "Increase progression requirements and extend the time needed to unlock later content.\n\n" +
-                "Slower progression should improve long-term engagement and create additional monetisation opportunities.\n\n" +
-                "- Publishing";
-        case 9:
-            return
-                "Team,\n\n" +
-                "We've reviewed the new progression model.\n\n" +
-                "Players who don't want to wait should be given the option to pay to skip progression requirements.\n\n" +
-                "Make sure this option is clearly available whenever progress slows down.\n\n" +
-                "- Publishing";
-        case 10:
-            return
-                "Final directive.\n\n" +
-                "We want the monetisation systems consolidated into a premium gacha system.\n\n" +
-                "Players should spend premium currency for random chances at rare characters and items. Limited availability should encourage repeat purchases.\n\n" +
-                "This is an important part of our commercial strategy. We expect this feature to be implemented.\n\n" +
-                "- Publishing";
-        default:
-            return "";
+        switch (day)
+        {
+            case 2:
+                return
+                    "Hi,\n\n" +
+                    "We've reviewed the current revenue projections and we'd like to make a small adjustment.\n\n" +
+                    "Please add advertisements to the game. This should give us an additional source of revenue without requiring major changes to the project.\n\n" +
+                    "Let us know if you'll move forward with this.\n\n" +
+                    "- Publishing";
+            case 3:
+                return
+                    "Hi,\n\n" +
+                    "The advertising strategy is a start, but we'd like to explore additional revenue opportunities.\n\n" +
+                    "Please introduce optional microtransactions. Players could purchase cosmetic items or additional content directly.\n\n" +
+                    "We believe this will significantly improve the project's commercial potential.\n\n" +
+                    "- Publishing";
+            case 4:
+                return
+                    "Team,\n\n" +
+                    "We'd like purchases to operate through a premium in-game currency rather than direct prices.\n\n" +
+                    "Players will purchase currency bundles first and then use that currency in the store.\n\n" +
+                    "This gives us more flexibility with pricing and promotions going forward.\n\n" +
+                    "- Publishing";
+            case 5:
+                return
+                    "Team,\n\n" +
+                    "We're looking for stronger engagement with the store.\n\n" +
+                    "Please introduce purchasable reward boxes with random contents and varying item rarity.\n\n" +
+                    "Rare rewards should give players a reason to make repeat purchases.\n\n" +
+                    "- Publishing";
+            case 6:
+                return
+                    "Team,\n\n" +
+                    "Our retention numbers need improvement.\n\n" +
+                    "Introduce daily login rewards, with increasingly valuable rewards for consecutive days.\n\n" +
+                    "Players who break their streak should have to begin again.\n\n" +
+                    "This should encourage more consistent engagement.\n\n" +
+                    "- Publishing";
+            case 7:
+                return
+                    "Team,\n\n" +
+                    "We need to increase how frequently players return to the game.\n\n" +
+                    "Create limited-time events with exclusive rewards that disappear when the event ends.\n\n" +
+                    "Players should understand that missing the event means missing the rewards.\n\n" +
+                    "- Publishing";
+            case 8:
+                return
+                    "Team,\n\n" +
+                    "Current progression is allowing players to move through the game too quickly.\n\n" +
+                    "Increase progression requirements and extend the time needed to unlock later content.\n\n" +
+                    "Slower progression should improve long-term engagement and create additional monetisation opportunities.\n\n" +
+                    "- Publishing";
+            case 9:
+                return
+                    "Team,\n\n" +
+                    "We've reviewed the new progression model.\n\n" +
+                    "Players who don't want to wait should be given the option to pay to skip progression requirements.\n\n" +
+                    "Make sure this option is clearly available whenever progress slows down.\n\n" +
+                    "- Publishing";
+            case 10:
+                return
+                    "Final directive.\n\n" +
+                    "We want the monetisation systems consolidated into a premium gacha system.\n\n" +
+                    "Players should spend premium currency for random chances at rare characters and items. Limited availability should encourage repeat purchases.\n\n" +
+                    "This is an important part of our commercial strategy. We expect this feature to be implemented.\n\n" +
+                    "- Publishing";
+            default:
+                return "";
+        }
     }
-    //first email the player sees
-    private void SendIntroEmail()
+    
+    private void SendIntroEmail() //first email the player sees
     {
         if (EmailManager.Instance == null)
         {
-            Debug.LogError(
-                "PublisherManager could not find EmailManager.Instance.");
-
+            Debug.LogError("PublisherManager could not find EmailManager.Instance.");
             return;
         }
 
@@ -560,87 +575,5 @@ public class PublisherManager : Singleton<PublisherManager>
         );
 
         EmailManager.Instance.AddEmail(email);
-    }
-    // added email demands to seem like somthing in an actual email form a publisher
-    private string GetPublisherEmailBody(int day)
-{
-    switch (day)
-    {
-        case 2:
-            return
-                "Hi,\n\n" +
-                "We've reviewed the current revenue projections and we'd like to make a small adjustment.\n\n" +
-                "Please add advertisements to the game. This should give us an additional source of revenue without requiring major changes to the project.\n\n" +
-                "Let us know if you'll move forward with this.\n\n" +
-                "- Publishing";
-
-        case 3:
-            return
-                "Hi,\n\n" +
-                "The advertising strategy is a start, but we'd like to explore additional revenue opportunities.\n\n" +
-                "Please introduce optional microtransactions. Players could purchase cosmetic items or additional content directly.\n\n" +
-                "We believe this will significantly improve the project's commercial potential.\n\n" +
-                "- Publishing";
-
-        case 4:
-            return
-                "Team,\n\n" +
-                "We'd like purchases to operate through a premium in-game currency rather than direct prices.\n\n" +
-                "Players will purchase currency bundles first and then use that currency in the store.\n\n" +
-                "This gives us more flexibility with pricing and promotions going forward.\n\n" +
-                "- Publishing";
-
-        case 5:
-            return
-                "Team,\n\n" +
-                "We're looking for stronger engagement with the store.\n\n" +
-                "Please introduce purchasable reward boxes with random contents and varying item rarity.\n\n" +
-                "Rare rewards should give players a reason to make repeat purchases.\n\n" +
-                "- Publishing";
-
-        case 6:
-            return
-                "Team,\n\n" +
-                "Our retention numbers need improvement.\n\n" +
-                "Introduce daily login rewards, with increasingly valuable rewards for consecutive days.\n\n" +
-                "Players who break their streak should have to begin again.\n\n" +
-                "This should encourage more consistent engagement.\n\n" +
-                "- Publishing";
-
-        case 7:
-            return
-                "Team,\n\n" +
-                "We need to increase how frequently players return to the game.\n\n" +
-                "Create limited-time events with exclusive rewards that disappear when the event ends.\n\n" +
-                "Players should understand that missing the event means missing the rewards.\n\n" +
-                "- Publishing";
-
-        case 8:
-            return
-                "Team,\n\n" +
-                "Current progression is allowing players to move through the game too quickly.\n\n" +
-                "Increase progression requirements and extend the time needed to unlock later content.\n\n" +
-                "Slower progression should improve long-term engagement and create additional monetisation opportunities.\n\n" +
-                "- Publishing";
-
-        case 9:
-            return
-                "Team,\n\n" +
-                "We've reviewed the new progression model.\n\n" +
-                "Players who don't want to wait should be given the option to pay to skip progression requirements.\n\n" +
-                "Make sure this option is clearly available whenever progress slows down.\n\n" +
-                "- Publishing";
-
-        case 10:
-            return
-                "Final directive.\n\n" +
-                "We want the monetisation systems consolidated into a premium gacha system.\n\n" +
-                "Players should spend premium currency for random chances at rare characters and items. Limited availability should encourage repeat purchases.\n\n" +
-                "This is an important part of our commercial strategy. We expect this feature to be implemented.\n\n" +
-                "- Publishing";
-
-        default:
-            return "";
-    }
     }
 }
