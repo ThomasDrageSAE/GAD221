@@ -135,7 +135,9 @@ public class GameSetupUI : MonoBehaviour{
         // First time entering the Office.
         if (!StudioManager.Instance.setupComplete)
         {
-            setupPanel.SetActive(true);
+            // New game.
+            // The Title Screen decides when the setup panel becomes visible.
+            setupPanel.SetActive(false);
 
             if (officeHUDObject != null)
             {

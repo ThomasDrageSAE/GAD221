@@ -67,7 +67,7 @@ public class ScreenFade : MonoBehaviour
         if (canvasGroup == null)
             yield break;
 
-        canvasGroup.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = false;
 
         float time = 0f;
 
@@ -85,6 +85,7 @@ public class ScreenFade : MonoBehaviour
         }
 
         canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = false;
         OnFadeOutComplete?.Invoke();
         isFading = false;
     }
@@ -111,6 +112,8 @@ public class ScreenFade : MonoBehaviour
         if (canvasGroup == null)
             yield break;
         
+        canvasGroup.blocksRaycasts = false;
+
         float time = 0f;
 
         while (time < fadeDuration)

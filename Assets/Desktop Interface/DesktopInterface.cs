@@ -18,6 +18,10 @@ public class DesktopInterface : MonoBehaviour
     
     [SerializeField] private Minesweeper minesweeperPrefab;
     Minesweeper currentMinesweeper;
+    
+    [SerializeField] private EmailWindow emailWindowPrefab; //Prefab for the email ui i made
+    private EmailWindow currentEmailWindow;
+    [SerializeField] private GameObject emailUnreadMarker;
 
     [SerializeField] private GameObject windowLayer;
     [SerializeField] private GameObject shortcutLayer;
@@ -31,6 +35,8 @@ public class DesktopInterface : MonoBehaviour
         animOSLogo.gameObject.SetActive(true);
         bgSystemLoad.gameObject.SetActive(true);
         //animScreenOff.gameObject.SetActive(true);
+        RefreshEmailNotification();
+
         
         StartCoroutine(InterfaceOpen());
     }
@@ -42,12 +48,20 @@ public class DesktopInterface : MonoBehaviour
 
     public void EventSubscription()
     {
-        
+        if (EmailManager.Instance != null)
+        {
+            EmailManager.Instance.EmailsChanged +=
+                RefreshEmailNotification;
+        }
     }
 
     public void EventUnsubscription()
     {
-        
+        if (EmailManager.Instance != null)
+        {
+            EmailManager.Instance.EmailsChanged -=
+                RefreshEmailNotification;
+        }
     }
 
     public IEnumerator InterfaceOpen()
@@ -137,5 +151,34 @@ public class DesktopInterface : MonoBehaviour
     {
         //Debug.Log("Desktop Interface - CreateWindow");
         DesktopWindow window = Instantiate(windowPrefab, windowLayer.transform);
+    }
+    
+    public void EmailShortcut()
+    {
+        if (currentEmailWindow != null)
+            return;
+
+        currentEmailWindow = Instantiate(
+            emailWindowPrefab,
+            windowLayer.transform);
+    }
+    
+    //Notifies the player on the dekstop icon when they get an email 
+    private void RefreshEmailNotification()
+    {
+        if (emailUnreadMarker == null)
+            return;
+
+        if (EmailManager.Instance == null)
+        {
+            emailUnreadMarker.SetActive(false);
+            return;
+        }
+
+        int unreadCount =
+            EmailManager.Instance.GetUnreadCount();
+
+        emailUnreadMarker.SetActive(
+            unreadCount > 0);
     }
 }
