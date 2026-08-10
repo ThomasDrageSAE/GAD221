@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 751459595009625050}
   - component: {fileID: 5997304324204154209}
   - component: {fileID: 1825202186647434780}
+  - component: {fileID: 5223814027284919004}
   m_Layer: 0
   m_Name: No Button
   m_TagString: Untagged
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DesktopButton
   highlight: {fileID: 3414226387039286968}
+  interactable: 1
   hoverable: 1
   leftClickable: 1
   rightClickable: 0
@@ -102,10 +104,36 @@ MonoBehaviour:
       m_Calls: []
   onLeftClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5223814027284919004}
+        m_TargetAssemblyTypeName: AudioTrigger, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onRightClicked:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5223814027284919004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054463233974364515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5549c50d6b9700a4ba1a995e20e51b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioTrigger
+  audioResource: {fileID: 11400000, guid: bcc95e91a8346ae44bae446840ce366d, type: 2}
+  playOnStart: 0
 --- !u!1 &7852810373494726870
 GameObject:
   m_ObjectHideFlags: 0

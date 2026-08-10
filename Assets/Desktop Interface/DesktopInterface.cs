@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DesktopInterface : MonoBehaviour
 {
-    // Anim Controllers
     [SerializeField] private Animator animScreenOn;
     
     [SerializeField] private Animator animSystemLoad;

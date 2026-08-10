@@ -14,7 +14,7 @@ Shader "Supercyan/SupercyanShader"
 			#pragma surface surf SupercyanShadingForward fullforwardshadows 
 			#pragma target 3.0
 
-			#include "Assets/Supercyan/Shaders/SharedShaders/SupercyanShaderLighting.cginc"
+			#include "Assets/Asset Packs/Supercyan/Shaders/SharedShaders/SupercyanShaderLighting.cginc"
 
 			sampler2D _MainTex;
 

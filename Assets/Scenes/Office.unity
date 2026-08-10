@@ -498,6 +498,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1548358725}
   m_SourcePrefab: {fileID: 100100000, guid: cf204c4e06a8b0c4c813356434dc4f05, type: 3}
+--- !u!114 &56230054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6795442063154845254, guid: cf204c4e06a8b0c4c813356434dc4f05, type: 3}
+  m_PrefabInstance: {fileID: 56230053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160667283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628d4c90318e0e747862ec58d3732602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayHUD
 --- !u!1 &76342493
 GameObject:
   m_ObjectHideFlags: 0
@@ -16095,6 +16106,7 @@ MonoBehaviour:
   dayOnePanel: {fileID: 1629695829}
   messageText: {fileID: 845295335}
   officeHUD: {fileID: 755505597}
+  dayHUD: {fileID: 56230054}
 --- !u!114 &1629695832
 MonoBehaviour:
   m_ObjectHideFlags: 0
