@@ -26,8 +26,11 @@ public class DayOneUI : MonoBehaviour
         Debug.Log("Continue button pressed");
 
         dayOnePanel.SetActive(false);
-        
-        dayHUD.ShowHUD();
+
+        if (dayHUD != null)
+        {
+            dayHUD.ShowHUD();
+        }
 
         if (officeHUD != null)
         {
