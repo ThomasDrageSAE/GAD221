@@ -24,6 +24,10 @@ public class DesktopInterface : MonoBehaviour
     // Minesweeper
     [SerializeField] private Minesweeper minesweeperPrefab;
     Minesweeper currentMinesweeper;
+  
+    //Studio Summary
+    [SerializeField] private StudioWindow studioWindowPrefab;
+    private StudioWindow currentStudioWindow;
     
     // Email
     [SerializeField] private EmailWindow emailWindowPrefab; //Prefab for the email ui i made
@@ -162,5 +166,24 @@ public class DesktopInterface : MonoBehaviour
 
         emailUnreadMarker.SetActive(
             unreadCount > 0);
+    }
+    
+    public void StudioShortcut()
+    {
+        if (currentStudioWindow != null)
+            return;
+
+        if (studioWindowPrefab == null)
+        {
+            Debug.LogError(
+                "StudioWindow prefab has not been assigned.");
+
+            return;
+        }
+
+        currentStudioWindow =
+            Instantiate(
+                studioWindowPrefab,
+                windowLayer.transform);
     }
 }
