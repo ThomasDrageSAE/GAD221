@@ -120,10 +120,25 @@ public class DayManager : Singleton<DayManager>
 
     public void EndDay()
     {
-        if (!DayStarted) return;
-        
+        if (!DayStarted)
+            return;
+
         Debug.Log("Day: " + CurrentDay + " Ended");
+
+        StopTimer();
+
+        if (StudioManager.Instance != null && StudioManager.Instance.money <= 0)
+        {
+            if (GameOverUI.Instance != null)
+            {
+                GameOverUI.Instance.ShowBankruptcy();
+            }
+
+            return;
+        }
+
         OnDayEnded?.Invoke(CurrentDay);
+
         CaptureEndOfDaySummary(CurrentDay);
 
         if (IsFinalDay)
