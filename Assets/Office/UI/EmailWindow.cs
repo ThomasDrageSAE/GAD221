@@ -22,8 +22,8 @@ public class EmailWindow : DesktopWindow
     [SerializeField] private TMP_Text statusText;
 
     [Header("Buttons")]
-    [SerializeField] private Button acceptButton;
-    [SerializeField] private Button rejectButton;
+    [SerializeField] private DesktopButton acceptButton;
+    [SerializeField] private DesktopButton rejectButton;
 
     private EmailData selectedEmail;
 
@@ -34,9 +34,6 @@ public class EmailWindow : DesktopWindow
         
         BuildInbox();
         ClearSelection();
-
-        acceptButton.onClick.AddListener(AcceptPublisherDemand);
-        rejectButton.onClick.AddListener(RejectPublisherDemand);
     }
 
 
@@ -120,11 +117,9 @@ public class EmailWindow : DesktopWindow
             actionBar.SetActive(true);
 
 
-        fromText.text =
-            "FROM: " + email.sender;
+        fromText.text = email.sender;
 
-        subjectText.text =
-            "SUBJECT: " + email.subject;
+        subjectText.text = email.subject;
 
         bodyText.text =
             email.body;

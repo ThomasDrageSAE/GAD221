@@ -8,7 +8,7 @@ public class EmailListItem : MonoBehaviour
     [SerializeField] private TMP_Text senderText;
     [SerializeField] private TMP_Text subjectText;
     [SerializeField] private GameObject unreadMarker;
-    [SerializeField] private Button button;
+    [SerializeField] private DesktopButton button;
 
     private EmailData emailData;
     private EmailWindow emailWindow;
@@ -25,13 +25,10 @@ public class EmailListItem : MonoBehaviour
         subjectText.text = data.subject;
 
         RefreshReadState();
-
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(OnClicked);
     }
 
 
-    private void OnClicked()
+    public void OnClicked()
     {
         if (emailData == null)
             return;
@@ -57,26 +54,14 @@ public class EmailListItem : MonoBehaviour
 
         if (emailData.isRead)
         {
-            senderText.fontStyle =
-                FontStyles.Normal;
-
-            subjectText.fontStyle =
-                FontStyles.Normal;
-
             if (unreadMarker != null)
                 unreadMarker.SetActive(false);
         }
+        
         else
         {
-            senderText.fontStyle =
-                FontStyles.Bold;
-
-            subjectText.fontStyle =
-                FontStyles.Bold;
-
             if (unreadMarker != null)
                 unreadMarker.SetActive(true);
         }
     }
-    
 }

@@ -62,12 +62,11 @@ public class EmailManager : Singleton<EmailManager>
         if (email == null)
             return;
 
-        if (email.isRead)
-            return;
-
-        email.isRead = true;
-
-        EmailsChanged?.Invoke();
+        if (!email.isRead)
+        {
+            email.isRead = true;
+            EmailsChanged?.Invoke();
+        }
     }
 
 
@@ -75,15 +74,19 @@ public class EmailManager : Singleton<EmailManager>
     {
         Debug.Log("EmailManager - GetUnreadCount");
         
-        // int count = 0;
-        //
-        // foreach (EmailData email in emails)
-        // {
-        //     if (!email.isRead)
-        //         count++;
-        // }
+        int unreadCount = 0;
+        
+        foreach (EmailData email in emails)
+        {
+            if (!email.isRead)
+            {
+                unreadCount++;
+            }
+        }
 
-        return emails.Count;
+        Debug.Log(unreadCount);
+        
+        return unreadCount;
     }
     
     public EmailData GetEmail(string id)

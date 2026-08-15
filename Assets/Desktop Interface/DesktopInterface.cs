@@ -26,38 +26,18 @@ public class DesktopInterface : MonoBehaviour
     Minesweeper currentMinesweeper;
     
     // Email
-    [SerializeField] private EmailWindow emailWindowPrefab; //Prefab for the email ui i made
-    [SerializeField] private GameObject emailUnreadMarker;
+    [SerializeField] private EmailWindow emailWindowPrefab;
     EmailWindow currentEmailWindow;
     
     void Start()
     {
-        EventSubscription();
-        
         animScreenOn.gameObject.SetActive(true);
         animSystemLoad.gameObject.SetActive(true);
         animOSLogo.gameObject.SetActive(true);
         bgSystemLoad.gameObject.SetActive(true);
         //animScreenOff.gameObject.SetActive(true);
-        RefreshEmailNotification();
-        
         
         StartCoroutine(InterfaceOpen());
-    }
-
-    private void OnDestroy()
-    {
-        EventUnsubscription();
-    }
-
-    public void EventSubscription()
-    {
-        EmailManager.Instance.EmailsChanged += RefreshEmailNotification;
-    }
-
-    public void EventUnsubscription()
-    {
-        EmailManager.Instance.EmailsChanged -= RefreshEmailNotification;
     }
 
     public IEnumerator InterfaceOpen()
@@ -129,38 +109,24 @@ public class DesktopInterface : MonoBehaviour
         currentMinesweeper = null;
     }
 
-    public void CreateWindow()
+    public void CreatePlaceholderWindow()
     {
-        //Debug.Log("Desktop Interface - CreateWindow");
+        //Debug.Log("Desktop Interface - CreatePlaceholderWindow");
         DesktopWindow window = Instantiate(windowPrefab, windowLayer.transform);
     }
     
     public void EmailShortcut()
     {
-        if (currentEmailWindow != null)
-            return;
-
-        currentEmailWindow = Instantiate(
-            emailWindowPrefab,
-            windowLayer.transform);
-    }
-    
-    //Notifies the player on the dekstop icon when they get an email 
-    private void RefreshEmailNotification()
-    {
-        if (emailUnreadMarker == null)
-            return;
-
-        if (EmailManager.Instance == null)
+        if (currentEmailWindow == null)
         {
-            emailUnreadMarker.SetActive(false);
-            return;
+            //currentEmailWindow = Instantiate(emailWindowPrefab, new Vector3(0,0,0), new Quaternion(),windowLayer.transform);
+            currentEmailWindow = Instantiate(emailWindowPrefab, windowLayer.transform);
+            currentEmailWindow.onWindowClose += EmailWindowClosed;
         }
+    }
 
-        int unreadCount =
-            EmailManager.Instance.GetUnreadCount();
-
-        emailUnreadMarker.SetActive(
-            unreadCount > 0);
+    public void EmailWindowClosed()
+    {
+        currentEmailWindow = null;
     }
 }
