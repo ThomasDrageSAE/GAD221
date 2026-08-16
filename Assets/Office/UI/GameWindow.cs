@@ -21,7 +21,7 @@ public class GameWindow : DesktopWindow
 
     [SerializeField] private int maxStat = 20;
 
-    private void Start()
+    protected override void Start()
     {
         base.Start();
         Refresh();
@@ -82,10 +82,5 @@ public class GameWindow : DesktopWindow
         profitBar.fillAmount =
             Mathf.Clamp01(
                 (float)project.stats.profit / maxStat);
-    }
-
-    public void Close()
-    {
-        Destroy(gameObject);
     }
 }
