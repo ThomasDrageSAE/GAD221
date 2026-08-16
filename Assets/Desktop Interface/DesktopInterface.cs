@@ -24,6 +24,14 @@ public class DesktopInterface : MonoBehaviour
     // Minesweeper
     [SerializeField] private Minesweeper minesweeperPrefab;
     Minesweeper currentMinesweeper;
+  
+    //Studio Summary
+    [SerializeField] private StudioWindow studioWindowPrefab;
+    private StudioWindow currentStudioWindow;
+    
+    //Game Summary
+    [SerializeField] private GameWindow gameWindowPrefab;
+    private GameWindow currentGameWindow;
     
     // Email
     [SerializeField] private EmailWindow emailWindowPrefab;
@@ -128,5 +136,36 @@ public class DesktopInterface : MonoBehaviour
     public void EmailWindowClosed()
     {
         currentEmailWindow = null;
+    }
+    
+    public void StudioShortcut()
+    {
+        if (currentStudioWindow != null)
+            return;
+
+        if (studioWindowPrefab == null)
+        {
+            Debug.LogError("StudioWindow prefab has not been assigned.");
+
+            return;
+        }
+
+        currentStudioWindow =
+            Instantiate(studioWindowPrefab, windowLayer.transform);
+    }
+    
+    public void GameShortcut()
+    {
+        if (currentGameWindow != null)
+            return;
+
+        if (gameWindowPrefab == null)
+        {
+            Debug.LogError("GameWindow prefab has not been assigned.");
+
+            return;
+        }
+
+        currentGameWindow = Instantiate(gameWindowPrefab, windowLayer.transform);
     }
 }

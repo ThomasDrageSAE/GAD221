@@ -383,10 +383,12 @@ public class PublisherManager : Singleton<PublisherManager>
     {
         if (StudioManager.Instance.publisherSatisfaction <= 0)
         {
-            Debug.Log(
-                "GAME OVER - Publisher has pulled funding.");
+            Debug.Log("GAME OVER - Publisher has pulled funding.");
 
-            // Fire a event.
+            if (GameOverUI.Instance != null)
+            {
+                GameOverUI.Instance.ShowPublisherFailure();
+            }
         }
     }
 

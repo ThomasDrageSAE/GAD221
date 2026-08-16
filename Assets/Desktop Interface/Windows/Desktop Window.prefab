@@ -877,7 +877,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
   dragHandle: {fileID: 6810869533488456506}
   container: {fileID: 0}
-  canvas: {fileID: 0}
   containerMarginLeft: 2
   containerMarginRight: 2
   containerMarginTop: 2
