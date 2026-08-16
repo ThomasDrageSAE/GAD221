@@ -29,7 +29,7 @@ public class StudioWindow : DesktopWindow
 
         studioNameText.text = studio.studioName;
 
-        fundsValueText.text = "$" + studio.money.ToString("N0");
+        fundsValueText.text = studio.money.ToString("N0");
 
         trustValueText.text = studio.publisherSatisfaction + "%";
 
