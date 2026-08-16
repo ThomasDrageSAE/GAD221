@@ -7,7 +7,7 @@ public class DayOneUI : MonoBehaviour
 
     public TMP_Text messageText;
     [Header("HUD")]
-    [SerializeField] private GameObject officeHUD;
+  //  [SerializeField] private GameObject officeHUD;
     [SerializeField] private DayHUD dayHUD;
 
     public void ShowDayOne()
@@ -17,7 +17,8 @@ public class DayOneUI : MonoBehaviour
         messageText.text =
             "Congratulations!\n\n" +
             "Your studio has been founded.\n\n" +
-            "Your first game is now in development.";
+            "Your first game is now in development.\n\n" +
+            "Click the PC to start!";
     }
 
 
@@ -32,15 +33,15 @@ public class DayOneUI : MonoBehaviour
             dayHUD.ShowHUD();
         }
 
-        if (officeHUD != null)
+      /*  if (officeHUD != null)
         {
             officeHUD.SetActive(true);
         }
-        else
+       else
         {
-            Debug.LogError("OfficeHUD has not been assigned.");
+           Debug.LogError("OfficeHUD has not been assigned.");
         }
 
-        DayManager.Instance.StartDay();
+      */  DayManager.Instance.StartDay();
     }
 }
